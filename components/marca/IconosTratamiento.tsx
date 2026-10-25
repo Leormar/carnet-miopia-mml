@@ -152,3 +152,37 @@ export function IconoCheck(p: Props) {
     </svg>
   )
 }
+
+/** Tres nodos unidos: compartir. */
+export function IconoCompartir(p: Props) {
+  return (
+    <svg {...base(p)}>
+      <circle cx="18" cy="5" r="2.5" />
+      <circle cx="6" cy="12" r="2.5" />
+      <circle cx="18" cy="19" r="2.5" />
+      <path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4" />
+    </svg>
+  )
+}
+
+/** Cuadricula de un codigo QR. */
+export function IconoQr(p: Props) {
+  return (
+    <svg {...base(p)}>
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20h1" />
+    </svg>
+  )
+}
+
+/** Candado cerrado, para lo que es de solo lectura. */
+export function IconoCandado(p: Props) {
+  return (
+    <svg {...base(p)}>
+      <rect x="4" y="10" width="16" height="11" rx="2" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+    </svg>
+  )
+}

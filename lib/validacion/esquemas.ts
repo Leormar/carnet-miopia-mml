@@ -124,6 +124,22 @@ export const esquemaUso = z.object({
   discomfortNote: textoOpcional,
 })
 
+/**
+ * Enlace de solo lectura para oftalmopediatria.
+ * El vencimiento es obligatorio: no existe el enlace que no caduca.
+ */
+export const esquemaEnlace = z.object({
+  label: textoOpcional.refine((v) => v === null || v.length <= 120, {
+    message: 'Maximo 120 caracteres',
+  }),
+  dias: z
+    .union([z.string(), z.number()])
+    .transform((v) => Number(String(v).trim()))
+    .refine((n) => Number.isInteger(n) && n >= 1 && n <= 180, {
+      message: 'El vencimiento debe estar entre 1 y 180 dias',
+    }),
+})
+
 export const esquemaEquipo = z.object({
   name: z.string().trim().min(1, 'El nombre del equipo es obligatorio').max(120),
   serial: textoOpcional,

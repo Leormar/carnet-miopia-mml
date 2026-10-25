@@ -8,9 +8,11 @@ import { BarraAdherencia } from '@/components/graficas/BarraAdherencia'
 import { GraficaLongitudAxial } from '@/components/graficas/GraficaLongitudAxial'
 import { GraficaRefraccion } from '@/components/graficas/GraficaRefraccion'
 import { RegistroDeUso } from '@/components/formularios/RegistroDeUso'
+import { TablaControles } from '@/components/paciente/TablaControles'
 import { Aviso, NotaEducativa } from '@/components/ui/Aviso'
 import {
   IconoCalendario,
+  IconoCompartir,
   IconoImprimir,
   IconoMas,
   IconoTratamiento,
@@ -18,7 +20,7 @@ import {
 } from '@/components/marca/IconosTratamiento'
 import { TRATAMIENTOS } from '@/config/tratamientos'
 import { aFecha, edadEnAnos, fechaCorta, fechaLarga } from '@/lib/clinica/edad'
-import { formatoRefraccion, aNumero } from '@/lib/clinica/refraccion'
+import { aNumero } from '@/lib/clinica/refraccion'
 import { formatoMm } from '@/lib/clinica/crecimiento'
 import { lecturaConjunta, metaEnTexto } from '@/lib/clinica/adherencia'
 import { etiquetaEstado } from '@/lib/clinica/calendario'
@@ -114,6 +116,10 @@ export default async function Paciente({ params }: { params: { id: string } }) {
         </div>
         {puedeEditar && (
           <div className="flex flex-wrap gap-2">
+            <Link href={`/pacientes/${paciente.id}/compartir`} className="boton-secundario">
+              <IconoCompartir className="h-4 w-4" />
+              Compartir
+            </Link>
             <Link href={`/pacientes/${paciente.id}/carnet`} className="boton-secundario">
               <IconoImprimir className="h-4 w-4" />
               Carnet
@@ -389,59 +395,7 @@ export default async function Paciente({ params }: { params: { id: string } }) {
       {/* Tabla de controles */}
       <section className="mt-6">
         <h2 className="font-titulo text-lg">Controles</h2>
-        <div className="tarjeta mt-3 overflow-x-auto p-0">
-          <table className="w-full min-w-[840px] text-left text-sm">
-            <thead>
-              <tr className="border-b border-borde bg-tinta text-xs uppercase tracking-wide text-white">
-                <th className="px-3 py-2 font-semibold">Fecha</th>
-                <th className="px-3 py-2 font-semibold">Edad</th>
-                <th className="px-3 py-2 font-semibold">AV OD / OI</th>
-                <th className="px-3 py-2 font-semibold">Refraccion OD</th>
-                <th className="px-3 py-2 font-semibold">Refraccion OI</th>
-                <th className="px-3 py-2 font-semibold">LA OD</th>
-                <th className="px-3 py-2 font-semibold">LA OI</th>
-                <th className="px-3 py-2 font-semibold">Crec. 12 m OD / OI</th>
-                <th className="px-3 py-2 font-semibold">Equipo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {controles.length === 0 && (
-                <tr>
-                  <td colSpan={9} className="px-3 py-6 text-center text-grisTexto">
-                    Sin controles registrados.
-                  </td>
-                </tr>
-              )}
-              {[...controles].reverse().map((c) => (
-                <tr key={c.id} className="border-b border-borde/60 last:border-0">
-                  <td className="px-3 py-2 tabular-nums">{fechaCorta(c.examDate)}</td>
-                  <td className="px-3 py-2 tabular-nums">{c.edad}</td>
-                  <td className="px-3 py-2">
-                    {[c.vaOd, c.vaOi].filter(Boolean).join(' / ') || '-'}
-                  </td>
-                  <td className="px-3 py-2 tabular-nums">
-                    {formatoRefraccion(c.sphereOd, c.cylOd, c.axisOd) || '-'}
-                  </td>
-                  <td className="px-3 py-2 tabular-nums">
-                    {formatoRefraccion(c.sphereOi, c.cylOi, c.axisOi) || '-'}
-                  </td>
-                  <td className="px-3 py-2 tabular-nums">
-                    {c.alOd ? String(c.alOd).replace('.', ',') : '-'}
-                  </td>
-                  <td className="px-3 py-2 tabular-nums">
-                    {c.alOi ? String(c.alOi).replace('.', ',') : '-'}
-                  </td>
-                  <td className="px-3 py-2 tabular-nums">
-                    {c.doceMesesOd || c.doceMesesOi
-                      ? `${c.doceMesesOd ? formatoMm(c.doceMesesOd.mmPorAno) : '-'} / ${c.doceMesesOi ? formatoMm(c.doceMesesOi.mmPorAno) : '-'}`
-                      : '-'}
-                  </td>
-                  <td className="px-3 py-2 text-xs text-grisTexto">{c.biometerNombre ?? '-'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <TablaControles controles={controles} />
       </section>
     </>
   )

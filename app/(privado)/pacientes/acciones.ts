@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { and, eq, sql } from 'drizzle-orm'
+import { and, eq, isNull, sql } from 'drizzle-orm'
 
 import { db } from '@/lib/db'
 import {
@@ -15,6 +15,7 @@ import {
   patientAccess,
   patients,
   scheduledExams,
+  shareLinks,
   treatments,
   usageLogs,
 } from '@/lib/db/schema'
@@ -24,6 +25,7 @@ import {
   desdeFormData,
   erroresDeZod,
   esquemaControl,
+  esquemaEnlace,
   esquemaEquipo,
   esquemaPaciente,
   esquemaTratamiento,
@@ -31,6 +33,12 @@ import {
   type ResultadoAccion,
 } from '@/lib/validacion/esquemas'
 import { generarCalendario } from '@/lib/clinica/calendario'
+import {
+  huellaDeToken,
+  nuevoToken,
+  svgDelQr,
+  urlDelEnlace,
+} from '@/lib/compartir/enlaces'
 import { TRATAMIENTOS, type TipoTratamiento } from '@/config/tratamientos'
 import { SITIO } from '@/config/sitio'
 
@@ -474,4 +482,103 @@ export async function desactivarEquipo(formData: FormData) {
     diff: { active: false },
   })
   revalidatePath('/ajustes/equipos')
+}
+
+// ---------------------------------------------------------------------------
+// Enlaces de solo lectura para oftalmopediatria
+// ---------------------------------------------------------------------------
+
+export type ResultadoEnlace =
+  | { ok: true; url: string; svg: string; etiqueta: string | null; vence: string }
+  | { ok: false; error: string; campos?: Record<string, string> }
+
+/**
+ * Crea el enlace y devuelve el token una sola vez, dentro del resultado de la
+ * accion. No viaja por la URL ni queda en el historial del navegador: de la
+ * base de datos solo se puede recuperar su huella.
+ *
+ * Lo puede generar el profesional tratante o la familia, como dice el carnet.
+ */
+export async function crearEnlaceCompartido(
+  patientId: string,
+  _previo: ResultadoEnlace | null,
+  formData: FormData,
+): Promise<ResultadoEnlace> {
+  const { sesion } = await requerirAccesoAPaciente(patientId, [
+    'profesional_tratante',
+    'familia',
+  ])
+
+  const resultado = esquemaEnlace.safeParse(desdeFormData(formData))
+  if (!resultado.success) {
+    return {
+      ok: false,
+      error: 'Revise los datos del enlace',
+      campos: erroresDeZod(resultado.error),
+    }
+  }
+
+  const { label, dias } = resultado.data
+  const token = nuevoToken()
+  const vence = new Date(Date.now() + dias * 24 * 60 * 60 * 1000)
+
+  const [fila] = await db
+    .insert(shareLinks)
+    .values({
+      patientId,
+      tokenHash: huellaDeToken(token),
+      label,
+      createdBy: sesion.user.id,
+      expiresAt: vence,
+    })
+    .returning({ id: shareLinks.id })
+
+  await registrarAuditoria({
+    actorUserId: sesion.user.id,
+    action: 'share',
+    entity: 'share_link',
+    entityId: fila.id,
+    patientId,
+    diff: { dias, etiqueta: label },
+  })
+
+  revalidatePath(`/pacientes/${patientId}/compartir`)
+
+  const url = urlDelEnlace(token)
+  return { ok: true, url, svg: svgDelQr(url), etiqueta: label, vence: vence.toISOString() }
+}
+
+/** Corta el acceso de inmediato. Un enlace revocado no vuelve a servir. */
+export async function revocarEnlaceCompartido(patientId: string, formData: FormData) {
+  const { sesion } = await requerirAccesoAPaciente(patientId, [
+    'profesional_tratante',
+    'familia',
+  ])
+
+  const id = String(formData.get('shareLinkId') ?? '')
+  if (!id) return
+
+  const revocados = await db
+    .update(shareLinks)
+    .set({ revokedAt: new Date() })
+    .where(
+      and(
+        eq(shareLinks.id, id),
+        eq(shareLinks.patientId, patientId),
+        isNull(shareLinks.revokedAt),
+      ),
+    )
+    .returning({ id: shareLinks.id })
+
+  if (revocados.length > 0) {
+    await registrarAuditoria({
+      actorUserId: sesion.user.id,
+      action: 'revoke',
+      entity: 'share_link',
+      entityId: id,
+      patientId,
+    })
+  }
+
+  revalidatePath(`/pacientes/${patientId}/compartir`)
 }

@@ -6,7 +6,11 @@ import { fichaDePaciente } from '@/lib/datos/pacientes'
 import { RegistroDeUso } from '@/components/formularios/RegistroDeUso'
 import { BarraAdherencia } from '@/components/graficas/BarraAdherencia'
 import { Aviso, NotaEducativa } from '@/components/ui/Aviso'
-import { IconoCalendario, IconoTratamiento } from '@/components/marca/IconosTratamiento'
+import {
+  IconoCalendario,
+  IconoCompartir,
+  IconoTratamiento,
+} from '@/components/marca/IconosTratamiento'
 import { TRATAMIENTOS } from '@/config/tratamientos'
 import { metaEnTexto } from '@/lib/clinica/adherencia'
 import { aNumero } from '@/lib/clinica/refraccion'
@@ -184,6 +188,20 @@ export default async function MiCarnet({ params }: { params: { id: string } }) {
           ) : (
             <p className="text-sm text-grisTexto">No hay un control programado.</p>
           )}
+        </div>
+      </section>
+
+      <section className="mt-6">
+        <h2 className="font-titulo text-lg">Compartir con otro profesional</h2>
+        <div className="tarjeta mt-3 flex flex-wrap items-center gap-3">
+          <IconoCompartir className="h-5 w-5 shrink-0 text-azul" />
+          <p className="min-w-0 flex-1 text-sm text-grisMedio">
+            Genere un enlace o un codigo QR de solo lectura para la cita con oftalmologia
+            pediatrica. Vence solo y usted lo puede revocar.
+          </p>
+          <Link href={`/pacientes/${paciente.id}/compartir`} className="boton-secundario">
+            Generar enlace
+          </Link>
         </div>
       </section>
 

@@ -15,7 +15,15 @@ if (!url && process.env.NODE_ENV === 'development') {
   )
 }
 
-const sql = neon(url ?? 'postgresql://sin-configurar:sin-configurar@localhost/sin-configurar')
+/**
+ * `cache: 'no-store'` es obligatorio. El cliente de Neon consulta por HTTP con
+ * `fetch`, y Next.js guarda en su cache las respuestas de `fetch`: sin esto,
+ * una pagina puede servir datos viejos. Se noto con un enlace compartido que
+ * seguia abriendo despues de haber sido revocado. Nada clinico se cachea.
+ */
+const sql = neon(url ?? 'postgresql://sin-configurar:sin-configurar@localhost/sin-configurar', {
+  fetchOptions: { cache: 'no-store' },
+})
 
 export const db = drizzle(sql, { schema })
 export * from './schema'
