@@ -364,6 +364,16 @@ export default async function Inicio() {
             aplicacion registra y calcula; no diagnostica ni decide tratamientos.
           </p>
 
+          <p className="mt-4 text-sm">
+            <Link href="/privacidad" className="text-azul hover:underline">
+              Politica de privacidad
+            </Link>
+            <span className="text-grisTexto"> · </span>
+            <Link href="/terminos" className="text-azul hover:underline">
+              Terminos de uso
+            </Link>
+          </p>
+
           <div className="mt-6 border-t border-borde pt-5">
             <p className="text-xs font-semibold uppercase tracking-wide text-grisTexto">Fuentes</p>
             <ul className="mt-2 space-y-1">
