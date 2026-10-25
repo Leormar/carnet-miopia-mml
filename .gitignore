@@ -13,3 +13,7 @@ next-env.d.ts
 # Secretos: todo .env queda fuera, menos la plantilla sin valores.
 .env*
 !.env.example
+
+# Los videos se generan con scripts/video. No se versionan.
+videos/*.mp4
+videos/.temporal/
