@@ -12,6 +12,7 @@ import { TablaControles } from '@/components/paciente/TablaControles'
 import { Aviso, NotaEducativa } from '@/components/ui/Aviso'
 import {
   IconoCalendario,
+  IconoCandado,
   IconoCompartir,
   IconoImprimir,
   IconoMas,
@@ -116,6 +117,10 @@ export default async function Paciente({ params }: { params: { id: string } }) {
         </div>
         {puedeEditar && (
           <div className="flex flex-wrap gap-2">
+            <Link href={`/pacientes/${paciente.id}/privacidad`} className="boton-secundario">
+              <IconoCandado className="h-4 w-4" />
+              Datos
+            </Link>
             <Link href={`/pacientes/${paciente.id}/compartir`} className="boton-secundario">
               <IconoCompartir className="h-4 w-4" />
               Compartir

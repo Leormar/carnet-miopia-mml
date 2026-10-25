@@ -72,6 +72,12 @@ export const estadoCitaEnum = pgEnum('estado_cita', [
 
 export const origenRegistroEnum = pgEnum('origen_registro', ['familia', 'profesional'])
 
+export const estadoCredencialEnum = pgEnum('estado_credencial', [
+  'pendiente',
+  'verificada',
+  'rechazada',
+])
+
 export const metodoConsentimientoEnum = pgEnum('metodo_consentimiento', [
   'en_consulta',
   'digital',
@@ -191,6 +197,63 @@ export const professionals = pgTable('professional', {
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
+/**
+ * Compromiso de manejo de informacion que firma cada miembro de la red antes
+ * de usar la aplicacion. Se guarda la version aceptada, no solo un "si":
+ * cuando el texto cambie, se vuelve a pedir.
+ */
+export const userAgreements = pgTable(
+  'user_agreement',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    kind: text('kind').notNull().default('manejo_informacion'),
+    version: text('version').notNull(),
+    acceptedAt: timestamp('accepted_at', { withTimezone: true }).notNull().defaultNow(),
+    ip: text('ip'),
+    userAgent: text('user_agent'),
+  },
+  (t) => ({ unico: uniqueIndex('user_agreement_unico').on(t.userId, t.kind, t.version) }),
+)
+
+/**
+ * Documento que acredita a la persona como profesional en su pais.
+ *
+ * El archivo se guarda en la misma base, codificado en base64, y no en un
+ * almacenamiento aparte: asi se borra junto con la cuenta y queda bajo el
+ * mismo control de acceso y la misma bitacora que el resto. Son pocos
+ * archivos y pequenos; si la red crece, se mueve a almacenamiento de objetos.
+ */
+export const professionalCredentials = pgTable(
+  'professional_credential',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    /** Pais donde ejerce. Define cual es la autoridad que lo habilita. */
+    country: text('country').notNull(),
+    /** Nombre oficial del registro o tarjeta, tal como se llama en ese pais. */
+    documentType: text('document_type').notNull(),
+    documentNumber: text('document_number'),
+    /** Entidad que lo expide, si la persona la conoce. */
+    issuedBy: text('issued_by'),
+    fileName: text('file_name').notNull(),
+    mimeType: text('mime_type').notNull(),
+    sizeBytes: integer('size_bytes').notNull(),
+    /** El archivo en base64. */
+    content: text('content').notNull(),
+    status: estadoCredencialEnum('status').notNull().default('pendiente'),
+    uploadedAt: timestamp('uploaded_at', { withTimezone: true }).notNull().defaultNow(),
+    reviewedBy: uuid('reviewed_by').references(() => users.id, { onDelete: 'set null' }),
+    reviewedAt: timestamp('reviewed_at', { withTimezone: true }),
+    rejectionReason: text('rejection_reason'),
+  },
+  (t) => ({ porUsuario: index('credential_user_idx').on(t.userId, t.uploadedAt) }),
+)
+
 // ---------------------------------------------------------------------------
 // Pacientes
 // ---------------------------------------------------------------------------
@@ -225,6 +288,14 @@ export const patients = pgTable(
   (t) => ({
     orgIdx: index('patient_org_idx').on(t.orgId),
     nameIdx: index('patient_name_idx').on(t.lastName, t.firstName),
+    /**
+     * Un mismo documento no puede existir dos veces en la misma organizacion.
+     * Es parcial porque el documento es opcional: hay ninos sin documento
+     * propio al momento de la primera consulta.
+     */
+    documentoUnico: uniqueIndex('patient_documento_unico')
+      .on(t.orgId, t.documentNumber)
+      .where(sql`document_number is not null`),
   }),
 )
 

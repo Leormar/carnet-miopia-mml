@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { and, eq, isNull, sql } from 'drizzle-orm'
+import { and, desc, eq, isNull, sql } from 'drizzle-orm'
 
 import { db } from '@/lib/db'
 import {
@@ -19,7 +19,7 @@ import {
   treatments,
   usageLogs,
 } from '@/lib/db/schema'
-import { requerirAccesoAPaciente, requerirAprobado } from '@/lib/auth/sesion'
+import { requerirAccesoAPaciente, requerirAdmin, requerirAprobado } from '@/lib/auth/sesion'
 import { registrarAuditoria } from '@/lib/auditoria/registrar'
 import {
   desdeFormData,
@@ -76,6 +76,62 @@ async function organizacionDe(userId: string): Promise<string> {
 // Pacientes
 // ---------------------------------------------------------------------------
 
+
+/**
+ * Avisa si el nino ya esta registrado en esta organizacion. Busca primero por
+ * documento, que es exacto, y luego por nombre y fecha de nacimiento, que es
+ * la forma en que se duplica un paciente que todavia no tiene documento.
+ */
+async function pacienteYaExiste(
+  orgId: string,
+  d: { firstName: string; lastName: string; birthDate: string; documentNumber: string | null },
+): Promise<ResultadoAccion | null> {
+  if (d.documentNumber) {
+    const [porDocumento] = await db
+      .select({ id: patients.id, firstName: patients.firstName, lastName: patients.lastName })
+      .from(patients)
+      .where(
+        and(eq(patients.orgId, orgId), eq(patients.documentNumber, d.documentNumber)),
+      )
+      .limit(1)
+
+    if (porDocumento) {
+      return {
+        ok: false,
+        error:
+          `Ese documento ya esta registrado, a nombre de ${porDocumento.firstName} ` +
+          `${porDocumento.lastName}. Abra esa historia en lugar de crear una nueva.`,
+        campos: { documentNumber: 'Documento ya registrado' },
+      }
+    }
+  }
+
+  const [porNombre] = await db
+    .select({ id: patients.id })
+    .from(patients)
+    .where(
+      and(
+        eq(patients.orgId, orgId),
+        sql`lower(${patients.firstName}) = lower(${d.firstName})`,
+        sql`lower(${patients.lastName}) = lower(${d.lastName})`,
+        eq(patients.birthDate, d.birthDate),
+      ),
+    )
+    .limit(1)
+
+  if (porNombre) {
+    return {
+      ok: false,
+      error:
+        'Ya hay un paciente con ese nombre y esa fecha de nacimiento. Si de verdad son dos ' +
+        'ninos distintos, agregue el documento de identidad para diferenciarlos.',
+      campos: { firstName: 'Puede estar repetido' },
+    }
+  }
+
+  return null
+}
+
 export async function crearPaciente(
   _previo: ResultadoAccion | null,
   formData: FormData,
@@ -101,6 +157,11 @@ export async function crearPaciente(
   const d = resultado.data
 
   const orgId = await organizacionDe(sesion.user.id)
+
+  // Un nino con dos historias es el error que este carnet existe para evitar:
+  // la historia partida en dos pierde el crecimiento de los 12 meses.
+  const duplicado = await pacienteYaExiste(orgId, d)
+  if (duplicado) return duplicado
 
   const [paciente] = await db
     .insert(patients)
@@ -581,4 +642,135 @@ export async function revocarEnlaceCompartido(patientId: string, formData: FormD
   }
 
   revalidatePath(`/pacientes/${patientId}/compartir`)
+}
+
+// ---------------------------------------------------------------------------
+// Derechos del titular: copia, correccion, revocacion y supresion
+// ---------------------------------------------------------------------------
+
+/**
+ * Revoca el consentimiento del representante legal.
+ *
+ * No borra nada: deja constancia de que la autorizacion ya no esta vigente y
+ * archiva al paciente, para que nadie siga registrando datos sobre un nino
+ * cuya familia retiro el permiso. La supresion es un paso aparte y la hace un
+ * administrador.
+ */
+export async function revocarConsentimiento(patientId: string, formData: FormData) {
+  const { sesion } = await requerirAccesoAPaciente(patientId, ['profesional_tratante'])
+  const motivo = String(formData.get('motivo') ?? '').trim() || null
+
+  const [vigente] = await db
+    .select({ id: consents.id })
+    .from(consents)
+    .where(and(eq(consents.patientId, patientId), isNull(consents.revokedAt)))
+    .orderBy(desc(consents.grantedAt))
+    .limit(1)
+
+  if (vigente) {
+    await db.update(consents).set({ revokedAt: new Date() }).where(eq(consents.id, vigente.id))
+  }
+
+  await db
+    .update(patients)
+    .set({ archivedAt: new Date(), updatedAt: new Date() })
+    .where(eq(patients.id, patientId))
+
+  await registrarAuditoria({
+    actorUserId: sesion.user.id,
+    action: 'revoke',
+    entity: 'consent',
+    entityId: vigente?.id ?? null,
+    patientId,
+    diff: { motivo, archivado: true },
+  })
+
+  revalidatePath(`/pacientes/${patientId}/privacidad`)
+  revalidatePath('/panel')
+}
+
+/** Saca al paciente del panel sin borrar nada. Se puede deshacer. */
+export async function archivarPaciente(patientId: string, formData: FormData) {
+  const { sesion } = await requerirAccesoAPaciente(patientId, ['profesional_tratante'])
+  const motivo = String(formData.get('motivo') ?? '').trim() || null
+
+  await db
+    .update(patients)
+    .set({ archivedAt: new Date(), updatedAt: new Date() })
+    .where(eq(patients.id, patientId))
+
+  await registrarAuditoria({
+    actorUserId: sesion.user.id,
+    action: 'update',
+    entity: 'patient',
+    entityId: patientId,
+    patientId,
+    diff: { archivado: true, motivo },
+  })
+
+  revalidatePath(`/pacientes/${patientId}/privacidad`)
+  revalidatePath('/panel')
+}
+
+export async function restaurarPaciente(patientId: string) {
+  const { sesion } = await requerirAccesoAPaciente(patientId, ['profesional_tratante'])
+
+  await db
+    .update(patients)
+    .set({ archivedAt: null, updatedAt: new Date() })
+    .where(eq(patients.id, patientId))
+
+  await registrarAuditoria({
+    actorUserId: sesion.user.id,
+    action: 'update',
+    entity: 'patient',
+    entityId: patientId,
+    patientId,
+    diff: { archivado: false },
+  })
+
+  revalidatePath(`/pacientes/${patientId}/privacidad`)
+  revalidatePath('/panel')
+}
+
+/**
+ * Supresion definitiva. Borra el paciente y, en cascada, sus controles,
+ * tratamientos, registros de uso, citas, accesos y enlaces compartidos.
+ *
+ * Solo un administrador, y solo escribiendo el nombre completo del paciente.
+ * La anotacion en la bitacora se escribe antes de borrar, con el nombre
+ * dentro, porque despues ya no habria a quien referirse.
+ */
+export async function suprimirPaciente(patientId: string, formData: FormData) {
+  const sesion = await requerirAdmin()
+  const confirmacion = String(formData.get('confirmacion') ?? '').trim()
+  const motivo = String(formData.get('motivo') ?? '').trim() || null
+
+  const [paciente] = await db.select().from(patients).where(eq(patients.id, patientId)).limit(1)
+  if (!paciente) redirect('/panel')
+
+  const nombre = `${paciente.firstName} ${paciente.lastName}`.trim()
+  if (confirmacion.toLowerCase() !== nombre.toLowerCase()) {
+    redirect(`/pacientes/${patientId}/privacidad?error=confirmacion`)
+  }
+
+  await registrarAuditoria({
+    actorUserId: sesion.user.id,
+    action: 'delete',
+    entity: 'patient',
+    entityId: patientId,
+    patientId: null,
+    diff: {
+      nombre,
+      fechaNacimiento: paciente.birthDate,
+      documento: paciente.documentNumber,
+      motivo,
+      suprimidoEl: new Date().toISOString(),
+    },
+  })
+
+  await db.delete(patients).where(eq(patients.id, patientId))
+
+  revalidatePath('/panel')
+  redirect('/panel?suprimido=1')
 }

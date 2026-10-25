@@ -27,9 +27,14 @@ export default async function LayoutPrivado({ children }: { children: React.Reac
               Equipos
             </Link>
             {sesion.user.isAdmin && (
-              <Link href="/admin/aprobaciones" className="rounded-lg px-2.5 py-1.5 hover:bg-white">
-                Accesos
-              </Link>
+              <>
+                <Link href="/admin/aprobaciones" className="rounded-lg px-2.5 py-1.5 hover:bg-white">
+                  Accesos
+                </Link>
+                <Link href="/admin/credenciales" className="rounded-lg px-2.5 py-1.5 hover:bg-white">
+                  Acreditaciones
+                </Link>
+              </>
             )}
             <form
               action={async () => {

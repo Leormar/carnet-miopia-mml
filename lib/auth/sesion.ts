@@ -1,10 +1,17 @@
 import { redirect } from 'next/navigation'
 import type { Session } from 'next-auth'
-import { and, eq, isNull, or, gt } from 'drizzle-orm'
+import { and, desc, eq, gte, isNull, or, gt } from 'drizzle-orm'
 
 import { auth } from '@/auth'
 import { db } from '@/lib/db'
-import { patientAccess, professionals } from '@/lib/db/schema'
+import {
+  auditLog,
+  patientAccess,
+  professionalCredentials,
+  professionals,
+  userAgreements,
+} from '@/lib/db/schema'
+import { VERSION_COMPROMISO } from '@/config/compromiso'
 
 export type Sesion = Session
 
@@ -21,8 +28,72 @@ export async function sesionActual() {
 export async function requerirAprobado(): Promise<Sesion> {
   const sesion = await auth()
   if (!sesion?.user) redirect('/ingresar')
-  if (sesion.user.status === 'aprobado') return sesion
-  redirect('/pendiente')
+  if (sesion.user.status !== 'aprobado') redirect('/pendiente')
+
+  const falta = await pasoPendiente(sesion)
+  if (falta === 'compromiso') redirect('/acceso/compromiso')
+  if (falta === 'credencial') redirect('/acceso/credencial')
+
+  return sesion
+}
+
+/**
+ * Sesion aprobada sin las compuertas de entrada. La usan las propias paginas
+ * de compromiso y credencial, que si no se redirigirian a si mismas.
+ */
+export async function requerirAprobadoSinCompuertas(): Promise<Sesion> {
+  const sesion = await auth()
+  if (!sesion?.user) redirect('/ingresar')
+  if (sesion.user.status !== 'aprobado') redirect('/pendiente')
+  return sesion
+}
+
+export type PasoPendiente = 'compromiso' | 'credencial' | null
+
+/**
+ * Que le falta a esta persona para poder entrar.
+ *
+ * Solo se le exige a quien ejerce: un familiar entra por invitacion a un
+ * paciente concreto y su consentimiento se recoge al crear la historia.
+ * Una credencial subida basta para trabajar; la verificacion del
+ * administrador es posterior, para no dejar a nadie esperando.
+ */
+export async function pasoPendiente(sesion: Sesion): Promise<PasoPendiente> {
+  if (!(await ejerceEnLaRed(sesion))) return null
+
+  const [acuerdo] = await db
+    .select({ id: userAgreements.id })
+    .from(userAgreements)
+    .where(
+      and(
+        eq(userAgreements.userId, sesion.user.id),
+        eq(userAgreements.kind, 'manejo_informacion'),
+        eq(userAgreements.version, VERSION_COMPROMISO),
+      ),
+    )
+    .limit(1)
+  if (!acuerdo) return 'compromiso'
+
+  const [credencial] = await db
+    .select({ status: professionalCredentials.status })
+    .from(professionalCredentials)
+    .where(eq(professionalCredentials.userId, sesion.user.id))
+    .orderBy(desc(professionalCredentials.uploadedAt))
+    .limit(1)
+  if (!credencial || credencial.status === 'rechazada') return 'credencial'
+
+  return null
+}
+
+/** Es profesional de la red, y no un familiar invitado a un paciente. */
+export async function ejerceEnLaRed(sesion: Sesion): Promise<boolean> {
+  if (sesion.user.isAdmin) return true
+  const [fila] = await db
+    .select({ id: professionals.id })
+    .from(professionals)
+    .where(eq(professionals.userId, sesion.user.id))
+    .limit(1)
+  return Boolean(fila)
 }
 
 export async function requerirAdmin(): Promise<Sesion> {
@@ -86,5 +157,41 @@ export async function requerirAccesoAPaciente(
   const sesion = await requerirAprobado()
   const nivel = await accesoAPaciente(sesion, patientId)
   if (!minimo.includes(nivel)) redirect('/panel')
+  await registrarConsultaDelDia(sesion.user.id, patientId)
   return { sesion, nivel }
+}
+
+/**
+ * Deja constancia de que esta persona consulto esta historia.
+ *
+ * Se anota una vez por dia y por paciente, no una vez por pantalla: la ficha,
+ * el carnet y el formulario de control son la misma consulta. Lo que importa
+ * para la auditoria es quien entro y que dia, no cuantas veces recargo.
+ */
+async function registrarConsultaDelDia(userId: string, patientId: string) {
+  const inicioDelDia = new Date()
+  inicioDelDia.setHours(0, 0, 0, 0)
+
+  const [yaAnotado] = await db
+    .select({ id: auditLog.id })
+    .from(auditLog)
+    .where(
+      and(
+        eq(auditLog.actorUserId, userId),
+        eq(auditLog.patientId, patientId),
+        eq(auditLog.action, 'read'),
+        gte(auditLog.at, inicioDelDia),
+      ),
+    )
+    .limit(1)
+  if (yaAnotado) return
+
+  const { registrarAuditoria } = await import('@/lib/auditoria/registrar')
+  await registrarAuditoria({
+    actorUserId: userId,
+    action: 'read',
+    entity: 'patient',
+    entityId: patientId,
+    patientId,
+  })
 }
