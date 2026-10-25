@@ -29,15 +29,41 @@ function proveedores(): Provider[] {
     }),
   ]
   if (process.env.AUTH_APPLE_ID && process.env.AUTH_APPLE_SECRET) {
-    lista.push(Apple({ allowDangerousEmailAccountLinking: true }))
+    lista.push(
+      Apple({
+        clientId: process.env.AUTH_APPLE_ID,
+        clientSecret: process.env.AUTH_APPLE_SECRET,
+        allowDangerousEmailAccountLinking: true,
+        /**
+         * Apple solo manda el nombre la primera vez que la persona autoriza, y
+         * lo manda aparte del id_token. Si usa "Ocultar mi correo", el correo
+         * que llega es un alias de retransmision de Apple: sirve para
+         * identificarla, pero no es su correo real.
+         */
+        profile(perfil: Record<string, unknown>, tokens: Record<string, unknown>) {
+          const nombre =
+            typeof tokens.user === 'string'
+              ? (() => {
+                  try {
+                    const u = JSON.parse(tokens.user) as { name?: { firstName?: string; lastName?: string } }
+                    return [u.name?.firstName, u.name?.lastName].filter(Boolean).join(' ') || null
+                  } catch {
+                    return null
+                  }
+                })()
+              : null
+          return {
+            id: String(perfil.sub),
+            name: nombre ?? (perfil.name as string | undefined) ?? null,
+            email: (perfil.email as string | undefined) ?? null,
+            image: null,
+          }
+        },
+      }),
+    )
   }
   return lista
 }
-
-export const proveedoresDisponibles = () => proveedores().map((p) => {
-  const definicion = typeof p === 'function' ? p() : p
-  return { id: definicion.id as string, nombre: definicion.name as string }
-})
 
 declare module 'next-auth' {
   interface Session {
