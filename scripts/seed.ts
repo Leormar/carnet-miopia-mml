@@ -6,15 +6,20 @@
  */
 
 import { config } from 'dotenv'
+import { eq } from 'drizzle-orm'
+
+// El entorno se carga antes de importar el cliente de base de datos: los
+// `import` de arriba se ejecutan primero, asi que el de `lib/db` va adentro.
 config({ path: '.env.local' })
 
-import { eq } from 'drizzle-orm'
-import { db } from '../lib/db'
-import { followupTemplateItems, followupTemplates, organizations } from '../lib/db/schema'
-import { PLANTILLAS_BASE } from '../config/calendarios-control'
-import { SITIO } from '../config/sitio'
-
 async function principal() {
+  const { db } = await import('../lib/db')
+  const { followupTemplateItems, followupTemplates, organizations } = await import(
+    '../lib/db/schema'
+  )
+  const { PLANTILLAS_BASE } = await import('../config/calendarios-control')
+  const { SITIO } = await import('../config/sitio')
+
   const [existente] = await db
     .select({ id: organizations.id })
     .from(organizations)
