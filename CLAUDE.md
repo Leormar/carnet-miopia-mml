@@ -2,7 +2,7 @@
 
 ## Qué es
 
-Una app web que reemplaza el carnet de papel del Grupo Manejo Miopía Latam (MML). Sirve para que el profesional y la familia registren los controles del niño en tratamiento para desacelerar la miopía, vean si el ojo está creciendo dentro de lo esperado y, sobre todo, sostengan la **adherencia** al tratamiento.
+Una app web que es el carnet de seguimiento del Grupo Manejo Miopía Latam (MML) en versión digital. El carnet no reemplaza nada: no existía antes, lo creó el grupo, y nace en dos formas, la hoja impresa que la familia lleva a la cita y esta aplicación, que calcula lo que el papel no calcula. Sirve para que el profesional y la familia registren los controles del niño en tratamiento para desacelerar la miopía, vean si el ojo está creciendo dentro de lo esperado y, sobre todo, sostengan la **adherencia** al tratamiento.
 
 Principio rector: **si no se usa, no funciona.** La app debe hacer visible el uso real del dispositivo (horas de gafas o lentes blandos, noches de ortoqueratología, gotas de atropina) junto al resultado (longitud axial y refracción).
 

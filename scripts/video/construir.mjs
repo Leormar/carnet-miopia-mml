@@ -1,9 +1,18 @@
 /**
  * Arma los videos: cada lamina se dibuja en HTML, se fotografia con Chrome,
- * se narra con la voz del sistema y se une todo con ffmpeg.
+ * se narra con Voicebox y se une todo con ffmpeg.
  *
  *   node scripts/video/construir.mjs            todos
  *   node scripts/video/construir.mjs trailer    solo uno
+ *
+ * Antes hay que tener el servidor de Voicebox escuchando, que es quien tiene
+ * las voces Alex y Dora:
+ *
+ *   cd ~/voicebox && backend/venv/bin/python -m backend.main \
+ *     --host 127.0.0.1 --port 17493 \
+ *     --data-dir "$HOME/Library/Application Support/sh.voicebox.app"
+ *
+ * Tambien sirve abrir la aplicacion Voicebox, que levanta el mismo servidor.
  */
 
 import { execFileSync } from 'node:child_process'
@@ -13,16 +22,76 @@ import { resolve } from 'node:path'
 import { VIDEOS, VOCES } from './guiones.mjs'
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+const VOICEBOX = 'http://127.0.0.1:17493'
 const SALIDA = resolve('videos')
 const TEMPORAL = resolve('videos/.temporal')
 
-/** Palabras por minuto. Mas lento que lo normal: es material clinico. */
-const VELOCIDAD = 165
 /** Silencio despues de cada narracion, para que la lamina se alcance a leer. */
 const RESPIRO = 1.1
 
 function correr(programa, argumentos) {
   return execFileSync(programa, argumentos, { stdio: ['ignore', 'pipe', 'pipe'] })
+}
+
+/**
+ * Narra un texto con una voz de Voicebox y lo deja en un wav.
+ *
+ * Reintenta porque el servidor cierra las conexiones en reposo y la primera
+ * peticion que reusa una cerrada falla con ECONNRESET. No es un error real:
+ * basta volver a pedirlo con una conexion nueva.
+ */
+async function narrar(texto, voz, destino, intentos = 3) {
+  for (let intento = 1; intento <= intentos; intento += 1) {
+    try {
+      const respuesta = await fetch(`${VOICEBOX}/v1/audio/speech`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'kokoro',
+          voice: voz,
+          input: texto,
+          response_format: 'wav',
+        }),
+      })
+
+      if (!respuesta.ok) {
+        throw new Error(`Voicebox devolvio ${respuesta.status}: ${await respuesta.text()}`)
+      }
+
+      writeFileSync(destino, Buffer.from(await respuesta.arrayBuffer()))
+      return
+    } catch (error) {
+      if (intento === intentos) throw error
+      await new Promise((seguir) => setTimeout(seguir, 1500))
+    }
+  }
+}
+
+/** El servidor de Voicebox esta escuchando y conoce las dos voces. */
+async function comprobarVoicebox() {
+  let perfiles
+  try {
+    const respuesta = await fetch(`${VOICEBOX}/profiles`)
+    perfiles = await respuesta.json()
+  } catch {
+    console.error(
+      'No hay nadie escuchando en ' + VOICEBOX + '.\n' +
+        'Abra la aplicacion Voicebox, o levante el servidor:\n' +
+        '  cd ~/voicebox && backend/venv/bin/python -m backend.main \\\n' +
+        '    --host 127.0.0.1 --port 17493 \\\n' +
+        '    --data-dir "$HOME/Library/Application Support/sh.voicebox.app"',
+    )
+    process.exit(1)
+  }
+
+  const nombres = new Set(perfiles.map((p) => p.name))
+  const faltan = [...new Set(Object.values(VOCES))].filter((v) => !nombres.has(v))
+  if (faltan.length > 0) {
+    console.error(
+      `Voicebox no tiene la voz ${faltan.join(' ni ')}. Tiene: ${[...nombres].join(', ')}.`,
+    )
+    process.exit(1)
+  }
 }
 
 function duracion(archivo) {
@@ -35,18 +104,18 @@ function duracion(archivo) {
   return Number(String(salida).trim())
 }
 
-function construir(video) {
+async function construir(video) {
   const trabajo = resolve(TEMPORAL, video.nombre)
   rmSync(trabajo, { recursive: true, force: true })
   mkdirSync(trabajo, { recursive: true })
 
   const segmentos = []
 
-  video.laminas.forEach((lamina, i) => {
+  for (const [i, lamina] of video.laminas.entries()) {
     const n = String(i + 1).padStart(2, '0')
     const html = resolve(trabajo, `${n}.html`)
     const png = resolve(trabajo, `${n}.png`)
-    const aiff = resolve(trabajo, `${n}.aiff`)
+    const voz = resolve(trabajo, `${n}.wav`)
     const mp4 = resolve(trabajo, `${n}.mp4`)
 
     writeFileSync(html, lamina.html)
@@ -62,14 +131,14 @@ function construir(video) {
       `file://${html}`,
     ])
 
-    correr('say', ['-v', VOCES[lamina.voz], '-r', String(VELOCIDAD), '-o', aiff, lamina.texto])
+    await narrar(lamina.texto, VOCES[lamina.voz], voz)
 
-    const segundos = duracion(aiff) + RESPIRO
+    const segundos = duracion(voz) + RESPIRO
 
     correr('ffmpeg', [
       '-y', '-loglevel', 'error',
       '-loop', '1', '-framerate', '30', '-i', png,
-      '-i', aiff,
+      '-i', voz,
       '-af', `apad=pad_dur=${RESPIRO}`,
       '-t', segundos.toFixed(3),
       '-c:v', 'libx264', '-preset', 'medium', '-crf', '20',
@@ -80,7 +149,7 @@ function construir(video) {
 
     segmentos.push(mp4)
     process.stdout.write(`   lamina ${n}  ${segundos.toFixed(1)} s  voz ${VOCES[lamina.voz]}\n`)
-  })
+  }
 
   const lista = resolve(trabajo, 'lista.txt')
   writeFileSync(lista, segmentos.map((s) => `file '${s}'`).join('\n'))
@@ -96,11 +165,13 @@ function construir(video) {
   return { final, segundos: duracion(final) }
 }
 
-function principal() {
+async function principal() {
   if (!existsSync(CHROME)) {
     console.error('No encuentro Google Chrome, que es lo que dibuja las laminas.')
     process.exit(1)
   }
+
+  await comprobarVoicebox()
 
   mkdirSync(SALIDA, { recursive: true })
 
@@ -114,7 +185,7 @@ function principal() {
 
   for (const video of elegidos) {
     console.log(`\n${video.titulo}`)
-    const { final, segundos } = construir(video)
+    const { final, segundos } = await construir(video)
     const minutos = Math.floor(segundos / 60)
     const resto = Math.round(segundos % 60)
     console.log(`   listo: ${final}  (${minutos}:${String(resto).padStart(2, '0')})`)

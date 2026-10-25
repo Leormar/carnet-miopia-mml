@@ -1,11 +1,10 @@
 /**
  * Guiones de los videos del carnet MML.
  *
- * Cada lamina lleva su narracion. Las dos voces son las que pidio Leo:
- * "Alex" presenta y explica la parte clinica, "Dora" habla desde el lado de
- * la familia. En este Mac no estan instaladas las voces Alex ni Dora, asi que
- * se usan las dos voces naturales en espanol que si estan: Monica y Paulina.
- * Para cambiarlas basta editar VOCES.
+ * Cada lamina lleva su narracion, con una de las dos voces de Voicebox:
+ * Alex presenta y explica la parte clinica, Dora habla desde el lado de la
+ * familia. Son los perfiles que ya existen en Voicebox, los dos sobre Kokoro
+ * en espanol: Alex es em_alex y Dora es ef_dora.
  *
  * Ninguna cifra de aqui es inventada: salen de config/umbrales-clinicos.ts y
  * de config/evidencia.ts, que a su vez vienen del carnet de papel y del post
@@ -27,8 +26,8 @@ import {
 } from './plantilla.mjs'
 
 export const VOCES = {
-  alex: 'Mónica',
-  dora: 'Paulina',
+  alex: 'Alex',
+  dora: 'Dora',
 }
 
 const TRATAMIENTOS = [
@@ -141,7 +140,7 @@ export const TRAILER = {
     {
       voz: 'alex',
       texto:
-        'La aplicación calcula cuánto creció el ojo en los últimos doce meses y lo muestra con el mismo semáforo del carnet de papel.',
+        'La aplicación calcula cuánto creció el ojo en los últimos doce meses y lo muestra con el mismo semáforo del carnet.',
       html: laminaSemaforo({
         titulo: 'El crecimiento en 12 meses, con semaforo',
         franjas: FRANJAS_SEMAFORO,
@@ -180,7 +179,7 @@ export const TRAILER = {
     },
     {
       voz: 'dora',
-      texto: 'El carnet de papel, ahora en el teléfono, sin perder nada por el camino.',
+      texto: 'El carnet del grupo: en papel para llevarlo a la cita, y aquí para calcular lo que el papel no calcula.',
       html: laminaCierre({
         titulo: 'seguimiento.miopialatam.org',
         sub: 'Acceso para profesionales de la red, por aprobacion.',
@@ -346,7 +345,7 @@ export const MANEJO = {
     {
       voz: 'dora',
       texto:
-        'Y por último, entregue el carnet. Se imprime igual que el de papel, en dos páginas, y la familia lo lleva a todas las citas.',
+        'Y por último, entregue el carnet. Se imprime en dos páginas y la familia lo lleva a todas las citas, con usted y con el oftalmólogo.',
       html: laminaCierre({
         titulo: 'Listo para la primera cita',
         sub: 'Imprima el carnet, o guardelo en PDF, y entreguelo a la familia.',
