@@ -142,7 +142,7 @@ export const TRAILER = {
       texto:
         'La aplicación calcula cuánto creció el ojo en los últimos doce meses y lo muestra con el mismo semáforo del carnet.',
       html: laminaSemaforo({
-        titulo: 'El crecimiento en 12 meses, con semaforo',
+        titulo: 'El crecimiento en 12 meses, con semáforo',
         franjas: FRANJAS_SEMAFORO,
         fuente: 'Myopia Profile y carnet del Grupo Manejo Miopía Latam. Meta de largo plazo: menos de 26 mm (Tideman 2016).',
       }),
@@ -153,7 +153,7 @@ export const TRAILER = {
         'La familia registra el uso desde el teléfono, en un toque: anoche durmió con los lentes, hoy usó las gafas tantas horas, hoy se puso la gota.',
       html: laminaPuntos({
         titulo: 'La familia registra desde el teléfono',
-        sub: 'Un boton grande por tratamiento activo, pensado primero para el celular.',
+        sub: 'Un botón grande por tratamiento activo, pensado primero para el celular.',
         puntos: [
           'Orto-k: anoche durmio con los lentes, si o no.',
           'Gafas y lentes blandos: cuantas horas se uso hoy.',
@@ -401,7 +401,7 @@ export const SEGUIMIENTO = {
       texto:
         'Por debajo de los siete años o por encima de los dieciséis, la aplicación muestra el dato pero no pone semáforo, porque no hay un umbral publicado para esas edades.',
       html: laminaFrase({
-        frase: 'Si no hay umbral publicado,<br>no hay semaforo.',
+        frase: 'Si no hay umbral publicado,<br>no hay semáforo.',
         nota: 'La aplicación muestra el dato con una nota, y no se inventa una franja',
       }),
     },

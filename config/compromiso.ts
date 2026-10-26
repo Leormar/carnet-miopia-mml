@@ -20,7 +20,7 @@ export const COMPROMISO: PuntoDelCompromiso[] = [
   {
     titulo: 'Que datos hay aquí',
     parrafos: [
-      'Esta aplicación guarda datos de salud de niños: nombre, fecha de nacimiento, refracción, longitud axial del ojo, tratamiento y uso diario del dispositivo. Son datos sensibles y de menores de edad, la categoria que mas protección exige.',
+      'Esta aplicación guarda datos de salud de niños: nombre, fecha de nacimiento, refracción, longitud axial del ojo, tratamiento y uso diario del dispositivo. Son datos sensibles y de menores de edad, la categoría que más protección exige.',
       'También guarda datos suyos: su nombre, su correo, el país donde ejerce y el documento con el que acredito su ejercicio profesional.',
     ],
   },
@@ -58,7 +58,7 @@ export const COMPROMISO: PuntoDelCompromiso[] = [
   {
     titulo: 'Su acreditación profesional',
     parrafos: [
-      'Para entrar debe subir el documento que lo acredita como profesional habilitado en su país. Ese documento lo revisa un administrador de la red y solo se usa para verificar que usted puede ejercer. No se publica ni se comparte con nadie mas.',
+      'Para entrar debe subir el documento que lo acredita como profesional habilitado en su país. Ese documento lo revisa un administrador de la red y solo se usa para verificar que usted puede ejercer. No se publica ni se comparte con nadie más.',
       'Si su habilitación se vence, se suspende o cambia de país, debe actualizarla aquí.',
     ],
   },

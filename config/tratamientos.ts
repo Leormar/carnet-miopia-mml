@@ -55,7 +55,7 @@ export const TRATAMIENTOS: Record<TipoTratamiento, DefinicionTratamiento> = {
     preguntaDiaria: 'Horas que uso las gafas hoy',
     metaPorDefecto: { horasPorDia: 12, diasPorSemana: 7 },
     queRevisar:
-      'Montura bien ajustada que no se baje. Lentes centradas. Uso todo el día, 12 horas o mas. Estado de las lentes.',
+      'Montura bien ajustada que no se baje. Lentes centradas. Uso todo el día, 12 horas o más. Estado de las lentes.',
     hallazgos: [
       { clave: 'ajuste_montura', etiqueta: 'Ajuste de la montura', tipo: 'texto' },
       { clave: 'centrado', etiqueta: 'Centrado de las lentes', tipo: 'texto' },

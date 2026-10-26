@@ -4,9 +4,8 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/auth'
 import { Logo, BarrasMML } from '@/components/marca/Logo'
 import { BotonGoogle } from '@/components/marca/BotonGoogle'
-import {
-  IconoTratamiento,
-} from '@/components/marca/IconosTratamiento'
+import { IconoReproducir } from '@/components/marca/IconosTratamiento'
+import { IlustracionTratamiento } from '@/components/marca/IlustracionTratamiento'
 import {
   MiniAdherencia,
   MiniBiometria,
@@ -79,13 +78,53 @@ export default async function Inicio() {
               href="#que-hace"
               className="inline-flex items-center justify-center rounded-xl border border-borde px-6 py-4 text-base font-semibold text-tinta transition hover:bg-white sm:w-auto"
             >
-              Ver que hace
+              Ver qué hace
+            </a>
+            <a
+              href="#video"
+              className="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-4 text-base font-semibold text-azul transition hover:bg-white"
+            >
+              <IconoReproducir className="h-5 w-5" />
+              Ver el video
             </a>
           </div>
           <p className="mt-3 text-sm text-grisTexto">
             El acceso es cerrado. Cada cuenta nueva queda pendiente de aprobación de un
             administrador.
           </p>
+        </div>
+      </section>
+
+      {/* Video */}
+      <section id="video" className="scroll-mt-20 border-y border-borde/70 bg-white">
+        <div className="mx-auto grid max-w-6xl gap-7 px-5 py-12 sm:py-16 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+          <figure className="overflow-hidden rounded-2xl border border-borde bg-crema shadow-elevada">
+            <video
+              className="block aspect-video w-full"
+              controls
+              preload="none"
+              playsInline
+              poster="/video/trailer-portada.jpg"
+            >
+              <source src="/video/trailer.mp4" type="video/mp4" />
+              Su navegador no puede reproducir el video.
+            </video>
+          </figure>
+
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-azul">
+              Un minuto y catorce segundos
+            </p>
+            <h2 className="mt-2 font-titulo text-2xl sm:text-3xl">Qué es y cómo funciona</h2>
+            <p className="mt-3 leading-relaxed text-grisMedio">
+              El recorrido completo: qué registra la aplicación en cada control, cómo calcula el
+              crecimiento del ojo, cómo se ve la adherencia al lado del resultado y cómo se
+              comparte la historia con otro profesional sin perder el control de los datos.
+            </p>
+            <p className="mt-3 leading-relaxed text-grisTexto">
+              Dura menos que explicarlo. Sirve para mostrárselo a una familia en consulta.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -98,48 +137,67 @@ export default async function Inicio() {
             que revisar en consulta. La aplicación los conoce todos y no obliga a elegir marca.
           </p>
 
-          <div className="mt-7 grid gap-4 sm:grid-cols-2">
+          <div className="mt-7 space-y-4">
             {ORDEN_TRATAMIENTOS.map((tipo) => {
               const d = TRATAMIENTOS[tipo]
               const plantilla =
                 PLANTILLAS_BASE.find((p) => p.tipo === tipo && p.clave.startsWith('wco-')) ??
                 PLANTILLAS_BASE.find((p) => p.tipo === tipo)!
+              const registro =
+                d.modoRegistro === 'horas'
+                  ? 'Horas de uso de cada día'
+                  : d.modoRegistro === 'noche'
+                    ? 'Si durmió con los lentes'
+                    : 'Si se puso la gota'
               return (
                 <article
                   key={tipo}
-                  className="overflow-hidden rounded-2xl border border-borde bg-crema"
-                  style={{ borderTop: `5px solid ${d.color}` }}
+                  className="grid overflow-hidden rounded-2xl border border-borde bg-crema shadow-tarjeta sm:grid-cols-[200px_1fr]"
                 >
-                  <div className="p-5">
-                    <div className="flex items-center gap-2.5">
-                      <span
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-                        style={{ background: `${d.color}1a`, color: d.color }}
-                      >
-                        <IconoTratamiento tipo={tipo} className="h-5 w-5" />
-                      </span>
-                      <h3 className="font-titulo text-lg leading-tight">{d.nombre}</h3>
-                    </div>
+                  {/* Franja ilustrada: el dispositivo, en grande y en su color. */}
+                  <div
+                    className="relative flex items-center justify-center px-6 py-7"
+                    style={{ background: `${d.color}14`, color: d.color }}
+                  >
+                    <span
+                      className="absolute inset-y-0 left-0 w-1.5 sm:inset-x-0 sm:bottom-auto sm:h-1.5 sm:w-auto"
+                      style={{ background: d.color }}
+                      aria-hidden
+                    />
+                    <IlustracionTratamiento tipo={tipo} className="h-20 w-full max-w-[150px]" />
+                  </div>
 
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-grisTexto">
-                      Controles del primer año
-                    </p>
-                    <p className="mt-1 text-sm font-semibold" style={{ color: d.color }}>
-                      {plantilla.items.map((i) => i.etiqueta).join(' · ')}
-                    </p>
+                  <div className="p-5 sm:p-6">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <h3 className="font-titulo text-xl leading-tight">{d.nombre}</h3>
+                      <span
+                        className="pildora"
+                        style={{ background: `${d.color}1f`, color: d.color }}
+                      >
+                        {registro}
+                      </span>
+                    </div>
 
                     <p className="mt-3 text-sm leading-relaxed text-grisMedio">{d.queRevisar}</p>
 
-                    <p className="mt-3 border-t border-borde pt-3 text-sm">
-                      <span className="text-grisTexto">Se registra: </span>
-                      <span className="font-semibold text-tinta">
-                        {d.modoRegistro === 'horas'
-                          ? 'horas de uso de cada día'
-                          : d.modoRegistro === 'noche'
-                            ? 'si durmió con los lentes'
-                            : 'si se puso la gota'}
-                      </span>
+                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-wider text-grisTexto">
+                      Controles del primer año
                     </p>
+                    <ol className="mt-2 flex flex-wrap items-center gap-1.5">
+                      {plantilla.items.map((i, n) => (
+                        <li key={i.etiqueta} className="flex items-center gap-1.5">
+                          {n > 0 && (
+                            <span className="h-px w-3" style={{ background: `${d.color}66` }} aria-hidden />
+                          )}
+                          <span
+                            className="rounded-lg border bg-white px-2 py-1 text-xs font-semibold"
+                            style={{ borderColor: `${d.color}4d`, color: d.color }}
+                          >
+                            {i.etiqueta}
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
                   </div>
                 </article>
               )
@@ -148,7 +206,7 @@ export default async function Inicio() {
 
           <p className="mt-5 text-sm text-grisTexto">
             Combinar no es un quinto tratamiento: es tener dos activos a la vez, por ejemplo
-            orto-k mas atropina, cada uno con su meta y su adherencia por separado.
+            orto-k más atropina, cada uno con su meta y su adherencia por separado.
           </p>
         </div>
       </section>

@@ -63,7 +63,7 @@ export default async function Pendiente() {
 
           <form action={guardarNota} className="mt-6">
             <label className="etiqueta" htmlFor="nota">
-              Cuentenos quien es, para aprobar mas rápido
+              Cuéntenos quién es, para aprobar más rápido
             </label>
             <textarea
               id="nota"

@@ -49,7 +49,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
       { offsetDias: 182, etiqueta: '6 meses', requiere: { biometria: true, ciclopejia: true } },
       {
         offsetDias: 365,
-        etiqueta: '1 ano',
+        etiqueta: '1 año',
         requiere: { biometria: true, ciclopejia: true, fondoDeOjo: true },
       },
     ],
@@ -66,7 +66,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
       { offsetDias: 182, etiqueta: '6 meses', requiere: { biometria: true, ciclopejia: true } },
       {
         offsetDias: 365,
-        etiqueta: '1 ano',
+        etiqueta: '1 año',
         requiere: { biometria: true, ciclopejia: true, fondoDeOjo: true },
       },
     ],
@@ -78,7 +78,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
     fuente: 'World Council of Optometry, Myopia measurement and patient follow-up',
     cadaDiasDespues: CADA_6_MESES,
     items: [
-      { offsetDias: 1, etiqueta: '1 dia', requiere: { topografia: true } },
+      { offsetDias: 1, etiqueta: '1 día', requiere: { topografia: true } },
       { offsetDias: 7, etiqueta: '1 semana', requiere: { topografia: true } },
       { offsetDias: 30, etiqueta: '1 mes', requiere: { topografia: true } },
       { offsetDias: 91, etiqueta: '3 meses', requiere: { topografia: true } },
@@ -89,7 +89,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
       },
       {
         offsetDias: 365,
-        etiqueta: '1 ano',
+        etiqueta: '1 año',
         requiere: { biometria: true, topografia: true, ciclopejia: true, fondoDeOjo: true },
       },
     ],
@@ -101,14 +101,14 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
     fuente: 'World Council of Optometry, Myopia measurement and patient follow-up',
     cadaDiasDespues: CADA_6_MESES,
     items: [
-      { offsetDias: 1, etiqueta: '1 dia', requiere: {} },
+      { offsetDias: 1, etiqueta: '1 día', requiere: {} },
       { offsetDias: 7, etiqueta: '1 semana', requiere: {} },
       { offsetDias: 30, etiqueta: '1 mes', requiere: {} },
       { offsetDias: 91, etiqueta: '3 meses', requiere: {} },
       { offsetDias: 182, etiqueta: '6 meses', requiere: { biometria: true, ciclopejia: true } },
       {
         offsetDias: 365,
-        etiqueta: '1 ano',
+        etiqueta: '1 año',
         requiere: { biometria: true, ciclopejia: true, fondoDeOjo: true },
       },
     ],
@@ -131,7 +131,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
         etiqueta: 'Mañana siguiente, con los lentes puestos',
         requiere: { topografia: true },
       },
-      { offsetDias: 15, etiqueta: '15 dias', requiere: { topografia: true } },
+      { offsetDias: 15, etiqueta: '15 días', requiere: { topografia: true } },
       { offsetDias: 30, etiqueta: '1 mes', requiere: { topografia: true } },
       { offsetDias: 91, etiqueta: '3 meses', requiere: { topografia: true } },
       {
