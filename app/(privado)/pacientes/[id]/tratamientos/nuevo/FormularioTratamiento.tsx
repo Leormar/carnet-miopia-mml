@@ -223,7 +223,7 @@ export function FormularioTratamiento({
                         {[
                           c.requires.biometria && 'biometría',
                           c.requires.topografia && 'topografía',
-                          c.requires.ciclopejia && 'ciclopléjica',
+                          c.requires.cicloplejia && 'ciclopléjica',
                           c.requires.fondoDeOjo && 'fondo de ojo',
                         ]
                           .filter(Boolean)

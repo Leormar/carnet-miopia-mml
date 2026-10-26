@@ -12,7 +12,7 @@ export interface CitaGenerada {
   requires: {
     biometria?: boolean
     topografia?: boolean
-    ciclopejia?: boolean
+    cicloplejia?: boolean
     fondoDeOjo?: boolean
   }
 }
@@ -51,7 +51,7 @@ export function generarCalendario(
       // Refraccion ciclopejica y longitud axial cada 6 meses; fondo de ojo cada ano.
       requires: {
         biometria: true,
-        ciclopejia: true,
+        cicloplejia: true,
         topografia: tipo === 'ortok',
         fondoDeOjo: Math.round(offset / 365) * 365 === offset || meses % 12 === 0,
       },

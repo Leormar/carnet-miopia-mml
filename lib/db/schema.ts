@@ -552,7 +552,7 @@ export const followupTemplateItems = pgTable('followup_template_item', {
     .$type<{
       biometria?: boolean
       topografia?: boolean
-      ciclopejia?: boolean
+      cicloplejia?: boolean
       fondoDeOjo?: boolean
     }>()
     .notNull()
@@ -574,7 +574,7 @@ export const scheduledExams = pgTable(
       .$type<{
         biometria?: boolean
         topografia?: boolean
-        ciclopejia?: boolean
+        cicloplejia?: boolean
         fondoDeOjo?: boolean
       }>()
       .notNull()
