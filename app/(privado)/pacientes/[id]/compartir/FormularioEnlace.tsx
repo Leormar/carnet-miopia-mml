@@ -99,7 +99,7 @@ function EnlaceNuevo({
     <section className="tarjeta mt-4 border-verde/40">
       <div className="no-imprimir">
         <Aviso nivel="aviso" titulo="Copie el enlace ahora">
-          Es la unica vez que se muestra. De aqui en adelante solo queda guardada su huella; si
+          Es la única vez que se muestra. De aquí en adelante solo queda guardada su huella; si
           se pierde, revoque este enlace y genere otro.
         </Aviso>
       </div>

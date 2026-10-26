@@ -5,12 +5,14 @@ import { auth } from '@/auth'
 import { Logo, BarrasMML } from '@/components/marca/Logo'
 import { BotonGoogle } from '@/components/marca/BotonGoogle'
 import {
-  IconoCalendario,
-  IconoGrafica,
-  IconoImprimir,
-  IconoOjo,
   IconoTratamiento,
 } from '@/components/marca/IconosTratamiento'
+import {
+  MiniAdherencia,
+  MiniBiometria,
+  MiniCalendario,
+  MiniCarnet,
+} from '@/components/marca/Miniaturas'
 import { ORDEN_TRATAMIENTOS, TRATAMIENTOS } from '@/config/tratamientos'
 import { PLANTILLAS_BASE } from '@/config/calendarios-control'
 import { EVIDENCIA, REFERENCIAS_PORTADA } from '@/config/evidencia'
@@ -153,47 +155,49 @@ export default async function Inicio() {
 
       {/* Que hace */}
       <section id="que-hace" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-12 sm:py-16">
-        <h2 className="font-titulo text-2xl sm:text-3xl">Que hace la aplicación</h2>
+        <h2 className="font-titulo text-2xl sm:text-3xl">Qué hace la aplicación</h2>
         <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
-              Icono: IconoOjo,
+              Mini: MiniBiometria,
               color: '#1fa3dd',
               titulo: 'Crecimiento del ojo',
               texto:
-                'Longitud axial por ojo, crecimiento anualizado entre controles y de los últimos 12 meses. Avisa si el equipo de biometría cambio entre las dos medidas comparadas.',
+                'Longitud axial por ojo, crecimiento anualizado entre controles y de los últimos 12 meses. Avisa si el equipo de biometría cambió entre las dos medidas comparadas.',
             },
             {
-              Icono: IconoGrafica,
+              Mini: MiniAdherencia,
               color: '#e2104f',
               titulo: 'Adherencia visible',
               texto:
-                'Porcentaje de días o noches cumplidos a 7, 30 y 90 días, y promedio de horas. La familia lo registra desde el teléfono con un boton grande.',
+                'Porcentaje de días o noches cumplidos a 7, 30 y 90 días, y promedio de horas. La familia lo registra desde el teléfono con un botón grande.',
             },
             {
-              Icono: IconoCalendario,
+              Mini: MiniCalendario,
               color: '#5a9a3a',
               titulo: 'Calendario automático',
               texto:
                 'Al iniciar el tratamiento se generan los controles del primer año, y después cada 6 meses. Los vencidos aparecen en el panel.',
             },
             {
-              Icono: IconoImprimir,
+              Mini: MiniCarnet,
               color: '#f5c400',
               titulo: 'Carnet en PDF',
               texto:
                 'El mismo carnet de papel, con los datos ya impresos, listo para entregar a la familia y para llevar al oftalmólogo.',
             },
-          ].map(({ Icono, color, titulo, texto }) => (
-            <div key={titulo} className="rounded-2xl border border-borde bg-white p-5">
-              <span
-                className="flex h-10 w-10 items-center justify-center rounded-xl"
-                style={{ background: `${color}1a`, color }}
+          ].map(({ Mini, color, titulo, texto }) => (
+            <div key={titulo} className="overflow-hidden rounded-2xl border border-borde bg-white shadow-tarjeta">
+              <div
+                className="border-b border-borde/60 px-5 py-4"
+                style={{ background: `${color}0f` }}
               >
-                <Icono className="h-5 w-5" />
-              </span>
-              <h3 className="mt-3 font-titulo text-lg leading-tight">{titulo}</h3>
+                <Mini className="h-14 w-full" />
+              </div>
+              <div className="p-5">
+              <h3 className="font-titulo text-lg leading-tight">{titulo}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-grisMedio">{texto}</p>
+              </div>
             </div>
           ))}
         </div>

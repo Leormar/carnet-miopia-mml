@@ -83,7 +83,7 @@ export default async function Aprobaciones() {
                 <p className="mt-2.5 text-xs leading-snug text-grisTexto">
                   Aprobar como profesional da acceso a crear pacientes y registrar controles.
                   Aprobar como familia solo habilita la cuenta; el acceso a un niño se concede
-                  despues, paciente por paciente.
+                  después, paciente por paciente.
                 </p>
               </div>
             ))}

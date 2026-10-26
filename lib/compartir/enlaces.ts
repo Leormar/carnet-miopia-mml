@@ -54,7 +54,7 @@ export function svgDelQr(texto: string, margen = 4): string {
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${lado} ${lado}"`,
     ' width="100%" height="100%" shape-rendering="crispEdges" role="img"',
-    ' aria-label="Codigo QR del enlace de solo lectura">',
+    ' aria-label="Código QR del enlace de solo lectura">',
     `<rect width="${lado}" height="${lado}" fill="#ffffff"/>`,
     `<path d="${trazo}" fill="#111c26"/>`,
     '</svg>',

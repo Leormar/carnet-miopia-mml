@@ -92,7 +92,7 @@ export default function Terminos() {
       <Seccion titulo="Disponibilidad">
         <p>
           La aplicación se ofrece tal como está, sin garantía de disponibilidad ininterrumpida. Se
-          hacen copias de seguridad, pero el profesional no debe depender de ella como unico
+          hacen copias de seguridad, pero el profesional no debe depender de ella como único
           registro clínico cuando la norma de su país le exige llevar historia clínica formal.
         </p>
       </Seccion>

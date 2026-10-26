@@ -255,7 +255,7 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
           ))}
         </div>
 
-        <h3>Como leer el crecimiento del ojo en 12 meses</h3>
+        <h3>Cómo leer el crecimiento del ojo en 12 meses</h3>
         <div className="carnet-sem">
           <div style={{ background: '#e6f2df' }}>
             <b>Verde: como un ojo sin miopía</b>
@@ -279,7 +279,7 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
             <tr>
               <th style={{ width: '12%' }}>Fecha</th>
               <th style={{ width: '38%' }}>
-                Hallazgos del tratamiento (ajuste, córnea, topografía, pupila, presion)
+                Hallazgos del tratamiento (ajuste, córnea, topografía, pupila, presión)
               </th>
               <th style={{ width: '25%' }}>Molestias o eventos</th>
               <th style={{ width: '25%' }}>Decisión</th>
@@ -299,7 +299,7 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
 
         <div className="carnet-ft">
           <span>
-            Fuentes: IMI Clinical Management Guidelines 2019 · Consejo Mundial de Optometria ·
+            Fuentes: IMI Clinical Management Guidelines 2019 · Consejo Mundial de Optometría ·
             Tideman 2016 y 2018 · Myopia Profile.
           </span>
           <span>

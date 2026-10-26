@@ -297,7 +297,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
       <footer className="mx-auto max-w-5xl px-4 pb-10 text-xs leading-relaxed text-grisTexto">
         <p>
           La aplicación registra y calcula; no diagnostica ni decide tratamientos. Esta vista es
-          de solo lectura y su apertura queda registrada en la bitacora de auditoria, conforme a
+          de solo lectura y su apertura queda registrada en la bitácora de auditoria, conforme a
           la Ley 1581 de 2012 y al Decreto 1377 de 2013.
         </p>
         <p className="mt-1">

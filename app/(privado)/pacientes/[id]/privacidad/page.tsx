@@ -266,7 +266,7 @@ export default async function Privacidad({
 
       {/* Bitacora */}
       <section className="mt-6">
-        <h2 className="font-titulo text-lg">Quien ha tocado esta historia</h2>
+        <h2 className="font-titulo text-lg">Quién ha tocado esta historia</h2>
         <p className="text-sm text-grisTexto">Últimos 30 movimientos. La bitácora no se edita ni se borra.</p>
         <div className="tarjeta mt-3 p-0">
           {movimientos.length === 0 ? (

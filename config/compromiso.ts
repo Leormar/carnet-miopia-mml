@@ -51,7 +51,7 @@ export const COMPROMISO: PuntoDelCompromiso[] = [
   {
     titulo: 'Los derechos de la familia',
     parrafos: [
-      'El padre, la madre o el representante legal puede pedir en cualquier momento una copia de todos los datos de su hijo, corregir lo que este mal, revocar el consentimiento y pedir que se supriman los datos. La aplicación tiene un boton para cada una de esas cuatro cosas.',
+      'El padre, la madre o el representante legal puede pedir en cualquier momento una copia de todos los datos de su hijo, corregir lo que esté mal, revocar el consentimiento y pedir que se supriman los datos. La aplicación tiene un botón para cada una de esas cuatro cosas.',
       'Si una familia le pide algo de eso, usted debe atenderlo, no remitirlo a otra parte. Es su obligación como responsable del tratamiento de esos datos.',
     ],
   },

@@ -55,7 +55,7 @@ export default async function MiCarnet({ params }: { params: { id: string } }) {
         <div className="mt-5">
           <Aviso>
             No hay un tratamiento activo registrado. Cuando su profesional lo abra, aquí aparecera
-            el boton para registrar el uso de cada día.
+            el botón para registrar el uso de cada día.
           </Aviso>
         </div>
       ) : (

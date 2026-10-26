@@ -124,7 +124,7 @@ export default async function CarnetDelPaciente({ params }: { params: { id: stri
           <div>
             <h1 className="font-titulo text-2xl">Carnet</h1>
             <p className="text-sm text-grisTexto">
-              Dos paginas A4 horizontal. En el dialogo de impresión elija Guardar como PDF, tamano
+              Dos paginas A4 horizontal. En el dialogo de impresión elija Guardar como PDF, tamaño
               A4, orientación horizontal y margenes ninguno.
             </p>
           </div>
