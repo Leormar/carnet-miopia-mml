@@ -10,7 +10,7 @@ export const DURACIONES = [
   { dias: 15, texto: '15 dias' },
   { dias: 30, texto: '30 dias' },
   { dias: 90, texto: '90 dias' },
-  { dias: 180, texto: '180 dias' },
+  { dias: 180, texto: '180 días' },
 ] as const
 
 export const DIAS_POR_DEFECTO = 30

@@ -37,7 +37,7 @@ export default async function Panel() {
           <h1 className="font-titulo text-2xl">Pacientes</h1>
           <p className="text-sm text-grisTexto">
             {filas.length === 0
-              ? 'Todavia no hay pacientes'
+              ? 'Todavía no hay pacientes'
               : `${filas.length} ${filas.length === 1 ? 'paciente' : 'pacientes'}`}
             {vencidos.length > 0 && ` · ${vencidos.length} con controles vencidos`}
           </p>
@@ -97,7 +97,7 @@ export default async function Panel() {
                   <div className="flex items-center gap-2">
                     <PuntoSemaforo color={f.semaforoColor} titulo={f.semaforoTexto} />
                     <p className="truncate font-semibold">{f.nombre}</p>
-                    <span className="shrink-0 text-sm text-grisTexto">{f.edad} anos</span>
+                    <span className="shrink-0 text-sm text-grisTexto">{f.edad} años</span>
                   </div>
                   <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
                     {f.tratamientosActivos.length === 0 ? (
@@ -133,7 +133,7 @@ export default async function Panel() {
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-xs text-grisTexto">Proximo control</dt>
+                    <dt className="text-xs text-grisTexto">Próximo control</dt>
                     <dd className="font-medium">
                       {f.controlesVencidos > 0 ? (
                         <span className="text-magenta">

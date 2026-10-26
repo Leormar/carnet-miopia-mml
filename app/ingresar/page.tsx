@@ -23,10 +23,10 @@ function IconoApple() {
 
 const MENSAJE_ERROR: Record<string, string> = {
   Configuration:
-    'El servidor no tiene completa la configuracion de ingreso. Avise al administrador.',
+    'El servidor no tiene completa la configuración de ingreso. Avise al administrador.',
   AccessDenied:
-    'Google no autorizo el ingreso con esa cuenta. Si la aplicacion esta en modo de prueba, su correo debe estar en la lista de usuarios de prueba.',
-  Verification: 'El enlace de verificacion ya vencio o se uso antes.',
+    'Google no autorizo el ingreso con esa cuenta. Si la aplicación está en modo de prueba, su correo debe estar en la lista de usuarios de prueba.',
+  Verification: 'El enlace de verificación ya vencio o se uso antes.',
 }
 
 export default async function Ingresar({
@@ -59,14 +59,14 @@ export default async function Ingresar({
           <h1 className="mt-6 font-titulo text-[2rem] leading-tight">Ingresar</h1>
           <p className="mt-2 leading-relaxed text-grisMedio">
             Entre con su cuenta para ver el carnet, registrar controles o anotar el uso de cada
-            dia.
+            día.
           </p>
 
           {error && (
             <div className="mt-5">
               <Aviso nivel="alerta" titulo="No fue posible ingresar">
                 {MENSAJE_ERROR[error] ??
-                  'Intente de nuevo. Si el problema sigue, escriba al profesional que le compartio el enlace.'}
+                  'Intente de nuevo. Si el problema sigue, escriba al profesional que le compartió el enlace.'}
               </Aviso>
             </div>
           )}
@@ -95,14 +95,14 @@ export default async function Ingresar({
           <div className="mt-7 rounded-2xl border border-borde bg-white p-4">
             <p className="text-sm font-semibold">El acceso es cerrado</p>
             <p className="mt-1 text-sm leading-relaxed text-grisMedio">
-              Si es la primera vez, su cuenta queda pendiente de aprobacion. Un administrador la
-              habilita y le avisa al mismo correo. Nadie ve datos clinicos antes de eso.
+              Si es la primera vez, su cuenta queda pendiente de aprobación. Un administrador la
+              habilita y le avisa al mismo correo. Nadie ve datos clínicos antes de eso.
             </p>
           </div>
 
           <p className="mt-6 text-xs leading-relaxed text-grisTexto">
             Al ingresar acepta el tratamiento de sus datos de contacto para administrar el acceso,
-            conforme a la Ley 1581 de 2012. Los datos clinicos de los menores solo se registran con
+            conforme a la Ley 1581 de 2012. Los datos clínicos de los menores solo se registran con
             el consentimiento del padre, madre o representante.
           </p>
 
@@ -131,8 +131,8 @@ export default async function Ingresar({
             Si no se usa, no funciona
           </p>
           <p className="mt-3 leading-relaxed text-grisMedio">
-            Las gafas, los lentes y las gotas para desacelerar la miopia no actuan por estar en el
-            estuche: actuan mientras estan puestos. El carnet hace visible ese uso, junto al
+            Las gafas, los lentes y las gotas para desacelerar la miopía no actúan por estar en el
+            estuche: actúan mientras están puestos. El carnet hace visible ese uso, junto al
             crecimiento del ojo.
           </p>
 
@@ -152,9 +152,9 @@ export default async function Ingresar({
                     <span className="block text-sm font-semibold leading-tight">{d.nombre}</span>
                     <span className="block text-xs text-grisTexto">
                       {d.modoRegistro === 'horas'
-                        ? 'Se registran las horas de uso de cada dia'
+                        ? 'Se registran las horas de uso de cada día'
                         : d.modoRegistro === 'noche'
-                          ? 'Se registra si durmio con los lentes'
+                          ? 'Se registra si durmió con los lentes'
                           : 'Se registra si se puso la gota'}
                     </span>
                   </span>
@@ -164,7 +164,7 @@ export default async function Ingresar({
           </div>
 
           <p className="mt-8 text-xs leading-relaxed text-grisTexto">
-            Este contenido es educativo y no reemplaza una valoracion visual individual.
+            Este contenido es educativo y no reemplaza una valoración visual individual.
           </p>
         </div>
       </aside>

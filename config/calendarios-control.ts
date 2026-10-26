@@ -40,7 +40,7 @@ const CADA_6_MESES = 182
 export const PLANTILLAS_BASE: PlantillaCalendario[] = [
   {
     clave: 'wco-gafas',
-    nombre: 'Gafas, Consejo Mundial de Optometria',
+    nombre: 'Gafas, Consejo Mundial de Optometría',
     tipo: 'gafas',
     fuente: 'World Council of Optometry, Myopia measurement and patient follow-up',
     cadaDiasDespues: CADA_6_MESES,
@@ -56,7 +56,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
   },
   {
     clave: 'wco-blandos',
-    nombre: 'Lentes blandos, Consejo Mundial de Optometria',
+    nombre: 'Lentes blandos, Consejo Mundial de Optometría',
     tipo: 'lentes_blandos',
     fuente: 'World Council of Optometry, Myopia measurement and patient follow-up',
     cadaDiasDespues: CADA_6_MESES,
@@ -73,7 +73,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
   },
   {
     clave: 'wco-ortok',
-    nombre: 'Ortoqueratologia, Consejo Mundial de Optometria',
+    nombre: 'Ortoqueratología, Consejo Mundial de Optometría',
     tipo: 'ortok',
     fuente: 'World Council of Optometry, Myopia measurement and patient follow-up',
     cadaDiasDespues: CADA_6_MESES,
@@ -96,7 +96,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
   },
   {
     clave: 'wco-atropina',
-    nombre: 'Atropina, Consejo Mundial de Optometria',
+    nombre: 'Atropina, Consejo Mundial de Optometría',
     tipo: 'atropina',
     fuente: 'World Council of Optometry, Myopia measurement and patient follow-up',
     cadaDiasDespues: CADA_6_MESES,
@@ -121,14 +121,14 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
      * meses con biometria y topografia. Reemplazo del lente cada ano.
      */
     clave: 'prolens-ortok',
-    nombre: 'Ortoqueratologia, protocolo PROLENS',
+    nombre: 'Ortoqueratología, protocolo PROLENS',
     tipo: 'ortok',
-    fuente: 'Protocolo de la practica de Leonardo Orjuela Marino, PROLENS',
+    fuente: 'Protocolo de la práctica de Leonardo Orjuela Mariño, PROLENS',
     cadaDiasDespues: CADA_6_MESES,
     items: [
       {
         offsetDias: 1,
-        etiqueta: 'Manana siguiente, con los lentes puestos',
+        etiqueta: 'Mañana siguiente, con los lentes puestos',
         requiere: { topografia: true },
       },
       { offsetDias: 15, etiqueta: '15 dias', requiere: { topografia: true } },
@@ -141,7 +141,7 @@ export const PLANTILLAS_BASE: PlantillaCalendario[] = [
       },
       {
         offsetDias: 365,
-        etiqueta: '1 ano, con reemplazo del lente',
+        etiqueta: '1 año, con reemplazo del lente',
         requiere: { biometria: true, topografia: true, ciclopejia: true, fondoDeOjo: true },
       },
     ],

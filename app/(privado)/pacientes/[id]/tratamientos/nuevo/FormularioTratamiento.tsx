@@ -56,7 +56,7 @@ export function FormularioTratamiento({
       <section className="tarjeta">
         <h2 className="font-titulo text-lg">Tipo de tratamiento</h2>
         <p className="mt-0.5 text-sm text-grisTexto">
-          Para combinar tratamientos, por ejemplo orto-k mas atropina, cree uno y luego el otro.
+          Para combinar tratamientos, por ejemplo orto-k más atropina, cree uno y luego el otro.
           Cada uno conserva su meta de uso y su calendario.
         </p>
         <input type="hidden" name="type" value={tipo} />
@@ -91,7 +91,7 @@ export function FormularioTratamiento({
 
       <Seccion titulo="Dispositivo y fechas">
         <Campo
-          etiqueta={tipo === 'atropina' ? 'Presentacion' : 'Dispositivo'}
+          etiqueta={tipo === 'atropina' ? 'Presentación' : 'Dispositivo'}
           nombre="deviceLabel"
           ayuda="Texto libre. No hay catalogo de marcas obligatorio"
         >
@@ -100,16 +100,16 @@ export function FormularioTratamiento({
             autoComplete="off"
             placeholder={
               tipo === 'ortok'
-                ? 'Diseno y material del lente'
+                ? 'Diseño y material del lente'
                 : tipo === 'atropina'
-                  ? 'Formula magistral, gotero'
-                  : 'Diseno de la lente'
+                  ? 'Fórmula magistral, gotero'
+                  : 'Diseño de la lente'
             }
           />
         </Campo>
 
         {tipo === 'atropina' && (
-          <Campo etiqueta="Concentracion" nombre="concentration">
+          <Campo etiqueta="Concentración" nombre="concentration">
             <Texto nombre="concentration" list="concentraciones" placeholder="0,01 %" />
             <datalist id="concentraciones">
               {CONCENTRACIONES_ATROPINA.map((c) => (
@@ -132,7 +132,7 @@ export function FormularioTratamiento({
         <Campo
           etiqueta="Fecha de fin"
           nombre="endDate"
-          ayuda="Dejela vacia si el tratamiento esta activo"
+          ayuda="Dejela vacía si el tratamiento esta activo"
         >
           <Texto nombre="endDate" type="date" />
         </Campo>
@@ -144,7 +144,7 @@ export function FormularioTratamiento({
       >
         {definicion.modoRegistro === 'horas' ? (
           <>
-            <Campo etiqueta="Horas al dia" nombre="metaHorasPorDia" error={e.metaHorasPorDia}>
+            <Campo etiqueta="Horas al día" nombre="metaHorasPorDia" error={e.metaHorasPorDia}>
               <Texto
                 nombre="metaHorasPorDia"
                 inputMode="decimal"
@@ -152,7 +152,7 @@ export function FormularioTratamiento({
                 error={e.metaHorasPorDia}
               />
             </Campo>
-            <Campo etiqueta="Dias por semana" nombre="metaDiasPorSemana">
+            <Campo etiqueta="Días por semana" nombre="metaDiasPorSemana">
               <Texto
                 nombre="metaDiasPorSemana"
                 inputMode="numeric"
@@ -221,13 +221,13 @@ export function FormularioTratamiento({
                       <td className="py-1.5 pr-3 tabular-nums">{fechaCorta(c.dueDate)}</td>
                       <td className="py-1.5 text-xs text-grisTexto">
                         {[
-                          c.requires.biometria && 'biometria',
-                          c.requires.topografia && 'topografia',
-                          c.requires.ciclopejia && 'ciclopejia',
+                          c.requires.biometria && 'biometría',
+                          c.requires.topografia && 'topografía',
+                          c.requires.ciclopejia && 'ciclopléjica',
                           c.requires.fondoDeOjo && 'fondo de ojo',
                         ]
                           .filter(Boolean)
-                          .join(' · ') || 'revision'}
+                          .join(' · ') || 'revisión'}
                       </td>
                     </tr>
                   ))}

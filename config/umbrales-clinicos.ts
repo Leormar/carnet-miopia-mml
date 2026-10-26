@@ -6,7 +6,7 @@
  */
 
 export const NOTA_EDUCATIVA =
-  'Este contenido es educativo y no reemplaza una valoracion visual individual.'
+  'Este contenido es educativo y no reemplaza una valoración visual individual.'
 
 /**
  * Semaforo de crecimiento de longitud axial en 12 meses, en mm/ano.
@@ -20,14 +20,14 @@ export const NOTA_EDUCATIVA =
  */
 export const SEMAFORO_CRECIMIENTO = {
   fuente:
-    'Myopia Profile (Gifford) y carnet de seguimiento del Grupo Manejo Miopia Latam',
+    'Myopia Profile (Gifford) y carnet de seguimiento del Grupo Manejo Miopía Latam',
   franjas: [
     {
       edadMin: 7,
       edadMax: 10,
       verdeHasta: 0.2, // mm/ano, inclusive
       rojoDesde: 0.3, // mm/ano, inclusive
-      descripcionVerde: 'Como un ojo sin miopia',
+      descripcionVerde: 'Como un ojo sin miopía',
       descripcionAmarillo: 'Mas de lo ideal. Revisar adherencia y habitos',
       descripcionRojo: 'Como un miope sin tratamiento',
     },
@@ -36,14 +36,14 @@ export const SEMAFORO_CRECIMIENTO = {
       edadMax: 16,
       verdeHasta: 0.1,
       rojoDesde: 0.2,
-      descripcionVerde: 'Como un ojo sin miopia',
+      descripcionVerde: 'Como un ojo sin miopía',
       descripcionAmarillo: 'Mas de lo ideal. Revisar adherencia y habitos',
       descripcionRojo: 'Como un miope sin tratamiento',
     },
   ],
   /** Fuera de 7 a 16 anos se muestra el dato sin color y con esta nota. */
   notaFueraDeRango:
-    'No hay umbral de semaforo publicado para esta edad. Se muestra el crecimiento medido, sin clasificacion.',
+    'No hay umbral de semáforo publicado para esta edad. Se muestra el crecimiento medido, sin clasificación.',
 } as const
 
 /**

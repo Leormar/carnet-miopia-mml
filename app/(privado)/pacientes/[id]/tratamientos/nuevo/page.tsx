@@ -38,7 +38,7 @@ export default async function NuevoTratamiento({
         <div className="mb-4 mt-3">
           <Aviso titulo="Paciente creado">
             Ahora abra el tratamiento. Con la fecha de inicio se genera el calendario de controles
-            del primer ano.
+            del primer año.
           </Aviso>
         </div>
       )}

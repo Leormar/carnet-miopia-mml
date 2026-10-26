@@ -32,11 +32,11 @@ export function FormularioEnlace({
           etiqueta="Para quien es"
           nombre="label"
           error={errores.label}
-          ayuda="Queda en la bitacora. Por ejemplo: oftalmologia pediatrica, Dra. Ramirez."
+          ayuda="Queda en la bitácora. Por ejemplo: oftalmología pediátrica, Dra. Ramírez."
         >
           <Texto
             nombre="label"
-            placeholder="Oftalmologia pediatrica"
+            placeholder="Oftalmología pediátrica"
             maxLength={120}
             error={errores.label}
           />

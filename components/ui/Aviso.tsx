@@ -32,7 +32,7 @@ export function Aviso({
 export function NotaEducativa({ className = '' }: { className?: string }) {
   return (
     <p className={`text-xs text-grisTexto ${className}`}>
-      Este contenido es educativo y no reemplaza una valoracion visual individual.
+      Este contenido es educativo y no reemplaza una valoración visual individual.
     </p>
   )
 }

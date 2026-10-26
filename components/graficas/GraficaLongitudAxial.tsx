@@ -84,7 +84,7 @@ export function GraficaLongitudAxial({
   if (valores.length < 2) {
     return (
       <div className="rounded-mml border border-dashed border-borde px-4 py-8 text-center text-sm text-grisTexto">
-        La grafica aparece cuando haya al menos dos mediciones de longitud axial.
+        La gráfica aparece cuando haya al menos dos mediciones de longitud axial.
       </div>
     )
   }
@@ -106,7 +106,7 @@ export function GraficaLongitudAxial({
         ))}
         {marcas.length > 0 && (
           <span className="text-xs text-grisTexto">
-            Las lineas verticales marcan el inicio de cada tratamiento
+            Las líneas verticales marcan el inicio de cada tratamiento
           </span>
         )}
       </div>
@@ -211,7 +211,7 @@ export function GraficaLongitudAxial({
           return (
             <span key={s.clave} className="inline-flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full" style={{ background: s.color }} />
-              Ultimo {s.nombre}
+              Último {s.nombre}
               <strong className="tabular-nums text-tinta">
                 {v.toFixed(2).replace('.', ',')} mm
               </strong>

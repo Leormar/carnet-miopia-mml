@@ -65,7 +65,7 @@ export function GraficaRefraccion({
   if (valores.length < 2) {
     return (
       <div className="rounded-mml border border-dashed border-borde px-4 py-8 text-center text-sm text-grisTexto">
-        La grafica aparece cuando haya al menos dos refracciones registradas.
+        La gráfica aparece cuando haya al menos dos refracciones registradas.
       </div>
     )
   }
@@ -87,7 +87,7 @@ export function GraficaRefraccion({
             {s.nombre}
           </span>
         ))}
-        <span className="text-xs text-grisTexto">Equivalente esferico bajo cicloplejia</span>
+        <span className="text-xs text-grisTexto">Equivalente esférico bajo cicloplejía</span>
       </div>
 
       <div className="h-56 w-full sm:h-64">
@@ -149,7 +149,7 @@ export function GraficaRefraccion({
           return (
             <span key={s.clave} className="inline-flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full" style={{ background: s.color }} />
-              Ultimo {s.nombre}
+              Último {s.nombre}
               <strong className="tabular-nums text-tinta">{formatoDioptrias(v)} D</strong>
             </span>
           )

@@ -47,7 +47,7 @@ export default async function Credenciales() {
       <h1 className="font-titulo text-2xl">Acreditaciones profesionales</h1>
       <p className="mt-1 text-sm text-grisTexto">
         Documento con el que cada miembro de la red acredita que esta habilitado para ejercer en
-        su pais. Abrir un documento queda en la bitacora.
+        su país. Abrir un documento queda en la bitácora.
       </p>
 
       {porRevisar.length > 0 && (
@@ -59,7 +59,7 @@ export default async function Credenciales() {
       )}
 
       {filas.length === 0 ? (
-        <p className="mt-5 text-sm text-grisTexto">Todavia nadie ha subido su acreditacion.</p>
+        <p className="mt-5 text-sm text-grisTexto">Todavía nadie ha subido su acreditación.</p>
       ) : (
         <ul className="mt-5 space-y-2">
           {filas.map((f) => (
@@ -109,9 +109,9 @@ export default async function Credenciales() {
                     <input
                       type="text"
                       name="motivo"
-                      placeholder="Motivo del rechazo"
+                      placeholder="Motivo del rechazó"
                       className="campo w-48 py-1.5 text-sm"
-                      aria-label="Motivo del rechazo"
+                      aria-label="Motivo del rechazó"
                     />
                     <button type="submit" className="boton-secundario py-1.5 text-sm">
                       Rechazar

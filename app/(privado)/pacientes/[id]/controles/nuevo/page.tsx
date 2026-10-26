@@ -28,7 +28,7 @@ export default async function NuevoControl({ params }: { params: { id: string } 
       </Link>
       <h1 className="mt-2 font-titulo text-2xl">Nuevo control</h1>
       <p className="mb-4 mt-1 text-sm text-grisTexto">
-        Deje en blanco lo que no haya medido. El equivalente esferico se calcula solo.
+        Deje en blanco lo que no haya medido. El equivalente esférico se calcula solo.
       </p>
 
       <FormularioControl

@@ -41,10 +41,10 @@ export function FormularioPaciente() {
           />
         </Campo>
         <Campo
-          etiqueta="Edad al inicio de la miopia"
+          etiqueta="Edad al inicio de la miopía"
           nombre="myopiaOnsetAge"
           error={e.myopiaOnsetAge}
-          ayuda="En anos. Acepta decimales"
+          ayuda="En años. Acepta decimales"
         >
           <Texto
             nombre="myopiaOnsetAge"
@@ -73,26 +73,26 @@ export function FormularioPaciente() {
               { valor: '', texto: 'Sin dato' },
               { valor: 'RC', texto: 'Registro civil' },
               { valor: 'TI', texto: 'Tarjeta de identidad' },
-              { valor: 'CC', texto: 'Cedula de ciudadania' },
-              { valor: 'CE', texto: 'Cedula de extranjeria' },
+              { valor: 'CC', texto: 'Cédula de ciudadania' },
+              { valor: 'CE', texto: 'Cédula de extranjeria' },
               { valor: 'PA', texto: 'Pasaporte' },
             ]}
           />
         </Campo>
-        <Campo etiqueta="Numero de documento" nombre="documentNumber">
+        <Campo etiqueta="Número de documento" nombre="documentNumber">
           <Texto nombre="documentNumber" inputMode="numeric" autoComplete="off" />
         </Campo>
-        <Campo etiqueta="Oftalmologia pediatrica" nombre="ophthalmologistName">
+        <Campo etiqueta="Oftalmología pediátrica" nombre="ophthalmologistName">
           <Texto nombre="ophthalmologistName" autoComplete="off" />
         </Campo>
-        <Campo etiqueta="Institucion" nombre="institutionName">
+        <Campo etiqueta="Institución" nombre="institutionName">
           <Texto nombre="institutionName" autoComplete="off" />
         </Campo>
       </Seccion>
 
       <Seccion
         titulo="Familia"
-        descripcion="Quien va a registrar el uso diario desde el telefono"
+        descripcion="Quien va a registrar el uso diario desde el teléfono"
       >
         <Campo etiqueta="Nombre del cuidador" nombre="caregiverName">
           <Texto nombre="caregiverName" autoComplete="off" />
@@ -101,11 +101,11 @@ export function FormularioPaciente() {
           etiqueta="Correo del cuidador"
           nombre="caregiverEmail"
           error={e.caregiverEmail}
-          ayuda="Con este correo se le dara acceso a la vista de la familia"
+          ayuda="Con este correo se le dará acceso a la vista de la familia"
         >
           <Texto nombre="caregiverEmail" type="email" error={e.caregiverEmail} autoComplete="off" />
         </Campo>
-        <Campo etiqueta="Telefono" nombre="caregiverPhone">
+        <Campo etiqueta="Teléfono" nombre="caregiverPhone">
           <Texto nombre="caregiverPhone" type="tel" autoComplete="off" />
         </Campo>
       </Seccion>
@@ -128,7 +128,7 @@ export function FormularioPaciente() {
         <Campo etiqueta="Parentesco" nombre="consentRelationship">
           <Texto nombre="consentRelationship" placeholder="Madre, padre, representante" />
         </Campo>
-        <Campo etiqueta="Como se otorgo" nombre="consentMethod">
+        <Campo etiqueta="Como se otorgó" nombre="consentMethod">
           <Selector
             nombre="consentMethod"
             defaultValue="en_consulta"
@@ -148,8 +148,8 @@ export function FormularioPaciente() {
             />
             <span className="leading-snug">
               Confirmo que el padre, madre o representante autorizo el registro y tratamiento de
-              los datos de salud del menor para su seguimiento clinico, y que conoce que puede
-              consultarlos, actualizarlos o solicitar su supresion.
+              los datos de salud del menor para su seguimiento clínico, y que conoce que puede
+              consultarlos, actualizarlos o solicitar su supresión.
             </span>
           </label>
           {e.consentAccepted && (

@@ -78,7 +78,7 @@ export function FormularioControl({
       </Seccion>
 
       <section className="tarjeta">
-        <h2 className="font-titulo text-lg">Agudeza visual y refraccion</h2>
+        <h2 className="font-titulo text-lg">Agudeza visual y refracción</h2>
         <label className="mt-2 flex items-center gap-2 text-sm">
           <input
             type="checkbox"
@@ -86,7 +86,7 @@ export function FormularioControl({
             defaultChecked
             className="h-4 w-4 accent-[#1fa3dd]"
           />
-          Refraccion bajo cicloplejia
+          Refracción bajo cicloplejía
         </label>
 
         <div className="mt-3 overflow-x-auto">
@@ -208,7 +208,7 @@ export function FormularioControl({
             />
           </Campo>
           <Campo
-            etiqueta="Equipo de biometria"
+            etiqueta="Equipo de biometría"
             nombre="biometerId"
             error={e.biometerId}
             ayuda="Obligatorio si registra longitud axial. Compare siempre con el mismo equipo."
@@ -229,7 +229,7 @@ export function FormularioControl({
         {equipos.length === 0 && (
           <div className="mt-3">
             <Aviso nivel="aviso">
-              No hay equipos de biometria registrados.{' '}
+              No hay equipos de biometría registrados.{' '}
               <Link href="/ajustes/equipos" className="underline">
                 Agregue el suyo
               </Link>{' '}
@@ -241,8 +241,8 @@ export function FormularioControl({
         {cambioEquipo && (
           <div className="mt-3">
             <Aviso nivel="aviso" titulo="Equipo distinto al del control anterior">
-              La comparacion de longitud axial entre equipos distintos puede no reflejar solo el
-              crecimiento del ojo. Quedara marcado en la ficha.
+              La comparación de longitud axial entre equipos distintos puede no reflejar solo el
+              crecimiento del ojo. Quedará marcado en la ficha.
             </Aviso>
           </div>
         )}
@@ -289,29 +289,29 @@ export function FormularioControl({
         titulo="Uso y habitos"
         descripcion="Lo que reporta la familia en la consulta. El registro diario se lleva aparte."
       >
-        <Campo etiqueta="Horas de uso al dia" nombre="reportedHoursPerDay">
+        <Campo etiqueta="Horas de uso al día" nombre="reportedHoursPerDay">
           <Texto nombre="reportedHoursPerDay" inputMode="decimal" />
         </Campo>
-        <Campo etiqueta="Horas al aire libre al dia" nombre="outdoorHoursPerDay">
+        <Campo etiqueta="Horas al aire libre al día" nombre="outdoorHoursPerDay">
           <Texto nombre="outdoorHoursPerDay" inputMode="decimal" />
         </Campo>
-        <Campo etiqueta="Horas de pantalla al dia" nombre="screenHoursPerDay">
+        <Campo etiqueta="Horas de pantalla al día" nombre="screenHoursPerDay">
           <Texto nombre="screenHoursPerDay" inputMode="decimal" />
         </Campo>
       </Seccion>
 
-      <Seccion titulo="Molestias, decision y proximo control">
+      <Seccion titulo="Molestias, decisión y próximo control">
         <div className="sm:col-span-2">
           <Campo etiqueta="Molestias o eventos" nombre="adverseEvents">
             <Area nombre="adverseEvents" rows={2} />
           </Campo>
         </div>
         <div className="sm:col-span-2">
-          <Campo etiqueta="Decision" nombre="decision">
+          <Campo etiqueta="Decisión" nombre="decision">
             <Area nombre="decision" rows={2} />
           </Campo>
         </div>
-        <Campo etiqueta="Fecha del proximo control" nombre="nextExamDate">
+        <Campo etiqueta="Fecha del próximo control" nombre="nextExamDate">
           <Texto nombre="nextExamDate" type="date" />
         </Campo>
         <div className="flex items-end">

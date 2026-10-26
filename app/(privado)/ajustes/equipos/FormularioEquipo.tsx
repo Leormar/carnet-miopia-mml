@@ -17,7 +17,7 @@ export function FormularioEquipo() {
       <Campo etiqueta="Nombre del equipo" nombre="name" error={e.name} requerido>
         <Texto nombre="name" placeholder="IOLMaster 700" error={e.name} required />
       </Campo>
-      <Campo etiqueta="Numero de serie" nombre="serial">
+      <Campo etiqueta="Número de serie" nombre="serial">
         <Texto nombre="serial" />
       </Campo>
       <BotonEnviar className="boton-primario w-full">Agregar</BotonEnviar>

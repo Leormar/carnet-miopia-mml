@@ -21,14 +21,14 @@ export const metadata = { title: 'Datos y consentimiento' }
 
 const ACCION_EN_PALABRAS: Record<string, string> = {
   create: 'Creo',
-  update: 'Modifico',
-  delete: 'Borro',
-  read: 'Consulto',
+  update: 'Modificó',
+  delete: 'Borró',
+  read: 'Consultó',
   export: 'Descargo una copia de',
-  share: 'Compartio',
-  revoke: 'Revoco un acceso de',
-  login: 'Entro',
-  approve: 'Aprobo',
+  share: 'Compartió',
+  revoke: 'Revocó un acceso de',
+  login: 'Entró',
+  approve: 'Aprobó',
 }
 
 export default async function Privacidad({
@@ -86,7 +86,7 @@ export default async function Privacidad({
 
       {searchParams.error === 'confirmacion' && (
         <div className="mt-4">
-          <Aviso nivel="alerta" titulo="No se suprimio nada">
+          <Aviso nivel="alerta" titulo="No se suprimió nada">
             El nombre que escribio no coincide con {nombre}.
           </Aviso>
         </div>
@@ -103,12 +103,12 @@ export default async function Privacidad({
 
       {/* Autorizacion */}
       <section className="mt-6">
-        <h2 className="font-titulo text-lg">Autorizacion del representante legal</h2>
+        <h2 className="font-titulo text-lg">Autorización del representante legal</h2>
         {autorizaciones.length === 0 ? (
           <div className="mt-3">
             <Aviso nivel="alerta">
-              No hay consentimiento registrado. No deberia haber datos de este nino en la
-              aplicacion sin la autorizacion de su representante legal.
+              No hay consentimiento registrado. No deberia haber datos de este niño en la
+              aplicación sin la autorización de su representante legal.
             </Aviso>
           </div>
         ) : (
@@ -120,7 +120,7 @@ export default async function Privacidad({
                   {c.relationship && <span className="font-normal text-grisTexto"> · {c.relationship}</span>}
                 </p>
                 <p className="text-sm text-grisTexto">
-                  Version {c.version} · otorgado el {fechaLarga(c.grantedAt)} ·{' '}
+                  Versión {c.version} · otorgado el {fechaLarga(c.grantedAt)} ·{' '}
                   {c.method === 'en_consulta' ? 'en consulta' : 'digital'}
                   {c.guardianDocument && ` · documento ${c.guardianDocument}`}
                 </p>
@@ -142,7 +142,7 @@ export default async function Privacidad({
         <h2 className="font-titulo text-lg">Entregar una copia</h2>
         <div className="tarjeta mt-3">
           <p className="text-sm leading-relaxed text-grisMedio">
-            Descarga todo lo que la aplicacion guarda de {paciente.firstName}: datos de base,
+            Descarga todo lo que la aplicación guarda de {paciente.firstName}: datos de base,
             consentimientos, tratamientos, controles, citas y registros de uso. La version para
             leer e imprimir es el carnet.
           </p>
@@ -158,14 +158,14 @@ export default async function Privacidad({
               Abrir el carnet
             </Link>
           </div>
-          <p className="ayuda">La descarga queda registrada en la bitacora.</p>
+          <p className="ayuda">La descarga queda registrada en la bitácora.</p>
         </div>
       </section>
 
       {/* Retirar la autorizacion */}
       {vigente && (
         <section className="mt-6">
-          <h2 className="font-titulo text-lg">Retirar la autorizacion</h2>
+          <h2 className="font-titulo text-lg">Retirar la autorización</h2>
           <form action={revocarConsentimiento.bind(null, params.id)} className="tarjeta mt-3 space-y-3">
             <p className="text-sm leading-relaxed text-grisMedio">
               Marca el consentimiento como revocado y archiva al paciente. No borra nada: deja
@@ -222,12 +222,12 @@ export default async function Privacidad({
         <div className="tarjeta mt-3 border-l-4 border-l-magenta">
           <p className="text-sm leading-relaxed text-grisMedio">
             Borra al paciente y, con el, sus controles, tratamientos, registros de uso, citas,
-            accesos y enlaces compartidos. No se puede deshacer. En la bitacora queda que se
-            suprimio, quien lo hizo y cuando, pero los datos clinicos no se recuperan.
+            accesos y enlaces compartidos. No se puede deshacer. En la bitácora queda que se
+            suprimió, quien lo hizo y cuando, pero los datos clínicos no se recuperan.
           </p>
           <p className="mt-2 text-sm text-grisMedio">
-            Antes de suprimir, confirme si existe un plazo legal de conservacion de la historia
-            clinica en el pais donde se atendio al paciente.
+            Antes de suprimir, confirme si existe un plazo legal de conservación de la historia
+            clínica en el país donde se atendio al paciente.
           </p>
 
           {sesion.user.isAdmin ? (
@@ -248,9 +248,9 @@ export default async function Privacidad({
               <input
                 type="text"
                 name="motivo"
-                placeholder="Motivo de la supresion"
+                placeholder="Motivo de la supresión"
                 className="campo"
-                aria-label="Motivo de la supresion"
+                aria-label="Motivo de la supresión"
               />
               <button type="submit" className="boton-magenta">
                 Suprimir definitivamente
@@ -258,7 +258,7 @@ export default async function Privacidad({
             </form>
           ) : (
             <p className="mt-3 text-sm text-grisTexto">
-              La supresion la ejecuta un administrador de la red. Pidasela, con el motivo.
+              La supresión la ejecuta un administrador de la red. Pidasela, con el motivo.
             </p>
           )}
         </div>
@@ -267,7 +267,7 @@ export default async function Privacidad({
       {/* Bitacora */}
       <section className="mt-6">
         <h2 className="font-titulo text-lg">Quien ha tocado esta historia</h2>
-        <p className="text-sm text-grisTexto">Ultimos 30 movimientos. La bitacora no se edita ni se borra.</p>
+        <p className="text-sm text-grisTexto">Últimos 30 movimientos. La bitácora no se edita ni se borra.</p>
         <div className="tarjeta mt-3 p-0">
           {movimientos.length === 0 ? (
             <p className="p-4 text-sm text-grisTexto">Sin movimientos.</p>

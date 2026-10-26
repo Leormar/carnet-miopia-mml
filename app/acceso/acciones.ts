@@ -62,12 +62,12 @@ export async function subirCredencial(
   const archivo = formData.get('archivo')
 
   const campos: Record<string, string> = {}
-  if (!PAISES.includes(pais as (typeof PAISES)[number])) campos.country = 'Elija el pais donde ejerce'
+  if (!PAISES.includes(pais as (typeof PAISES)[number])) campos.country = 'Elija el país donde ejerce'
   if (!TIPOS_DE_CREDENCIAL.some((t) => t.valor === tipo)) {
     campos.documentType = 'Elija que documento va a subir'
   }
   if (nombreOficial.length < 3) {
-    campos.officialName = 'Escriba como se llama ese documento en su pais'
+    campos.officialName = 'Escriba como se llama ese documento en su país'
   }
   if (!(archivo instanceof File) || archivo.size === 0) {
     campos.archivo = 'Adjunte el documento'

@@ -8,7 +8,7 @@ import { ARCHIVO_CREDENCIAL } from '@/config/paises'
 import { fechaCorta } from '@/lib/clinica/edad'
 
 export const dynamic = 'force-dynamic'
-export const metadata = { title: 'Acreditacion profesional' }
+export const metadata = { title: 'Acreditación profesional' }
 
 export default async function Credencial() {
   const sesion = await requerirAprobadoSinCompuertas()
@@ -23,15 +23,15 @@ export default async function Credencial() {
       <p className="text-xs font-semibold uppercase tracking-wide text-grisTexto">Paso 2 de 2</p>
       <h1 className="mt-1 font-titulo text-2xl">Acredite su ejercicio profesional</h1>
       <p className="mt-2 text-sm leading-relaxed text-grisMedio">
-        Esta aplicacion guarda historias clinicas de ninos. Para abrirla necesitamos constancia de
-        que usted esta habilitado para ejercer en su pais. El documento lo revisa un administrador
+        Esta aplicación guarda historias clínicas de niños. Para abrirla necesitamos constancia de
+        que usted esta habilitado para ejercer en su país. El documento lo revisa un administrador
         de la red y no se comparte con nadie mas.
       </p>
 
       {anterior?.status === 'rechazada' && (
         <div className="mt-4">
           <Aviso nivel="alerta" titulo="El documento anterior no fue aceptado">
-            {anterior.rejectionReason ?? 'Suba un documento que acredite su habilitacion vigente.'}
+            {anterior.rejectionReason ?? 'Suba un documento que acredite su habilitación vigente.'}
             {' '}Enviado el {fechaCorta(anterior.uploadedAt)}.
           </Aviso>
         </div>

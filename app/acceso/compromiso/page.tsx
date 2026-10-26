@@ -5,7 +5,7 @@ import { FormularioCompromiso } from './FormularioCompromiso'
 import { COMPROMISO, VERSION_COMPROMISO } from '@/config/compromiso'
 
 export const dynamic = 'force-dynamic'
-export const metadata = { title: 'Compromiso de manejo de informacion' }
+export const metadata = { title: 'Compromiso de manejo de información' }
 
 export default async function Compromiso() {
   const sesion = await requerirAprobadoSinCompuertas()
@@ -16,7 +16,7 @@ export default async function Compromiso() {
   return (
     <>
       <p className="text-xs font-semibold uppercase tracking-wide text-grisTexto">Paso 1 de 2</p>
-      <h1 className="mt-1 font-titulo text-2xl">Compromiso de manejo de informacion</h1>
+      <h1 className="mt-1 font-titulo text-2xl">Compromiso de manejo de información</h1>
       <p className="mt-2 text-sm leading-relaxed text-grisMedio">
         Antes de entrar por primera vez, lea este compromiso y firmelo. Queda registrado que
         usted acepto la version {VERSION_COMPROMISO}, con la fecha y la hora.

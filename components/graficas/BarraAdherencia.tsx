@@ -36,7 +36,7 @@ export function BarraAdherencia({
         />
       </div>
       <p className="mt-1 text-xs text-grisTexto">
-        {resumen.diasCumplidos} de {resumen.diasActivos} dias
+        {resumen.diasCumplidos} de {resumen.diasActivos} días
         {resumen.diasSinRegistro > 0 && ` · ${resumen.diasSinRegistro} sin registrar`}
         {resumen.promedioHoras !== null &&
           ` · promedio ${String(resumen.promedioHoras).replace('.', ',')} h`}

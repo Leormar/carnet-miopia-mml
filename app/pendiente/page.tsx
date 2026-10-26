@@ -48,7 +48,7 @@ export default async function Pendiente() {
           <div className="mt-4">
             <Aviso nivel="alerta">
               {fila?.rejectionReason ??
-                'Esta cuenta no tiene acceso a la aplicacion. Si cree que es un error, escriba al profesional que le compartio el enlace.'}
+                'Esta cuenta no tiene acceso a la aplicación. Si cree que es un error, escriba al profesional que le compartió el enlace.'}
             </Aviso>
           </div>
         </>
@@ -56,21 +56,21 @@ export default async function Pendiente() {
         <>
           <h1 className="mt-7 font-titulo text-2xl">Su solicitud esta pendiente</h1>
           <p className="mt-2 text-sm leading-relaxed text-grisMedio">
-            Entro como <strong>{sesion.user.email}</strong>. El acceso a los datos clinicos es
+            Entró como <strong>{sesion.user.email}</strong>. El acceso a los datos clínicos es
             cerrado y lo aprueba un administrador. Le avisaremos al mismo correo cuando quede
             habilitado.
           </p>
 
           <form action={guardarNota} className="mt-6">
             <label className="etiqueta" htmlFor="nota">
-              Cuentenos quien es, para aprobar mas rapido
+              Cuentenos quien es, para aprobar mas rápido
             </label>
             <textarea
               id="nota"
               name="nota"
               rows={3}
               defaultValue={fila?.requestNote ?? ''}
-              placeholder="Por ejemplo: optometra, consultorio, ciudad. O: madre de un paciente en orto-k."
+              placeholder="Por ejemplo: optómetra, consultorio, ciudad. O: madre de un paciente en orto-k."
               className="campo resize-y"
             />
             <button type="submit" className="boton-secundario mt-3 w-full">
@@ -88,7 +88,7 @@ export default async function Pendiente() {
         className="mt-8"
       >
         <button type="submit" className="text-sm text-azul hover:underline">
-          Cerrar sesion
+          Cerrar sesión
         </button>
       </form>
     </main>

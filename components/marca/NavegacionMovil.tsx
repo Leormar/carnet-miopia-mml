@@ -53,7 +53,7 @@ export function NavegacionMovil({ esAdmin }: { esAdmin: boolean }) {
   )
 
   return (
-    <nav className="nav-movil no-imprimir" aria-label="Navegacion principal">
+    <nav className="nav-movil no-imprimir" aria-label="Navegación principal">
       <div className="flex items-stretch">
         {enlaces.map(({ href, texto, Icono, prefijo }) => {
           const activo = prefijo ? ruta.startsWith(prefijo) : ruta === href

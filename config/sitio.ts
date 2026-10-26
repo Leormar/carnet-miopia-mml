@@ -3,14 +3,14 @@
  */
 
 export const SITIO = {
-  nombre: 'Seguimiento del control de miopia',
+  nombre: 'Seguimiento del control de miopía',
   nombreCorto: 'Seguimiento MML',
-  organizacion: 'Grupo Manejo Miopia Latam',
+  organizacion: 'Grupo Manejo Miopía Latam',
   /** Subdominio de la aplicacion. El dominio raiz queda libre para el sitio. */
   dominio: 'seguimiento.miopialatam.org',
   url: 'https://seguimiento.miopialatam.org',
   substack: 'grupomiopialatam.substack.com',
-  autorClinico: 'Leonardo Orjuela Marino, optometra',
+  autorClinico: 'Leonardo Orjuela Mariño, optómetra',
 } as const
 
 export const COLORES = {

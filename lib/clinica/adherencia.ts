@@ -172,10 +172,10 @@ export function lecturaConjunta(
   const nivel = nivelAdherencia(porcentajeAdherencia)
   if (colorSemaforo !== 'amarillo' && colorSemaforo !== 'rojo') return null
   if (nivel === 'alta') {
-    return 'El ojo crecio mas de lo esperado con una adherencia alta. Vale la pena revisar si el dispositivo sigue siendo el adecuado y descartar otros factores.'
+    return 'El ojo creció mas de lo esperado con una adherencia alta. Vale la pena revisar si el dispositivo sigue siendo el adecuado y descartar otros factores.'
   }
   if (nivel === 'media' || nivel === 'baja') {
-    return 'El ojo crecio mas de lo esperado y el uso registrado quedo por debajo de la meta. Antes de cambiar de tratamiento, conviene revisar el uso del que ya tiene.'
+    return 'El ojo creció mas de lo esperado y el uso registrado quedó por debajo de la meta. Antes de cambiar de tratamiento, conviene revisar el uso del que ya tiene.'
   }
-  return 'El ojo crecio mas de lo esperado y no hay registro de uso suficiente en el periodo. Conviene preguntar por el uso antes de tomar una decision.'
+  return 'El ojo creció mas de lo esperado y no hay registro de uso suficiente en el periodo. Conviene preguntar por el uso antes de tomar una decisión.'
 }

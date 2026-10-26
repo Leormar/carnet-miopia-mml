@@ -17,8 +17,8 @@ export function TablaControles({ controles }: { controles: Ficha['controles'] })
             <th className="px-3 py-2 font-semibold">Fecha</th>
             <th className="px-3 py-2 font-semibold">Edad</th>
             <th className="px-3 py-2 font-semibold">AV OD / OI</th>
-            <th className="px-3 py-2 font-semibold">Refraccion OD</th>
-            <th className="px-3 py-2 font-semibold">Refraccion OI</th>
+            <th className="px-3 py-2 font-semibold">Refracción OD</th>
+            <th className="px-3 py-2 font-semibold">Refracción OI</th>
             <th className="px-3 py-2 font-semibold">LA OD</th>
             <th className="px-3 py-2 font-semibold">LA OI</th>
             <th className="px-3 py-2 font-semibold">Crec. 12 m OD / OI</th>

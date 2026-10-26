@@ -53,22 +53,22 @@ const FILAS_TRATAMIENTO = 7
 
 const CSS = `
 .carnet-raiz{--borde:#ddd6c8;--gris:#5b6570}
-.carnet-pagina{width:297mm;height:210mm;padding:12mm 14mm;position:relative;background:#faf8f3;overflow:hidden;color:#111c26;font-family:var(--fuente-texto)}
-.carnet-pagina + .carnet-pagina{margin-top:6mm}
+.carnet-página{width:297mm;height:210mm;padding:12mm 14mm;position:relative;background:#faf8f3;overflow:hidden;color:#111c26;font-family:var(--fuente-texto)}
+.carnet-página + .carnet-página{margin-top:6mm}
 .carnet-hd{display:flex;align-items:center;gap:12px}
 .carnet-hd img{width:46px;height:46px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12)}
 .carnet-hd .t{font-family:var(--fuente-titulo);font-weight:600;font-size:24px;line-height:1.15}
 .carnet-hd .s{font-size:11px;color:var(--gris)}
 .carnet-bars{display:flex;gap:5px;margin:8px 0}
 .carnet-bars i{width:26px;height:4px;display:block}
-.carnet-pagina h3{font-family:var(--fuente-titulo);font-weight:600;font-size:15px;margin:8px 0 5px}
+.carnet-página h3{font-family:var(--fuente-titulo);font-weight:600;font-size:15px;margin:8px 0 5px}
 .carnet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .carnet-f{background:#fff;border:1px solid var(--borde);border-radius:6px;padding:5px 8px;font-size:9.5px;color:var(--gris);height:34px;overflow:hidden}
 .carnet-f b{display:block;font-weight:600;color:#111c26;font-size:10px}
 .carnet-f .v{color:#111c26;font-size:10.5px;font-weight:500}
-.carnet-pagina table{width:100%;border-collapse:collapse;background:#fff;font-size:9px}
-.carnet-pagina th{background:#111c26;color:#fff;font-weight:600;padding:4px 3px;text-align:center;line-height:1.2}
-.carnet-pagina td{border:1px solid var(--borde);height:31px;padding:2px 4px;text-align:center;font-size:8.5px;vertical-align:middle}
+.carnet-página table{width:100%;border-collapse:collapse;background:#fff;font-size:9px}
+.carnet-página th{background:#111c26;color:#fff;font-weight:600;padding:4px 3px;text-align:center;line-height:1.2}
+.carnet-página td{border:1px solid var(--borde);height:31px;padding:2px 4px;text-align:center;font-size:8.5px;vertical-align:middle}
 .carnet-pagina td.izq{text-align:left}
 .carnet-ft{position:absolute;left:14mm;right:14mm;bottom:7mm;font-size:8.5px;color:var(--gris);display:flex;justify-content:space-between}
 .carnet-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -89,10 +89,10 @@ const CSS = `
 `
 
 const CALENDARIOS: Record<TipoTratamiento, string> = {
-  gafas: '1 mes · 6 meses · 1 ano',
-  lentes_blandos: '1 semana · 1 mes · 6 meses · 1 ano',
-  ortok: '1 dia · 1 semana · 1 mes · 3 meses · 6 meses · 1 ano',
-  atropina: '1 dia · 1 semana · 1 mes · 3 meses · 6 meses · 1 ano',
+  gafas: '1 mes · 6 meses · 1 año',
+  lentes_blandos: '1 semana · 1 mes · 6 meses · 1 año',
+  ortok: '1 día · 1 semana · 1 mes · 3 meses · 6 meses · 1 año',
+  atropina: '1 día · 1 semana · 1 mes · 3 meses · 6 meses · 1 año',
 }
 
 function Cabecera({ titulo, subtitulo }: { titulo: string; subtitulo: string }) {
@@ -144,7 +144,7 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
       {/* Pagina 1 */}
       <div className="carnet-pagina">
         <Cabecera
-          titulo="Carnet de seguimiento del control de miopia"
+          titulo="Carnet de seguimiento del control de miopía"
           subtitulo={`${SITIO.organizacion} · Llevelo a todos los controles, con el optometra y con el oftalmologo`}
         />
 
@@ -152,7 +152,7 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
         <div className="carnet-grid">
           <Dato titulo="Nombre" valor={datos.nombre} />
           <Dato titulo="Fecha de nacimiento" valor={fechaCorta(datos.fechaNacimiento)} />
-          <Dato titulo="Edad al inicio de la miopia" valor={datos.edadInicioMiopia} />
+          <Dato titulo="Edad al inicio de la miopía" valor={datos.edadInicioMiopia} />
           <Dato
             titulo="Padres miopes"
             extra={
@@ -187,7 +187,7 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
             valor={datos.fechaInicioTratamiento ? fechaCorta(datos.fechaInicioTratamiento) : ''}
           />
           <Dato titulo="Profesional / consultorio" valor={datos.profesional} />
-          <Dato titulo="Oftalmologia pediatrica" valor={datos.oftalmologo} />
+          <Dato titulo="Oftalmología pediátrica" valor={datos.oftalmologo} />
         </div>
 
         <h3>Controles</h3>
@@ -197,14 +197,14 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
               <th>Fecha</th>
               <th>Edad</th>
               <th>AV OD / OI</th>
-              <th>Refraccion ciclopejica OD</th>
-              <th>Refraccion ciclopejica OI</th>
+              <th>Refracción ciclopléjica OD</th>
+              <th>Refracción ciclopléjica OI</th>
               <th>Longitud axial OD (mm)</th>
               <th>Longitud axial OI (mm)</th>
               <th>Crecimiento en 12 meses OD / OI</th>
-              <th>Equipo de medicion</th>
+              <th>Equipo de medición</th>
               <th>Horas de uso / aire libre</th>
-              <th>Proximo control</th>
+              <th>Próximo control</th>
             </tr>
           </thead>
           <tbody>
@@ -233,7 +233,7 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
         </table>
 
         <div className="carnet-ft">
-          <span>Educativo. No reemplaza la valoracion visual individual.</span>
+          <span>Educativo. No reemplaza la valoración visual individual.</span>
           <span>{SITIO.substack}</span>
         </div>
       </div>
@@ -241,8 +241,8 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
       {/* Pagina 2 */}
       <div className="carnet-pagina">
         <Cabecera
-          titulo="Que revisar segun el tratamiento"
-          subtitulo="Calendario del primer ano. Luego, control cada 6 meses. Refraccion ciclopejica y longitud axial cada 6 meses; examen completo con fondo de ojo cada ano."
+          titulo="Que revisar según el tratamiento"
+          subtitulo="Calendario del primer año. Luego, control cada 6 meses. Refracción ciclopléjica y longitud axial cada 6 meses; examen completo con fondo de ojo cada año."
         />
 
         <div className="carnet-cols">
@@ -258,12 +258,12 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
         <h3>Como leer el crecimiento del ojo en 12 meses</h3>
         <div className="carnet-sem">
           <div style={{ background: '#e6f2df' }}>
-            <b>Verde: como un ojo sin miopia</b>
-            Hasta 0,2 mm/ano entre 7 y 10 anos · hasta 0,1 mm/ano entre 11 y 16 anos.
+            <b>Verde: como un ojo sin miopía</b>
+            Hasta 0,2 mm/año entre 7 y 10 años · hasta 0,1 mm/año entre 11 y 16 años.
           </div>
           <div style={{ background: '#fdf3c4' }}>
             <b>Amarillo: mas de lo ideal</b>
-            Se acerca a lo de un miope sin tratamiento: 0,3 mm/ano a los 7-10 anos · 0,2 mm/ano a
+            Se acerca a lo de un miope sin tratamiento: 0,3 mm/año a los 7-10 años · 0,2 mm/año a
             los 11-16. Revisar adherencia y habitos.
           </div>
           <div style={{ background: '#fbe3ea' }}>
@@ -279,10 +279,10 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
             <tr>
               <th style={{ width: '12%' }}>Fecha</th>
               <th style={{ width: '38%' }}>
-                Hallazgos del tratamiento (ajuste, cornea, topografia, pupila, presion)
+                Hallazgos del tratamiento (ajuste, córnea, topografía, pupila, presion)
               </th>
               <th style={{ width: '25%' }}>Molestias o eventos</th>
-              <th style={{ width: '25%' }}>Decision</th>
+              <th style={{ width: '25%' }}>Decisión</th>
             </tr>
           </thead>
           <tbody>

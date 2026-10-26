@@ -7,7 +7,7 @@ import { desactivarEquipo } from '../../pacientes/acciones'
 import { FormularioEquipo } from './FormularioEquipo'
 import { Aviso } from '@/components/ui/Aviso'
 
-export const metadata = { title: 'Equipos de biometria' }
+export const metadata = { title: 'Equipos de biometría' }
 export const dynamic = 'force-dynamic'
 
 export default async function Equipos() {
@@ -16,9 +16,9 @@ export default async function Equipos() {
 
   return (
     <>
-      <h1 className="font-titulo text-2xl">Equipos de biometria</h1>
+      <h1 className="font-titulo text-2xl">Equipos de biometría</h1>
       <p className="mt-1 text-sm text-grisTexto">
-        Cada control guarda con que equipo se midio la longitud axial. Si en un control se usa un
+        Cada control guarda con que equipo se midió la longitud axial. Si en un control se usa un
         equipo distinto al del control anterior, la ficha lo advierte.
       </p>
 
@@ -33,7 +33,7 @@ export default async function Equipos() {
           {lista.length === 0 ? (
             <div className="mt-3">
               <Aviso nivel="aviso">
-                Todavia no hay equipos. Sin un equipo registrado no se puede guardar longitud
+                Todavía no hay equipos. Sin un equipo registrado no se puede guardar longitud
                 axial en un control.
               </Aviso>
             </div>

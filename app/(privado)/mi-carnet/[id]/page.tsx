@@ -54,8 +54,8 @@ export default async function MiCarnet({ params }: { params: { id: string } }) {
       {tratamientosActivos.length === 0 ? (
         <div className="mt-5">
           <Aviso>
-            No hay un tratamiento activo registrado. Cuando su profesional lo abra, aqui aparecera
-            el boton para registrar el uso de cada dia.
+            No hay un tratamiento activo registrado. Cuando su profesional lo abra, aquí aparecera
+            el boton para registrar el uso de cada día.
           </Aviso>
         </div>
       ) : (
@@ -163,8 +163,8 @@ export default async function MiCarnet({ params }: { params: { id: string } }) {
                     </div>
 
                     <div className="mt-4 space-y-2.5">
-                      <BarraAdherencia resumen={a.siete} titulo="Ultimos 7 dias" />
-                      <BarraAdherencia resumen={a.treinta} titulo="Ultimos 30 dias" />
+                      <BarraAdherencia resumen={a.siete} titulo="Últimos 7 días" />
+                      <BarraAdherencia resumen={a.treinta} titulo="Últimos 30 días" />
                     </div>
                   </div>
                 )
@@ -175,14 +175,14 @@ export default async function MiCarnet({ params }: { params: { id: string } }) {
       )}
 
       <section className="mt-6">
-        <h2 className="font-titulo text-lg">Proximo control</h2>
+        <h2 className="font-titulo text-lg">Próximo control</h2>
         <div className="tarjeta mt-3 flex items-center gap-3">
           <IconoCalendario className="h-5 w-5 text-azul" />
           {proxima ? (
             <div>
               <p className="font-semibold">{fechaLarga(proxima.dueDate)}</p>
               <p className="text-sm text-grisTexto">
-                {proxima.label} · en {diasEntre(hoy, proxima.dueDate)} dias
+                {proxima.label} · en {diasEntre(hoy, proxima.dueDate)} días
               </p>
             </div>
           ) : (
@@ -196,8 +196,8 @@ export default async function MiCarnet({ params }: { params: { id: string } }) {
         <div className="tarjeta mt-3 flex flex-wrap items-center gap-3">
           <IconoCompartir className="h-5 w-5 shrink-0 text-azul" />
           <p className="min-w-0 flex-1 text-sm text-grisMedio">
-            Genere un enlace o un codigo QR de solo lectura para la cita con oftalmologia
-            pediatrica. Vence solo y usted lo puede revocar.
+            Genere un enlace o un código QR de solo lectura para la cita con oftalmología
+            pediátrica. Vence solo y usted lo puede revocar.
           </p>
           <Link href={`/pacientes/${paciente.id}/compartir`} className="boton-secundario">
             Generar enlace
@@ -207,12 +207,12 @@ export default async function MiCarnet({ params }: { params: { id: string } }) {
 
       <div className="mt-6 space-y-2">
         <Aviso titulo="Por que importa el uso">
-          Los dispositivos para desacelerar la miopia actuan mientras estan puestos. Los resultados
-          que se publican en los estudios se lograron con ninos que los usaron como se indico.
+          Los dispositivos para desacelerar la miopía actúan mientras están puestos. Los resultados
+          que se publican en los estudios se lograron con niños que los usaron como se indicó.
           <NotaEducativa className="mt-1.5" />
         </Aviso>
         <p className="text-xs text-grisTexto">
-          Si aparece dolor, ojo rojo o secrecion, retire el lente y consulte.
+          Si aparece dolor, ojo rojo o secreción, retire el lente y consulte.
         </p>
       </div>
 

@@ -106,7 +106,7 @@ export const esquemaControl = z.object({
   nextExamDate: fechaOpcional,
 })
   .refine((d) => !(d.alOd !== null || d.alOi !== null) || d.biometerId !== null, {
-    message: 'Si registra longitud axial debe indicar con que equipo se midio',
+    message: 'Si registra longitud axial debe indicar con que equipo se midió',
     path: ['biometerId'],
   })
 
@@ -130,13 +130,13 @@ export const esquemaUso = z.object({
  */
 export const esquemaEnlace = z.object({
   label: textoOpcional.refine((v) => v === null || v.length <= 120, {
-    message: 'Maximo 120 caracteres',
+    message: 'Máximo 120 caracteres',
   }),
   dias: z
     .union([z.string(), z.number()])
     .transform((v) => Number(String(v).trim()))
     .refine((n) => Number.isInteger(n) && n >= 1 && n <= 180, {
-      message: 'El vencimiento debe estar entre 1 y 180 dias',
+      message: 'El vencimiento debe estar entre 1 y 180 días',
     }),
 })
 

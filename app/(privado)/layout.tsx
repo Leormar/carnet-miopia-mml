@@ -63,8 +63,8 @@ export default async function LayoutPrivado({ children }: { children: React.Reac
 
       <footer className="no-imprimir mx-auto max-w-5xl px-4 pb-24 text-xs leading-relaxed text-grisTexto md:pb-8">
         <p>
-          Este contenido es educativo y no reemplaza una valoracion visual individual. La
-          aplicacion registra y calcula; no diagnostica ni decide tratamientos.
+          Este contenido es educativo y no reemplaza una valoración visual individual. La
+          aplicación registra y calcula; no diagnostica ni decide tratamientos.
         </p>
         <p className="mt-1">
           {SITIO.organizacion} · {SITIO.dominio}

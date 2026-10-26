@@ -48,15 +48,15 @@ export default async function Compartir({ params }: { params: { id: string } }) 
       </div>
 
       <section className="no-imprimir mt-4">
-        <h2 className="font-titulo text-lg">Que vera quien lo reciba</h2>
+        <h2 className="font-titulo text-lg">Que verá quien lo reciba</h2>
         <ul className="mt-2 space-y-1 text-sm text-grisMedio">
           <li>Datos de base del paciente y sus tratamientos, con las fechas de inicio.</li>
-          <li>Crecimiento del ojo en 12 meses con el semaforo, y las graficas de longitud axial y refraccion.</li>
-          <li>La tabla de controles y los proximos controles programados.</li>
-          <li>La adherencia de los ultimos 30 dias de cada tratamiento activo.</li>
+          <li>Crecimiento del ojo en 12 meses con el semáforo, y las gráficas de longitud axial y refracción.</li>
+          <li>La tabla de controles y los próximos controles programados.</li>
+          <li>La adherencia de los últimos 30 días de cada tratamiento activo.</li>
         </ul>
         <p className="mt-2 text-sm text-grisTexto">
-          No vera el registro diario de uso ni los datos de contacto de la familia, y no podra
+          No verá el registro diario de uso ni los datos de contacto de la familia, y no podrá
           registrar nada.
         </p>
       </section>
@@ -70,7 +70,7 @@ export default async function Compartir({ params }: { params: { id: string } }) 
         <h2 className="font-titulo text-lg">Enlaces de este paciente</h2>
 
         {enlaces.length === 0 ? (
-          <p className="mt-2 text-sm text-grisTexto">Todavia no se ha compartido este carnet.</p>
+          <p className="mt-2 text-sm text-grisTexto">Todavía no se ha compartido este carnet.</p>
         ) : (
           <ul className="mt-3 space-y-2">
             {enlaces.map((e) => (
@@ -114,7 +114,7 @@ export default async function Compartir({ params }: { params: { id: string } }) 
         <Aviso titulo="Tratamiento de datos">
           Son datos de salud de un menor. Comparta el enlace solo con el profesional que lo
           necesita, por un medio privado, y revoquelo cuando ya no haga falta. Cada apertura
-          queda registrada en la bitacora de auditoria, conforme a la Ley 1581 de 2012 y al
+          queda registrada en la bitácora de auditoria, conforme a la Ley 1581 de 2012 y al
           Decreto 1377 de 2013.
         </Aviso>
       </div>

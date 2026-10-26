@@ -3,9 +3,9 @@ import { SITIO } from '@/config/sitio'
 import { LEGAL } from '@/config/legal'
 
 export const metadata = {
-  title: 'Politica de privacidad',
+  title: 'Política de privacidad',
   description:
-    'Como el Grupo Manejo Miopia Latam trata los datos personales y de salud en el carnet de seguimiento del control de miopia.',
+    'Como el Grupo Manejo Miopía Latam trata los datos personales y de salud en el carnet de seguimiento del control de miopía.',
   robots: { index: true, follow: true },
 }
 
@@ -21,14 +21,14 @@ function Seccion({ titulo, children }: { titulo: string; children: React.ReactNo
 export default function Privacidad() {
   return (
     <>
-      <h1 className="font-titulo text-3xl">Politica de privacidad</h1>
+      <h1 className="font-titulo text-3xl">Política de privacidad</h1>
       <p className="mt-1 text-sm text-grisTexto">
-        Version {LEGAL.version} · {LEGAL.fecha}
+        Versión {LEGAL.version} · {LEGAL.fecha}
       </p>
 
       <div className="mt-5">
         <Aviso nivel="aviso" titulo="Datos de salud de menores de edad">
-          Esta aplicacion trata datos sensibles de ninos. Nada se registra sin la autorizacion
+          Esta aplicación trata datos sensibles de niños. Nada se registra sin la autorización
           previa, expresa e informada del padre, la madre o el representante legal.
         </Aviso>
       </div>
@@ -40,44 +40,44 @@ export default function Privacidad() {
           <b>{LEGAL.correoDatos}</b>.
         </p>
         <p>
-          El profesional que atiende al nino registra los datos dentro de la aplicacion y es quien
-          mantiene la relacion clinica con la familia.
+          El profesional que atiende al niño registra los datos dentro de la aplicación y es quien
+          mantiene la relación clínica con la familia.
         </p>
       </Seccion>
 
       <Seccion titulo="Que datos se tratan">
         <p>
-          <b>Del nino.</b> Nombre, fecha de nacimiento, sexo, documento de identidad si la familia
-          lo aporta, edad de inicio de la miopia, cuantos padres son miopes, agudeza visual,
-          refraccion bajo cicloplejia, longitud axial del ojo, equipo con que se midio, tratamiento
+          <b>Del niño.</b> Nombre, fecha de nacimiento, sexo, documento de identidad si la familia
+          lo aporta, edad de inicio de la miopía, cuantos padres son miopes, agudeza visual,
+          refracción bajo cicloplejía, longitud axial del ojo, equipo con que se midio, tratamiento
           y dispositivo, registro diario de uso, molestias, hallazgos de cada control y fechas de
-          los proximos controles.
+          los próximos controles.
         </p>
         <p>
           <b>De la familia.</b> Nombre de quien autoriza, su documento, su parentesco y sus datos
           de contacto cuando el profesional los registra.
         </p>
         <p>
-          <b>Del profesional.</b> Nombre, correo, pais donde ejerce y el documento con el que
-          acredita su habilitacion profesional.
+          <b>Del profesional.</b> Nombre, correo, país donde ejerce y el documento con el que
+          acredita su habilitación profesional.
         </p>
         <p>
-          <b>Tecnicos.</b> Fecha, hora, direccion IP y navegador de cada acceso, creacion,
-          modificacion, consulta, descarga o compartido de una historia. Son la bitacora de
+          <b>Técnicos.</b> Fecha, hora, dirección IP y navegador de cada acceso, creación,
+          modificación, consulta, descarga o compartido de una historia. Son la bitácora de
           auditoria y no se pueden borrar ni editar.
         </p>
       </Seccion>
 
       <Seccion titulo="Para que se usan">
         <p>
-          Para registrar el seguimiento del tratamiento que desacelera la miopia, calcular cuanto
-          crecio el ojo, hacer visible cuanto se usa el dispositivo, programar los controles y
-          permitir que el profesional comparta el seguimiento con oftalmologia pediatrica cuando la
+          Para registrar el seguimiento del tratamiento que desacelera la miopía, calcular cuanto
+          creció el ojo, hacer visible cuanto se usa el dispositivo, programar los controles y
+          permitir que el profesional comparta el seguimiento con oftalmología pediátrica cuando la
           familia lo autoriza.
         </p>
         <p>
-          La aplicacion registra y calcula. No diagnostica ni decide tratamientos: la decision
-          clinica siempre es del profesional.
+          La aplicación registra y calcula. No diagnostica ni decide tratamientos: la decisión
+          clínica siempre es del profesional.
         </p>
         <p>
           Los datos <b>no se venden, no se ceden a fabricantes de dispositivos y no se usan con
@@ -85,12 +85,12 @@ export default function Privacidad() {
         </p>
       </Seccion>
 
-      <Seccion titulo="Con que autorizacion">
+      <Seccion titulo="Con que autorización">
         <p>
-          Con la autorizacion previa, expresa e informada del padre, la madre o el representante
-          legal, recogida por el profesional antes de crear la historia del nino. De cada
-          autorizacion queda su version, la fecha, quien la otorgo y con que documento. Sin esa
-          autorizacion la aplicacion no permite registrar nada.
+          Con la autorización previa, expresa e informada del padre, la madre o el representante
+          legal, recogida por el profesional antes de crear la historia del niño. De cada
+          autorización queda su versión, la fecha, quien la otorgó y con que documento. Sin esa
+          autorización la aplicación no permite registrar nada.
         </p>
         <p>
           La autorizacion se puede retirar en cualquier momento, sin dar explicaciones, escribiendo
@@ -100,9 +100,9 @@ export default function Privacidad() {
 
       <Seccion titulo="Quien puede verlos">
         <p>
-          <b>El profesional tratante</b> del nino, y solo las historias de los pacientes que
+          <b>El profesional tratante</b> del niño, y solo las historias de los pacientes que
           atiende. <b>La familia</b>, el carnet de su hijo y el registro diario de uso.{' '}
-          <b>Un profesional invitado</b>, por ejemplo oftalmologia pediatrica, cuando el
+          <b>Un profesional invitado</b>, por ejemplo oftalmología pediátrica, cuando el
           profesional o la familia genera un enlace de solo lectura: ese enlace vence, se puede
           revocar en cualquier momento y cada apertura queda registrada.
         </p>
@@ -112,8 +112,8 @@ export default function Privacidad() {
         </p>
         <p>
           El acceso es cerrado: nadie entra sin que un administrador apruebe su solicitud, y quien
-          ejerce debe acreditar su habilitacion profesional y firmar un compromiso de manejo de
-          informacion.
+          ejerce debe acreditar su habilitación profesional y firmar un compromiso de manejo de
+          información.
         </p>
       </Seccion>
 
@@ -124,18 +124,18 @@ export default function Privacidad() {
           constituye una transferencia internacional. La autorizacion del representante legal
           comprende ese almacenamiento.
         </p>
-        <p>La informacion viaja cifrada y los secretos de acceso nunca se guardan en el codigo.</p>
+        <p>La información viaja cifrada y los secretos de acceso nunca se guardan en el código.</p>
       </Seccion>
 
       <Seccion titulo="Cuanto tiempo se conservan">
         <p>
-          Mientras dure el seguimiento del nino, y despues hasta que el representante legal pida su
-          supresion. Al pedirla, la aplicacion borra la historia completa: controles, tratamientos,
+          Mientras dure el seguimiento del niño, y después hasta que el representante legal pida su
+          supresión. Al pedirla, la aplicación borra la historia completa: controles, tratamientos,
           registros de uso, citas, accesos y enlaces compartidos.
         </p>
         <p>
-          El profesional tratante puede estar obligado por la norma de su pais a conservar la
-          historia clinica por un plazo determinado. En ese caso prevalece esa obligacion, y el
+          El profesional tratante puede estar obligado por la norma de su país a conservar la
+          historia clínica por un plazo determinado. En ese caso prevalece esa obligación, y el
           profesional debe informarselo a la familia.
         </p>
       </Seccion>
@@ -148,29 +148,29 @@ export default function Privacidad() {
           de los datos.
         </p>
         <p>
-          Dentro de la aplicacion, cada paciente tiene una pagina donde el profesional puede, en el
+          Dentro de la aplicación, cada paciente tiene una pagina donde el profesional puede, en el
           momento: <b>descargar una copia completa</b> de todos los datos, <b>retirar la
-          autorizacion</b>, <b>archivar</b> al paciente y <b>solicitar la supresion definitiva</b>.
+          autorización</b>, <b>archivar</b> al paciente y <b>solicitar la supresión definitiva</b>.
         </p>
         <p>
-          Si prefiere escribir, hagalo a <b>{LEGAL.correoDatos}</b>. Indique el nombre del nino, su
-          parentesco y que necesita. Responderemos a la direccion desde la que escriba.
+          Si prefiere escribir, hagalo a <b>{LEGAL.correoDatos}</b>. Indique el nombre del niño, su
+          parentesco y que necesita. Responderemos a la dirección desde la que escriba.
         </p>
       </Seccion>
 
       <Seccion titulo="Seguridad">
         <p>
-          Acceso cerrado por aprobacion, ingreso con cuenta de Google sin contrasenas propias,
+          Acceso cerrado por aprobación, ingreso con cuenta de Google sin contrasenas propias,
           cifrado en transito, enlaces compartidos de los que solo se guarda una huella y nunca el
-          enlace en claro, y bitacora de auditoria de cada movimiento. Ningun sistema es infalible:
+          enlace en claro, y bitácora de auditoria de cada movimiento. Ningun sistema es infalible:
           si detectamos un incidente que afecte sus datos, se lo informaremos.
         </p>
       </Seccion>
 
       <Seccion titulo="Cambios">
         <p>
-          Si esta politica cambia, se publica aqui con una version y una fecha nuevas. Si el cambio
-          afecta la finalidad del tratamiento, se pide una autorizacion nueva.
+          Si esta política cambia, se publica aquí con una versión y una fecha nuevas. Si el cambio
+          afecta la finalidad del tratamiento, se pide una autorización nueva.
         </p>
       </Seccion>
 
@@ -183,7 +183,7 @@ export default function Privacidad() {
       </Seccion>
 
       <p className="mt-8 text-xs text-grisTexto">
-        Este contenido es educativo y no reemplaza una valoracion visual individual.
+        Este contenido es educativo y no reemplaza una valoración visual individual.
       </p>
     </>
   )

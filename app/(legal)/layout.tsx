@@ -33,15 +33,15 @@ export default function LayoutLegal({ children }: { children: React.ReactNode })
       <footer className="mx-auto max-w-3xl px-4 pb-10 text-xs leading-relaxed text-grisTexto">
         <p>
           <Link href="/privacidad" className="hover:underline">
-            Politica de privacidad
+            Política de privacidad
           </Link>
           {' · '}
           <Link href="/terminos" className="hover:underline">
-            Terminos de uso
+            Términos de uso
           </Link>
         </p>
         <p className="mt-1">
-          {LEGAL.responsable} · {SITIO.dominio} · Version {LEGAL.version}
+          {LEGAL.responsable} · {SITIO.dominio} · Versión {LEGAL.version}
         </p>
       </footer>
     </div>

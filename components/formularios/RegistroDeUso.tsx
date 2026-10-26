@@ -119,7 +119,7 @@ export function RegistroDeUso({
               inputMode="decimal"
               value={horas}
               onChange={(ev) => setHoras(ev.target.value)}
-              placeholder="Otro numero de horas"
+              placeholder="Otro número de horas"
               className="campo flex-1"
             />
             <button

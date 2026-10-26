@@ -8,7 +8,7 @@
 
 export const LEGAL = {
   /** Quien responde ante la autoridad por el tratamiento de los datos. */
-  responsable: 'Grupo Manejo Miopia Latam',
+  responsable: 'Grupo Manejo Miopía Latam',
   /** Donde escriben las familias para ejercer sus derechos. */
   correoDatos: 'datos@miopialatam.org',
   /** Donde viven los datos. Importante: es una transferencia internacional. */

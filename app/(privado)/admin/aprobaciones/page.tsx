@@ -27,7 +27,7 @@ export default async function Aprobaciones() {
     <>
       <h1 className="font-titulo text-2xl">Accesos</h1>
       <p className="mt-1 text-sm text-grisTexto">
-        El acceso a los datos clinicos es cerrado. Aqui se aprueba cada cuenta nueva.
+        El acceso a los datos clínicos es cerrado. Aquí se aprueba cada cuenta nueva.
       </p>
 
       <section className="mt-5">
@@ -43,7 +43,7 @@ export default async function Aprobaciones() {
                 <p className="font-semibold">{u.name ?? 'Sin nombre'}</p>
                 <p className="text-sm text-grisTexto">{u.email}</p>
                 <p className="mt-0.5 text-xs text-grisTexto">
-                  Solicito el {fechaLarga(u.createdAt)}
+                  Solicitó el {fechaLarga(u.createdAt)}
                 </p>
                 {u.requestNote && (
                   <p className="mt-2 rounded-mml bg-crema px-3 py-2 text-sm text-grisMedio">
@@ -82,7 +82,7 @@ export default async function Aprobaciones() {
 
                 <p className="mt-2.5 text-xs leading-snug text-grisTexto">
                   Aprobar como profesional da acceso a crear pacientes y registrar controles.
-                  Aprobar como familia solo habilita la cuenta; el acceso a un nino se concede
+                  Aprobar como familia solo habilita la cuenta; el acceso a un niño se concede
                   despues, paciente por paciente.
                 </p>
               </div>

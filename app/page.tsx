@@ -62,12 +62,12 @@ export default async function Inicio() {
             Si no se usa, no funciona
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-grisMedio sm:text-xl">
-            El carnet de seguimiento del control de miopia, ahora en el telefono. Registra el uso
+            El carnet de seguimiento del control de miopía, ahora en el teléfono. Registra el uso
             real del tratamiento junto al crecimiento del ojo, control tras control.
           </p>
           <p className="mt-3 max-w-2xl leading-relaxed text-grisTexto">
-            Pensado para el seguimiento de ortoqueratologia y para cualquier otro tratamiento que
-            desacelere la miopia. Independiente de la marca: un mismo nino puede cambiar o combinar
+            Pensado para el seguimiento de ortoqueratología y para cualquier otro tratamiento que
+            desacelere la miopía. Independiente de la marca: un mismo niño puede cambiar o combinar
             tratamientos sin perder su historia.
           </p>
 
@@ -81,7 +81,7 @@ export default async function Inicio() {
             </a>
           </div>
           <p className="mt-3 text-sm text-grisTexto">
-            El acceso es cerrado. Cada cuenta nueva queda pendiente de aprobacion de un
+            El acceso es cerrado. Cada cuenta nueva queda pendiente de aprobación de un
             administrador.
           </p>
         </div>
@@ -93,7 +93,7 @@ export default async function Inicio() {
           <h2 className="font-titulo text-2xl sm:text-3xl">Cuatro tratamientos, un solo carnet</h2>
           <p className="mt-2 max-w-2xl leading-relaxed text-grisMedio">
             Cada uno tiene su calendario de controles, su forma de registrar el uso y lo que hay
-            que revisar en consulta. La aplicacion los conoce todos y no obliga a elegir marca.
+            que revisar en consulta. La aplicación los conoce todos y no obliga a elegir marca.
           </p>
 
           <div className="mt-7 grid gap-4 sm:grid-cols-2">
@@ -120,7 +120,7 @@ export default async function Inicio() {
                     </div>
 
                     <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-grisTexto">
-                      Controles del primer ano
+                      Controles del primer año
                     </p>
                     <p className="mt-1 text-sm font-semibold" style={{ color: d.color }}>
                       {plantilla.items.map((i) => i.etiqueta).join(' · ')}
@@ -132,9 +132,9 @@ export default async function Inicio() {
                       <span className="text-grisTexto">Se registra: </span>
                       <span className="font-semibold text-tinta">
                         {d.modoRegistro === 'horas'
-                          ? 'horas de uso de cada dia'
+                          ? 'horas de uso de cada día'
                           : d.modoRegistro === 'noche'
-                            ? 'si durmio con los lentes'
+                            ? 'si durmió con los lentes'
                             : 'si se puso la gota'}
                       </span>
                     </p>
@@ -153,7 +153,7 @@ export default async function Inicio() {
 
       {/* Que hace */}
       <section id="que-hace" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-12 sm:py-16">
-        <h2 className="font-titulo text-2xl sm:text-3xl">Que hace la aplicacion</h2>
+        <h2 className="font-titulo text-2xl sm:text-3xl">Que hace la aplicación</h2>
         <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
@@ -161,28 +161,28 @@ export default async function Inicio() {
               color: '#1fa3dd',
               titulo: 'Crecimiento del ojo',
               texto:
-                'Longitud axial por ojo, crecimiento anualizado entre controles y de los ultimos 12 meses. Avisa si el equipo de biometria cambio entre las dos medidas comparadas.',
+                'Longitud axial por ojo, crecimiento anualizado entre controles y de los últimos 12 meses. Avisa si el equipo de biometría cambio entre las dos medidas comparadas.',
             },
             {
               Icono: IconoGrafica,
               color: '#e2104f',
               titulo: 'Adherencia visible',
               texto:
-                'Porcentaje de dias o noches cumplidos a 7, 30 y 90 dias, y promedio de horas. La familia lo registra desde el telefono con un boton grande.',
+                'Porcentaje de días o noches cumplidos a 7, 30 y 90 días, y promedio de horas. La familia lo registra desde el teléfono con un boton grande.',
             },
             {
               Icono: IconoCalendario,
               color: '#5a9a3a',
-              titulo: 'Calendario automatico',
+              titulo: 'Calendario automático',
               texto:
-                'Al iniciar el tratamiento se generan los controles del primer ano, y despues cada 6 meses. Los vencidos aparecen en el panel.',
+                'Al iniciar el tratamiento se generan los controles del primer año, y después cada 6 meses. Los vencidos aparecen en el panel.',
             },
             {
               Icono: IconoImprimir,
               color: '#f5c400',
               titulo: 'Carnet en PDF',
               texto:
-                'El mismo carnet de papel, con los datos ya impresos, listo para entregar a la familia y para llevar al oftalmologo.',
+                'El mismo carnet de papel, con los datos ya impresos, listo para entregar a la familia y para llevar al oftalmólogo.',
             },
           ].map(({ Icono, color, titulo, texto }) => (
             <div key={titulo} className="rounded-2xl border border-borde bg-white p-5">
@@ -206,18 +206,18 @@ export default async function Inicio() {
             Como se lee el crecimiento en 12 meses
           </h2>
           <p className="mt-2 max-w-2xl leading-relaxed text-grisMedio">
-            El semaforo compara el crecimiento medido con lo esperado para la edad del nino. Los
-            umbrales viven en un archivo de configuracion, con su fuente, y no estan quemados en el
-            codigo.
+            El semáforo compara el crecimiento medido con lo esperado para la edad del niño. Los
+            umbrales viven en un archivo de configuración, con su fuente, y no están quemados en el
+            código.
           </p>
 
           <div className="mt-7 grid gap-4 sm:grid-cols-3">
             <div className="rounded-2xl bg-semVerde p-5">
               <span className="inline-block h-3 w-3 rounded-full bg-verde" />
               <h3 className="mt-2 font-titulo text-lg">Verde</h3>
-              <p className="mt-1 text-sm font-semibold text-tinta">Como un ojo sin miopia</p>
+              <p className="mt-1 text-sm font-semibold text-tinta">Como un ojo sin miopía</p>
               <p className="mt-2 text-sm leading-relaxed text-grisMedio">
-                Hasta 0,2 mm al ano entre los 7 y los 10 anos. Hasta 0,1 mm al ano entre los 11 y
+                Hasta 0,2 mm al año entre los 7 y los 10 años. Hasta 0,1 mm al año entre los 11 y
                 los 16.
               </p>
             </div>
@@ -237,7 +237,7 @@ export default async function Inicio() {
                 Como un miope sin tratamiento
               </p>
               <p className="mt-2 text-sm leading-relaxed text-grisMedio">
-                Desde 0,3 mm al ano entre los 7 y los 10. Desde 0,2 mm al ano entre los 11 y los
+                Desde 0,3 mm al año entre los 7 y los 10. Desde 0,2 mm al año entre los 11 y los
                 16.
               </p>
             </div>
@@ -259,8 +259,8 @@ export default async function Inicio() {
       <section className="mx-auto max-w-6xl px-5 py-12 sm:py-16">
         <h2 className="font-titulo text-2xl sm:text-3xl">Por que el uso decide el resultado</h2>
         <p className="mt-2 max-w-2xl leading-relaxed text-grisMedio">
-          Los porcentajes que se publican en los estudios se lograron con ninos que usaron el
-          dispositivo como se indico. En la vida real, ese uso hay que construirlo.
+          Los porcentajes que se publican en los estudios se lograron con niños que usaron el
+          dispositivo como se indicó. En la vida real, ese uso hay que construirlo.
         </p>
 
         <div className="mt-7 grid gap-4 sm:grid-cols-2">
@@ -289,19 +289,19 @@ export default async function Inicio() {
                 titulo: 'Profesional',
                 color: '#1fa3dd',
                 texto:
-                  'Optometra u oftalmologo. Crea pacientes, registra controles en menos de dos minutos y ve el panel con el semaforo, la adherencia de 30 dias y los controles vencidos de todos sus pacientes.',
+                  'Optómetra u oftalmólogo. Crea pacientes, registra controles en menos de dos minutos y ve el panel con el semáforo, la adherencia de 30 días y los controles vencidos de todos sus pacientes.',
               },
               {
                 titulo: 'Familia',
                 color: '#e2104f',
                 texto:
-                  'Padre, madre o cuidador. Ve el carnet del nino, registra el uso de cada dia desde el telefono y sabe cuando es el proximo control. No edita datos clinicos.',
+                  'Padre, madre o cuidador. Ve el carnet del niño, registra el uso de cada día desde el teléfono y sabe cuando es el próximo control. No edita datos clínicos.',
               },
               {
                 titulo: 'Profesional invitado',
                 color: '#5a9a3a',
                 texto:
-                  'Oftalmopediatria u otro colega. Acceso de solo lectura a un paciente, por enlace con vencimiento, que genera la familia o el profesional tratante.',
+                  'Oftalmopediatría u otro colega. Acceso de solo lectura a un paciente, por enlace con vencimiento, que genera la familia o el profesional tratante.',
               },
             ].map((p) => (
               <div
@@ -315,7 +315,7 @@ export default async function Inicio() {
             ))}
           </div>
           <p className="mt-5 text-sm text-grisTexto">
-            Un nino puede tener mas de un profesional tratante.
+            Un niño puede tener más de un profesional tratante.
           </p>
         </div>
       </section>
@@ -334,7 +334,7 @@ export default async function Inicio() {
             </h2>
             <p className="mt-3 leading-relaxed text-white/75">
               Entre con su cuenta de Google. Si es la primera vez, su solicitud queda pendiente de
-              aprobacion: el acceso a los datos clinicos de menores es cerrado.
+              aprobación: el acceso a los datos clínicos de menores es cerrado.
             </p>
             <div className="mt-7 w-full sm:w-auto">
               <BotonGoogle texto="Ingresar con Google" grande />
@@ -342,7 +342,7 @@ export default async function Inicio() {
             <p className="mt-4 text-xs leading-relaxed text-white/55">
               Datos de salud de menores tratados conforme a la Ley 1581 de 2012 y el Decreto 1377
               de 2013. Consentimiento del padre, madre o representante al crear cada paciente, con
-              registro de fecha y version, y bitacora de auditoria de cada consulta.
+              registro de fecha y versión, y bitácora de auditoria de cada consulta.
             </p>
           </div>
         </div>
@@ -360,17 +360,17 @@ export default async function Inicio() {
           </div>
 
           <p className="mt-6 max-w-3xl text-sm leading-relaxed text-grisMedio">
-            Este contenido es educativo y no reemplaza una valoracion visual individual. La
-            aplicacion registra y calcula; no diagnostica ni decide tratamientos.
+            Este contenido es educativo y no reemplaza una valoración visual individual. La
+            aplicación registra y calcula; no diagnostica ni decide tratamientos.
           </p>
 
           <p className="mt-4 text-sm">
             <Link href="/privacidad" className="text-azul hover:underline">
-              Politica de privacidad
+              Política de privacidad
             </Link>
             <span className="text-grisTexto"> · </span>
             <Link href="/terminos" className="text-azul hover:underline">
-              Terminos de uso
+              Términos de uso
             </Link>
           </p>
 

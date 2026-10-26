@@ -30,32 +30,32 @@ export interface DefinicionTratamiento {
 export const TRATAMIENTOS: Record<TipoTratamiento, DefinicionTratamiento> = {
   ortok: {
     tipo: 'ortok',
-    nombre: 'Ortoqueratologia',
+    nombre: 'Ortoqueratología',
     nombreCorto: 'Orto-k',
     color: '#5a9a3a',
     modoRegistro: 'noche',
-    preguntaDiaria: 'Anoche durmio con los lentes',
+    preguntaDiaria: 'Anoche durmió con los lentes',
     metaPorDefecto: { nochesPorSemana: 7 },
     queRevisar:
-      'Topografia corneal. Vision al levantarse. Cornea en lampara de hendidura. Limpieza de los lentes. Reemplazo del lente cada ano. Biometria y topografia cada 6 meses.',
+      'Topografía corneal. Visión al levantarse. Córnea en lámpara de hendidura. Limpieza de los lentes. Reemplazo del lente cada año. Biometría y topografía cada 6 meses.',
     hallazgos: [
-      { clave: 'topografia', etiqueta: 'Topografia corneal', tipo: 'texto' },
+      { clave: 'topografia', etiqueta: 'Topografía corneal', tipo: 'texto' },
       { clave: 'centrado', etiqueta: 'Centrado del lente', tipo: 'texto' },
-      { clave: 'cornea', etiqueta: 'Cornea en lampara de hendidura', tipo: 'texto' },
-      { clave: 'vision_al_levantarse', etiqueta: 'Vision al levantarse', tipo: 'texto' },
+      { clave: 'cornea', etiqueta: 'Córnea en lámpara de hendidura', tipo: 'texto' },
+      { clave: 'vision_al_levantarse', etiqueta: 'Visión al levantarse', tipo: 'texto' },
       { clave: 'estado_lente', etiqueta: 'Estado y limpieza del lente', tipo: 'texto' },
     ],
   },
   gafas: {
     tipo: 'gafas',
-    nombre: 'Gafas para control de miopia',
+    nombre: 'Gafas para control de miopía',
     nombreCorto: 'Gafas',
     color: '#1fa3dd',
     modoRegistro: 'horas',
     preguntaDiaria: 'Horas que uso las gafas hoy',
     metaPorDefecto: { horasPorDia: 12, diasPorSemana: 7 },
     queRevisar:
-      'Montura bien ajustada que no se baje. Lentes centradas. Uso todo el dia, 12 horas o mas. Estado de las lentes.',
+      'Montura bien ajustada que no se baje. Lentes centradas. Uso todo el día, 12 horas o mas. Estado de las lentes.',
     hallazgos: [
       { clave: 'ajuste_montura', etiqueta: 'Ajuste de la montura', tipo: 'texto' },
       { clave: 'centrado', etiqueta: 'Centrado de las lentes', tipo: 'texto' },
@@ -71,9 +71,9 @@ export const TRATAMIENTOS: Record<TipoTratamiento, DefinicionTratamiento> = {
     preguntaDiaria: 'Horas que uso los lentes hoy',
     metaPorDefecto: { horasPorDia: 10, diasPorSemana: 6 },
     queRevisar:
-      'Cornea en lampara de hendidura. Horas y dias de uso. Como se pone, se quita y cuida los lentes. Ojo rojo o molestias.',
+      'Córnea en lámpara de hendidura. Horas y días de uso. Como se pone, se quita y cuida los lentes. Ojo rojo o molestias.',
     hallazgos: [
-      { clave: 'cornea', etiqueta: 'Cornea en lampara de hendidura', tipo: 'texto' },
+      { clave: 'cornea', etiqueta: 'Córnea en lámpara de hendidura', tipo: 'texto' },
       { clave: 'ajuste', etiqueta: 'Ajuste del lente', tipo: 'texto' },
       { clave: 'manejo', etiqueta: 'Manejo e higiene', tipo: 'texto' },
     ],
@@ -87,14 +87,14 @@ export const TRATAMIENTOS: Record<TipoTratamiento, DefinicionTratamiento> = {
     preguntaDiaria: 'Anoche se puso la gota',
     metaPorDefecto: { nochesPorSemana: 7 },
     queRevisar:
-      'Tamano de la pupila. Sensibilidad a la luz. Vision de cerca y acomodacion. Presion del ojo. Uso todas las noches.',
+      'Tamaño de la pupila. Sensibilidad a la luz. Visión de cerca y acomodación. Presión del ojo. Uso todas las noches.',
     hallazgos: [
       { clave: 'pupila_od', etiqueta: 'Pupila OD (mm)', tipo: 'numero' },
       { clave: 'pupila_oi', etiqueta: 'Pupila OI (mm)', tipo: 'numero' },
       { clave: 'fotofobia', etiqueta: 'Sensibilidad a la luz', tipo: 'texto' },
-      { clave: 'acomodacion', etiqueta: 'Vision de cerca y acomodacion', tipo: 'texto' },
-      { clave: 'pio_od', etiqueta: 'Presion intraocular OD (mmHg)', tipo: 'numero' },
-      { clave: 'pio_oi', etiqueta: 'Presion intraocular OI (mmHg)', tipo: 'numero' },
+      { clave: 'acomodacion', etiqueta: 'Visión de cerca y acomodación', tipo: 'texto' },
+      { clave: 'pio_od', etiqueta: 'Presión intraocular OD (mmHg)', tipo: 'numero' },
+      { clave: 'pio_oi', etiqueta: 'Presión intraocular OI (mmHg)', tipo: 'numero' },
     ],
   },
 }

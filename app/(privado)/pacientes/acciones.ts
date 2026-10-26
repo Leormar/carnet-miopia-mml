@@ -124,7 +124,7 @@ async function pacienteYaExiste(
       ok: false,
       error:
         'Ya hay un paciente con ese nombre y esa fecha de nacimiento. Si de verdad son dos ' +
-        'ninos distintos, agregue el documento de identidad para diferenciarlos.',
+        'niños distintos, agregue el documento de identidad para diferenciarlos.',
       campos: { firstName: 'Puede estar repetido' },
     }
   }

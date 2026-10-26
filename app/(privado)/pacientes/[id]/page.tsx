@@ -108,7 +108,7 @@ export default async function Paciente({ params }: { params: { id: string } }) {
             {paciente.firstName} {paciente.lastName}
           </h1>
           <p className="text-sm text-grisTexto">
-            {edad} anos · nacio el {fechaLarga(paciente.birthDate)}
+            {edad} años · nació el {fechaLarga(paciente.birthDate)}
             {paciente.myopicParents !== null &&
               ` · ${paciente.myopicParents === 0 ? 'ningun padre miope' : paciente.myopicParents === 1 ? 'un padre miope' : 'dos padres miopes'}`}
             {paciente.myopiaOnsetAge &&
@@ -147,7 +147,7 @@ export default async function Paciente({ params }: { params: { id: string } }) {
           <Aviso nivel={ultimo.avisoAxial.nivel}>{ultimo.avisoAxial.texto}</Aviso>
         )}
         {cambioDeEquipo && (
-          <Aviso nivel="aviso" titulo="Cambio de equipo de biometria">
+          <Aviso nivel="aviso" titulo="Cambio de equipo de biometría">
             Los dos controles comparados se midieron con equipos distintos. La diferencia puede no
             ser solo crecimiento del ojo.
           </Aviso>
@@ -189,7 +189,7 @@ export default async function Paciente({ params }: { params: { id: string } }) {
           </>
         ) : (
           <p className="mt-1 text-sm text-grisTexto">
-            Todavia no hay controles registrados.
+            Todavía no hay controles registrados.
           </p>
         )}
       </section>
@@ -224,7 +224,7 @@ export default async function Paciente({ params }: { params: { id: string } }) {
                 </div>
                 {a.treinta.diasConMolestias > 0 && (
                   <p className="mt-2 text-xs text-magenta">
-                    {a.treinta.diasConMolestias} dias con molestias en el ultimo mes
+                    {a.treinta.diasConMolestias} días con molestias en el último mes
                   </p>
                 )}
               </div>
@@ -285,7 +285,7 @@ export default async function Paciente({ params }: { params: { id: string } }) {
       </section>
 
       <section className="mt-6">
-        <h2 className="font-titulo text-lg">Refraccion</h2>
+        <h2 className="font-titulo text-lg">Refracción</h2>
         <div className="tarjeta mt-3">
           <GraficaRefraccion
             datos={datosRefraccion}
@@ -369,7 +369,7 @@ export default async function Paciente({ params }: { params: { id: string } }) {
 
       {/* Proximos controles */}
       <section className="mt-6">
-        <h2 className="font-titulo text-lg">Proximos controles</h2>
+        <h2 className="font-titulo text-lg">Próximos controles</h2>
         <div className="tarjeta mt-3">
           {citas.filter((c) => c.estadoVigente !== 'cumplida' && c.estadoVigente !== 'omitida')
             .length === 0 ? (

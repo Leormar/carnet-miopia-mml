@@ -4,7 +4,7 @@ export function Logo({ tamano = 44 }: { tamano?: number }) {
   return (
     <Image
       src="/logo.png"
-      alt="Grupo Manejo Miopia Latam"
+      alt="Grupo Manejo Miopía Latam"
       width={tamano}
       height={tamano}
       priority

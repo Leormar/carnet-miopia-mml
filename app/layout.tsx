@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s · ${SITIO.nombreCorto}`,
   },
   description:
-    'Seguimiento del tratamiento para desacelerar la miopia en ninos. Uso real del dispositivo junto al crecimiento del ojo.',
+    'Seguimiento del tratamiento para desacelerar la miopía en niños. Uso real del dispositivo junto al crecimiento del ojo.',
   icons: { icon: '/logo.png' },
   robots: { index: false, follow: false },
 }

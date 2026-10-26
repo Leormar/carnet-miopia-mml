@@ -122,7 +122,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
             {paciente.firstName} {paciente.lastName}
           </h1>
           <p className="text-sm text-grisTexto">
-            {edad} anos · nacio el {fechaLarga(paciente.birthDate)}
+            {edad} años · nació el {fechaLarga(paciente.birthDate)}
             {paciente.myopicParents !== null &&
               ` · ${paciente.myopicParents === 0 ? 'ningun padre miope' : paciente.myopicParents === 1 ? 'un padre miope' : 'dos padres miopes'}`}
             {paciente.myopiaOnsetAge &&
@@ -141,7 +141,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
           )}
           {ultimo?.avisoAxial && <Aviso nivel={ultimo.avisoAxial.nivel}>{ultimo.avisoAxial.texto}</Aviso>}
           {cambioDeEquipo && (
-            <Aviso nivel="aviso" titulo="Cambio de equipo de biometria">
+            <Aviso nivel="aviso" titulo="Cambio de equipo de biometría">
               Los dos controles comparados se midieron con equipos distintos. La diferencia puede
               no ser solo crecimiento del ojo.
             </Aviso>
@@ -171,7 +171,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
               )}
             </>
           ) : (
-            <p className="mt-1 text-sm text-grisTexto">Todavia no hay controles registrados.</p>
+            <p className="mt-1 text-sm text-grisTexto">Todavía no hay controles registrados.</p>
           )}
         </section>
 
@@ -212,7 +212,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
         </section>
 
         <section className="mt-6">
-          <h2 className="font-titulo text-lg">Refraccion</h2>
+          <h2 className="font-titulo text-lg">Refracción</h2>
           <div className="tarjeta mt-3">
             <GraficaRefraccion
               datos={datosRefraccion}
@@ -257,7 +257,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
         </section>
 
         <section className="mt-6">
-          <h2 className="font-titulo text-lg">Proximos controles</h2>
+          <h2 className="font-titulo text-lg">Próximos controles</h2>
           <div className="tarjeta mt-3">
             {[...vencidos, ...proximas].length === 0 ? (
               <p className="text-sm text-grisTexto">No hay controles programados.</p>
@@ -296,7 +296,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
 
       <footer className="mx-auto max-w-5xl px-4 pb-10 text-xs leading-relaxed text-grisTexto">
         <p>
-          La aplicacion registra y calcula; no diagnostica ni decide tratamientos. Esta vista es
+          La aplicación registra y calcula; no diagnostica ni decide tratamientos. Esta vista es
           de solo lectura y su apertura queda registrada en la bitacora de auditoria, conforme a
           la Ley 1581 de 2012 y al Decreto 1377 de 2013.
         </p>

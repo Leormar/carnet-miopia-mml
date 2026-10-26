@@ -16,13 +16,13 @@ export function FormularioCredencial() {
     <form action={accion} className="tarjeta mt-5 space-y-4">
       {estado && !estado.ok && <Aviso nivel="alerta">{estado.error}</Aviso>}
 
-      <Campo etiqueta="Pais donde ejerce" nombre="country" error={e.country} requerido>
+      <Campo etiqueta="País donde ejerce" nombre="country" error={e.country} requerido>
         <Selector
           nombre="country"
           error={e.country}
           defaultValue=""
           opciones={[
-            { valor: '', texto: 'Elija el pais' },
+            { valor: '', texto: 'Elija el país' },
             ...PAISES.map((p) => ({ valor: p, texto: p })),
           ]}
         />
@@ -41,17 +41,17 @@ export function FormularioCredencial() {
       </Campo>
 
       <Campo
-        etiqueta="Como se llama en su pais"
+        etiqueta="Como se llama en su país"
         nombre="officialName"
         error={e.officialName}
-        ayuda="El nombre oficial. Por ejemplo, en Colombia: tarjeta profesional de optometria."
+        ayuda="El nombre oficial. Por ejemplo, en Colombia: tarjeta profesional de optometría."
         requerido
       >
         <Texto nombre="officialName" maxLength={160} error={e.officialName} />
       </Campo>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Campo etiqueta="Numero del documento" nombre="documentNumber">
+        <Campo etiqueta="Número del documento" nombre="documentNumber">
           <Texto nombre="documentNumber" maxLength={80} />
         </Campo>
         <Campo etiqueta="Entidad que lo expide" nombre="issuedBy">
