@@ -1,4 +1,4 @@
-# Carnet MML
+# Seguimiento MML
 
 Carnet y seguimiento del control de miopia del Grupo Manejo Miopia Latam.
 Aplicacion web en `seguimiento.miopialatam.org`.

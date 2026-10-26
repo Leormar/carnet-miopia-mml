@@ -42,8 +42,10 @@ export default async function Ingresar({
 
   return (
     <div className="min-h-screen bg-crema lg:grid lg:grid-cols-[1fr_1.05fr]">
+      <span className="cinta-mml lg:hidden" aria-hidden />
+
       {/* Columna de ingreso */}
-      <main className="flex min-h-screen flex-col justify-center px-5 py-10 sm:px-10 lg:px-14">
+      <main className="flex flex-col justify-center px-5 pb-10 pt-7 sm:px-10 lg:min-h-screen lg:px-14 lg:pt-10">
         <div className="mx-auto w-full max-w-md">
           <Link href="/" className="inline-flex items-center gap-3">
             <Logo tamano={44} />
@@ -52,9 +54,9 @@ export default async function Ingresar({
               <span className="block text-sm text-grisTexto">{SITIO.organizacion}</span>
             </span>
           </Link>
-          <BarrasMML className="mt-4" />
+          <BarrasMML className="mt-4 hidden lg:flex" />
 
-          <h1 className="mt-7 font-titulo text-3xl leading-tight">Ingresar</h1>
+          <h1 className="mt-6 font-titulo text-[2rem] leading-tight">Ingresar</h1>
           <p className="mt-2 leading-relaxed text-grisMedio">
             Entre con su cuenta para ver el carnet, registrar controles o anotar el uso de cada
             dia.
@@ -115,7 +117,7 @@ export default async function Ingresar({
       </main>
 
       {/* Columna de contexto, solo en pantalla grande */}
-      <aside className="relative hidden overflow-hidden bg-white lg:flex lg:flex-col lg:justify-center lg:px-14">
+      <aside className="relative overflow-hidden border-t border-borde/70 bg-white px-5 py-10 sm:px-10 lg:flex lg:flex-col lg:justify-center lg:border-t-0 lg:px-14 lg:py-0">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.08]"
           style={{
@@ -124,15 +126,17 @@ export default async function Ingresar({
           }}
           aria-hidden
         />
-        <div className="relative max-w-md">
-          <p className="font-titulo text-3xl leading-tight">Si no se usa, no funciona</p>
+        <div className="relative mx-auto max-w-md lg:mx-0">
+          <p className="font-titulo text-[1.75rem] leading-tight lg:text-3xl">
+            Si no se usa, no funciona
+          </p>
           <p className="mt-3 leading-relaxed text-grisMedio">
             Las gafas, los lentes y las gotas para desacelerar la miopia no actuan por estar en el
             estuche: actuan mientras estan puestos. El carnet hace visible ese uso, junto al
             crecimiento del ojo.
           </p>
 
-          <div className="mt-8 space-y-2.5">
+          <div className="mt-6 space-y-2.5 lg:mt-8">
             {ORDEN_TRATAMIENTOS.map((tipo) => {
               const d = TRATAMIENTOS[tipo]
               return (

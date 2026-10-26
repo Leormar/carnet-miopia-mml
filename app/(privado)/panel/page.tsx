@@ -28,6 +28,7 @@ export default async function Panel() {
   const filas = await filasDelPanel(sesion)
 
   const vencidos = filas.filter((f) => f.controlesVencidos > 0)
+  const enRojo = filas.filter((f) => f.semaforoColor === 'rojo')
 
   return (
     <>
@@ -41,11 +42,36 @@ export default async function Panel() {
             {vencidos.length > 0 && ` · ${vencidos.length} con controles vencidos`}
           </p>
         </div>
-        <Link href="/pacientes/nuevo" className="boton-magenta ml-auto">
+        <Link href="/pacientes/nuevo" className="boton-magenta ml-auto hidden sm:inline-flex">
           <IconoMas className="h-4 w-4" />
-          Nuevo paciente
+          <span className="hidden sm:inline">Nuevo paciente</span>
+          <span className="sm:hidden">Nuevo</span>
         </Link>
       </div>
+
+      {filas.length > 0 && (
+        <div className="mt-4 grid grid-cols-3 gap-2.5">
+          <div className="dato">
+            <span className="dato-rotulo">Pacientes</span>
+            <span className="dato-cifra">{filas.length}</span>
+          </div>
+          <div className="dato" style={{ borderColor: enRojo.length > 0 ? '#e2104f40' : undefined }}>
+            <span className="dato-rotulo">En rojo</span>
+            <span className={`dato-cifra ${enRojo.length > 0 ? 'text-magenta' : ''}`}>
+              {enRojo.length}
+            </span>
+          </div>
+          <div
+            className="dato"
+            style={{ borderColor: vencidos.length > 0 ? '#f5c40066' : undefined }}
+          >
+            <span className="dato-rotulo">Vencidos</span>
+            <span className={`dato-cifra ${vencidos.length > 0 ? 'text-magenta' : ''}`}>
+              {vencidos.length}
+            </span>
+          </div>
+        </div>
+      )}
 
       {filas.length === 0 ? (
         <div className="tarjeta mt-6 text-center">
@@ -64,7 +90,7 @@ export default async function Panel() {
             <Link
               key={f.id}
               href={`/pacientes/${f.id}`}
-              className="tarjeta block transition hover:border-azul/50 hover:shadow-md"
+              className="tarjeta-accion block hover:border-azul/50"
             >
               <div className="flex flex-wrap items-start gap-x-4 gap-y-2">
                 <div className="min-w-0 flex-1">

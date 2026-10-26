@@ -3,8 +3,8 @@
  */
 
 export const SITIO = {
-  nombre: 'Carnet de seguimiento del control de miopia',
-  nombreCorto: 'Carnet MML',
+  nombre: 'Seguimiento del control de miopia',
+  nombreCorto: 'Seguimiento MML',
   organizacion: 'Grupo Manejo Miopia Latam',
   /** Subdominio de la aplicacion. El dominio raiz queda libre para el sitio. */
   dominio: 'seguimiento.miopialatam.org',

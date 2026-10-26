@@ -1,4 +1,4 @@
-# Carnet MML — App de seguimiento y adherencia en control de miopía
+# Seguimiento MML — App de seguimiento y adherencia en control de miopía
 
 ## Qué es
 

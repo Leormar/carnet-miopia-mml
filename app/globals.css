@@ -30,31 +30,81 @@ h1, h2, h3, h4 {
    tipografia de 16 px para que iOS no haga zoom al enfocar. */
 @layer components {
   .campo {
-    @apply w-full rounded-lg border border-borde bg-white px-3 py-2.5 text-base
-           text-tinta outline-none transition
+    @apply w-full rounded-xl border border-borde bg-white px-3.5 py-3 text-base
+           text-tinta shadow-[inset_0_1px_2px_rgba(17,28,38,0.03)] outline-none transition
            focus:border-azul focus:ring-2 focus:ring-azul/20;
   }
   .etiqueta {
-    @apply mb-1 block text-sm font-semibold text-grisMedio;
+    @apply mb-1.5 block text-sm font-semibold text-grisMedio;
   }
   .ayuda {
     @apply mt-1 text-xs text-grisTexto;
   }
+
+  /* Superficies. La tarjeta es la unidad de la interfaz: blanca sobre crema,
+     con una sombra calida que la despega del fondo. */
   .tarjeta {
-    @apply rounded-xl border border-borde bg-white p-4 shadow-[0_1px_3px_rgba(17,28,38,0.05)];
+    @apply rounded-2xl border border-borde/60 bg-white p-4 shadow-tarjeta;
   }
+  /* Tarjeta que se puede tocar: se levanta al pasar y se hunde al pulsar. */
+  .tarjeta-accion {
+    @apply tarjeta transition active:scale-[0.995] hover:-translate-y-px hover:shadow-elevada;
+  }
+
+  /* Dato destacado: cifra grande en Fraunces con su rotulo encima. */
+  .dato {
+    @apply rounded-2xl border border-borde/60 bg-white px-4 py-3 shadow-tarjeta;
+  }
+  .dato-rotulo {
+    @apply block text-[11px] font-semibold uppercase tracking-wider text-grisTexto;
+  }
+  .dato-cifra {
+    @apply mt-0.5 block font-titulo text-2xl leading-none;
+  }
+
+  .pildora {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1
+           text-xs font-semibold leading-none;
+  }
+
   .boton {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5
-           text-base font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3
+           text-base font-semibold leading-tight transition
+           active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100;
   }
   .boton-primario {
-    @apply boton bg-tinta text-white hover:bg-tinta/90;
+    @apply boton bg-tinta text-white shadow-boton hover:bg-tinta/90;
   }
   .boton-secundario {
-    @apply boton border border-borde bg-white text-tinta hover:bg-crema;
+    @apply boton border border-borde bg-white text-tinta shadow-tarjeta hover:bg-crema;
   }
   .boton-magenta {
-    @apply boton bg-magenta text-white hover:brightness-110;
+    @apply boton bg-magenta text-white shadow-boton hover:brightness-110;
+  }
+
+  /* Cinta de las cuatro barras de MML, estirada como cabecera de la aplicacion. */
+  .cinta-mml {
+    @apply block h-[3px] w-full;
+    background: linear-gradient(
+      to right,
+      #f5c400 0 25%,
+      #5a9a3a 25% 50%,
+      #1fa3dd 50% 75%,
+      #e2104f 75% 100%
+    );
+  }
+
+  /* Barra de navegacion inferior, solo en celular. */
+  .nav-movil {
+    @apply fixed inset-x-0 bottom-0 z-30 border-t border-borde/70 bg-crema/95 shadow-barra backdrop-blur md:hidden;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .nav-enlace {
+    @apply flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-semibold
+           leading-none text-grisTexto transition;
+  }
+  .nav-enlace-activo {
+    @apply text-magenta;
   }
 }
 

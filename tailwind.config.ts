@@ -25,6 +25,14 @@ const config: Config = {
         texto: ['var(--fuente-texto)', 'system-ui', 'sans-serif'],
       },
       borderRadius: { mml: '8px' },
+      boxShadow: {
+        // Sombras calidas: nacen de la tinta, no de un negro puro, para que no
+        // ensucien el fondo crema.
+        tarjeta: '0 1px 2px rgba(17,28,38,0.04), 0 2px 8px rgba(17,28,38,0.05)',
+        elevada: '0 2px 4px rgba(17,28,38,0.05), 0 8px 24px rgba(17,28,38,0.08)',
+        boton: '0 1px 2px rgba(17,28,38,0.12), 0 2px 6px rgba(17,28,38,0.12)',
+        barra: '0 -1px 0 rgba(17,28,38,0.06), 0 -8px 24px rgba(17,28,38,0.05)',
+      },
     },
   },
   plugins: [],
