@@ -13,7 +13,7 @@ import {
   suprimirPaciente,
 } from '../../acciones'
 import { Aviso } from '@/components/ui/Aviso'
-import { IconoVolver } from '@/components/marca/IconosTratamiento'
+import { IconoImprimir, IconoVolver } from '@/components/marca/IconosTratamiento'
 import { fechaCorta, fechaLarga } from '@/lib/clinica/edad'
 
 export const dynamic = 'force-dynamic'
@@ -135,6 +135,17 @@ export default async function Privacidad({
             ))}
           </ul>
         )}
+        <div className="tarjeta mt-3">
+          <p className="text-sm leading-relaxed text-grisMedio">
+            El documento que la familia lee y firma, con los datos de {paciente.firstName} ya
+            puestos. Dos hojas A4 para guardar en PDF y mandar, o para imprimir y firmar en
+            consulta.
+          </p>
+          <Link href={`/pacientes/${params.id}/consentimiento`} className="boton-secundario mt-3">
+            <IconoImprimir className="h-4 w-4" />
+            Consentimiento en PDF
+          </Link>
+        </div>
       </section>
 
       {/* Copia de los datos */}

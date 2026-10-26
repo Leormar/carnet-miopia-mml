@@ -27,16 +27,16 @@ export default function Terminos() {
         Versión {LEGAL.version} · {LEGAL.fecha}
       </p>
 
-      <Seccion titulo="Que es esto">
+      <Seccion titulo="Qué es esto">
         <p>
           {SITIO.dominio} es el carnet de seguimiento del control de miopía del{' '}
           {LEGAL.responsable}. Sirve para que el profesional y la familia registren los controles
           del nino, vean si el ojo está creciendo dentro de lo esperado y sostengan el uso del
-          tratamiento. Es independiente de marca y no promueve ningun dispositivo.
+          tratamiento. Es independiente de marca y no promueve ningún dispositivo.
         </p>
       </Seccion>
 
-      <Seccion titulo="Quien puede usarla">
+      <Seccion titulo="Quién puede usarla">
         <p>
           El acceso es cerrado. Pueden usarla los profesionales de la salud visual habilitados para
           ejercer en su país, que hayan sido aprobados por un administrador de la red, hayan
@@ -62,7 +62,7 @@ export default function Terminos() {
         </p>
       </Seccion>
 
-      <Seccion titulo="A que se compromete quien entra">
+      <Seccion titulo="A qué se compromete quien entra">
         <p>
           A pedir la autorización del representante legal antes de crear la historia de un niño. A
           entrar solo a las historias de los pacientes que atiende. A no compartir su usuario ni
@@ -71,7 +71,7 @@ export default function Terminos() {
           revocar. Y a avisar de inmediato si sospecha un acceso no autorizado.
         </p>
         <p>
-          Esta prohibido usar la aplicación para fines distintos del seguimiento clínico, extraer
+          Está prohibido usar la aplicación para fines distintos del seguimiento clínico, extraer
           datos de forma masiva, intentar acceder a historias ajenas o suplantar a otro
           profesional.
         </p>
@@ -80,8 +80,8 @@ export default function Terminos() {
       <Seccion titulo="Los datos son del paciente">
         <p>
           Los datos de cada nino pertenecen a su titular. La familia puede pedir en cualquier
-          momento una copia completa, su correccion, el retiro de la autorizacion o su supresion.
-          Como se hace esta en la{' '}
+          momento una copia completa, su corrección, el retiro de la autorización o su supresión.
+          Cómo se hace está en la{' '}
           <Link href="/privacidad" className="text-azul hover:underline">
             política de privacidad
           </Link>
@@ -106,7 +106,7 @@ export default function Terminos() {
 
       <Seccion titulo="Cambios y contacto">
         <p>
-          Estos terminos pueden cambiar; la version y la fecha quedan arriba. Para cualquier
+          Estos términos pueden cambiar; la versión y la fecha quedan arriba. Para cualquier
           consulta, escriba a <b>{LEGAL.correoDatos}</b>.
         </p>
       </Seccion>

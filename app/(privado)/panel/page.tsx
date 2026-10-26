@@ -98,6 +98,11 @@ export default async function Panel() {
                     <PuntoSemaforo color={f.semaforoColor} titulo={f.semaforoTexto} />
                     <p className="truncate font-semibold">{f.nombre}</p>
                     <span className="shrink-0 text-sm text-grisTexto">{f.edad} años</span>
+                    {f.esDemostracion && (
+                      <span className="shrink-0 rounded-full border border-amarillo/60 bg-amarillo/15 px-2 py-0.5 text-[11px] font-semibold leading-none text-tinta">
+                        Demostración
+                      </span>
+                    )}
                   </div>
                   <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
                     {f.tratamientosActivos.length === 0 ? (

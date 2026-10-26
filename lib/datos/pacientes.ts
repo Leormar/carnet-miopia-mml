@@ -26,6 +26,7 @@ import {
 import { aNumero } from '@/lib/clinica/refraccion'
 import { resumenAdherencia, type RegistroUso } from '@/lib/clinica/adherencia'
 import { estadoVigente } from '@/lib/clinica/calendario'
+import { esDemostracion } from './demostracion'
 
 /** Ids de los pacientes que este usuario puede ver. Un admin los ve todos. */
 export async function idsPacientesVisibles(sesion: Sesion): Promise<string[] | 'todos'> {
@@ -55,6 +56,8 @@ export interface FilaPanel {
   adherencia30: number | null
   proximoControl: { fecha: string; etiqueta: string } | null
   controlesVencidos: number
+  /** El paciente de demostracion se anuncia tambien en la lista. */
+  esDemostracion: boolean
 }
 
 export async function filasDelPanel(sesion: Sesion): Promise<FilaPanel[]> {
@@ -195,6 +198,7 @@ export async function filasDelPanel(sesion: Sesion): Promise<FilaPanel[]> {
           : null,
       proximoControl: proxima ? { fecha: proxima.dueDate, etiqueta: proxima.label } : null,
       controlesVencidos: vencidos.length,
+      esDemostracion: esDemostracion(p),
     }
   })
 }

@@ -5,7 +5,7 @@ import { LEGAL } from '@/config/legal'
 export const metadata = {
   title: 'Política de privacidad',
   description:
-    'Como el Grupo Manejo Miopía Latam trata los datos personales y de salud en el carnet de seguimiento del control de miopía.',
+    'Cómo el Grupo Manejo Miopía Latam trata los datos personales y de salud en el carnet de seguimiento del control de miopía.',
   robots: { index: true, follow: true },
 }
 
@@ -33,9 +33,9 @@ export default function Privacidad() {
         </Aviso>
       </div>
 
-      <Seccion titulo="Quien responde por estos datos">
+      <Seccion titulo="Quién responde por estos datos">
         <p>
-          El responsable del tratamiento es el <b>{LEGAL.responsable}</b>, que opera la aplicacion
+          El responsable del tratamiento es el <b>{LEGAL.responsable}</b>, que opera la aplicación
           en {SITIO.dominio}. Para cualquier solicitud sobre sus datos o los de su hijo, escriba a{' '}
           <b>{LEGAL.correoDatos}</b>.
         </p>
@@ -45,10 +45,10 @@ export default function Privacidad() {
         </p>
       </Seccion>
 
-      <Seccion titulo="Que datos se tratan">
+      <Seccion titulo="Qué datos se tratan">
         <p>
           <b>Del niño.</b> Nombre, fecha de nacimiento, sexo, documento de identidad si la familia
-          lo aporta, edad de inicio de la miopía, cuantos padres son miopes, agudeza visual,
+          lo aporta, edad de inicio de la miopía, cuántos padres son miopes, agudeza visual,
           refracción bajo cicloplejía, longitud axial del ojo, equipo con que se midio, tratamiento
           y dispositivo, registro diario de uso, molestias, hallazgos de cada control y fechas de
           los próximos controles.
@@ -64,14 +64,14 @@ export default function Privacidad() {
         <p>
           <b>Técnicos.</b> Fecha, hora, dirección IP y navegador de cada acceso, creación,
           modificación, consulta, descarga o compartido de una historia. Son la bitácora de
-          auditoria y no se pueden borrar ni editar.
+          auditoría y no se pueden borrar ni editar.
         </p>
       </Seccion>
 
-      <Seccion titulo="Para que se usan">
+      <Seccion titulo="Para qué se usan">
         <p>
-          Para registrar el seguimiento del tratamiento que desacelera la miopía, calcular cuanto
-          creció el ojo, hacer visible cuanto se usa el dispositivo, programar los controles y
+          Para registrar el seguimiento del tratamiento que desacelera la miopía, calcular cuánto
+          creció el ojo, hacer visible cuánto se usa el dispositivo, programar los controles y
           permitir que el profesional comparta el seguimiento con oftalmología pediátrica cuando la
           familia lo autoriza.
         </p>
@@ -85,7 +85,7 @@ export default function Privacidad() {
         </p>
       </Seccion>
 
-      <Seccion titulo="Con que autorización">
+      <Seccion titulo="Con qué autorización">
         <p>
           Con la autorización previa, expresa e informada del padre, la madre o el representante
           legal, recogida por el profesional antes de crear la historia del niño. De cada
@@ -93,12 +93,12 @@ export default function Privacidad() {
           autorización la aplicación no permite registrar nada.
         </p>
         <p>
-          La autorizacion se puede retirar en cualquier momento, sin dar explicaciones, escribiendo
+          La autorización se puede retirar en cualquier momento, sin dar explicaciones, escribiendo
           a {LEGAL.correoDatos} o pidiendoselo al profesional tratante.
         </p>
       </Seccion>
 
-      <Seccion titulo="Quien puede verlos">
+      <Seccion titulo="Quién puede verlos">
         <p>
           <b>El profesional tratante</b> del niño, y solo las historias de los pacientes que
           atiende. <b>La familia</b>, el carnet de su hijo y el registro diario de uso.{' '}
@@ -117,17 +117,17 @@ export default function Privacidad() {
         </p>
       </Seccion>
 
-      <Seccion titulo="Donde se guardan">
+      <Seccion titulo="Dónde se guardan">
         <p>
-          En los servidores de {LEGAL.alojamiento.proveedores}, en la region{' '}
+          En los servidores de {LEGAL.alojamiento.proveedores}, en la región{' '}
           {LEGAL.alojamiento.region}. Es decir, los datos se almacenan fuera de Colombia, lo que
-          constituye una transferencia internacional. La autorizacion del representante legal
+          constituye una transferencia internacional. La autorización del representante legal
           comprende ese almacenamiento.
         </p>
         <p>La información viaja cifrada y los secretos de acceso nunca se guardan en el código.</p>
       </Seccion>
 
-      <Seccion titulo="Cuanto tiempo se conservan">
+      <Seccion titulo="Cuánto tiempo se conservan">
         <p>
           Mientras dure el seguimiento del niño, y después hasta que el representante legal pida su
           supresión. Al pedirla, la aplicación borra la historia completa: controles, tratamientos,
@@ -140,15 +140,15 @@ export default function Privacidad() {
         </p>
       </Seccion>
 
-      <Seccion titulo="Sus derechos y como ejercerlos">
+      <Seccion titulo="Sus derechos y cómo ejercerlos">
         <p>
           Como titular, o como su representante legal, usted puede conocer, actualizar y rectificar
-          los datos; pedir prueba de la autorizacion; ser informado del uso que se les ha dado;
-          presentar quejas ante la {LEGAL.autoridad}; revocar la autorizacion; y pedir la supresion
+          los datos; pedir prueba de la autorización; ser informado del uso que se les ha dado;
+          presentar quejas ante la {LEGAL.autoridad}; revocar la autorización; y pedir la supresión
           de los datos.
         </p>
         <p>
-          Dentro de la aplicación, cada paciente tiene una pagina donde el profesional puede, en el
+          Dentro de la aplicación, cada paciente tiene una página donde el profesional puede, en el
           momento: <b>descargar una copia completa</b> de todos los datos, <b>retirar la
           autorización</b>, <b>archivar</b> al paciente y <b>solicitar la supresión definitiva</b>.
         </p>
@@ -160,9 +160,9 @@ export default function Privacidad() {
 
       <Seccion titulo="Seguridad">
         <p>
-          Acceso cerrado por aprobación, ingreso con cuenta de Google sin contrasenas propias,
-          cifrado en transito, enlaces compartidos de los que solo se guarda una huella y nunca el
-          enlace en claro, y bitácora de auditoria de cada movimiento. Ningun sistema es infalible:
+          Acceso cerrado por aprobación, ingreso con cuenta de Google sin contraseñas propias,
+          cifrado en tránsito, enlaces compartidos de los que solo se guarda una huella y nunca el
+          enlace en claro, y bitácora de auditoría de cada movimiento. Ningún sistema es infalible:
           si detectamos un incidente que afecte sus datos, se lo informaremos.
         </p>
       </Seccion>

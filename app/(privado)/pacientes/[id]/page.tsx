@@ -10,13 +10,15 @@ import { GraficaRefraccion } from '@/components/graficas/GraficaRefraccion'
 import { RegistroDeUso } from '@/components/formularios/RegistroDeUso'
 import { TablaControles } from '@/components/paciente/TablaControles'
 import { Aviso, NotaEducativa } from '@/components/ui/Aviso'
+import { Pestanas } from '@/components/ui/Pestanas'
+import { FotoTratamiento } from '@/components/marca/FotoTratamiento'
+import { AVISO_DEMO, esDemostracion } from '@/lib/datos/demostracion'
 import {
   IconoCalendario,
   IconoCandado,
   IconoCompartir,
   IconoImprimir,
   IconoMas,
-  IconoTratamiento,
   IconoVolver,
 } from '@/components/marca/IconosTratamiento'
 import { TRATAMIENTOS } from '@/config/tratamientos'
@@ -95,67 +97,14 @@ export default async function Paciente({ params }: { params: { id: string } }) {
     etiqueta: TRATAMIENTOS[t.type].nombreCorto,
   }))
 
-  return (
-    <>
-      <Link href="/panel" className="inline-flex items-center gap-1.5 text-sm text-azul hover:underline">
-        <IconoVolver className="h-4 w-4" />
-        Pacientes
-      </Link>
-
-      <div className="mt-2 flex flex-wrap items-start gap-3">
-        <div className="min-w-0 flex-1">
-          <h1 className="font-titulo text-2xl">
-            {paciente.firstName} {paciente.lastName}
-          </h1>
-          <p className="text-sm text-grisTexto">
-            {edad} años · nació el {fechaLarga(paciente.birthDate)}
-            {paciente.myopicParents !== null &&
-              ` · ${paciente.myopicParents === 0 ? 'ningun padre miope' : paciente.myopicParents === 1 ? 'un padre miope' : 'dos padres miopes'}`}
-            {paciente.myopiaOnsetAge &&
-              ` · miopia desde los ${String(paciente.myopiaOnsetAge).replace('.', ',')} anos`}
-          </p>
-        </div>
-        {puedeEditar && (
-          <div className="flex flex-wrap gap-2">
-            <Link href={`/pacientes/${paciente.id}/privacidad`} className="boton-secundario">
-              <IconoCandado className="h-4 w-4" />
-              Datos
-            </Link>
-            <Link href={`/pacientes/${paciente.id}/compartir`} className="boton-secundario">
-              <IconoCompartir className="h-4 w-4" />
-              Compartir
-            </Link>
-            <Link href={`/pacientes/${paciente.id}/carnet`} className="boton-secundario">
-              <IconoImprimir className="h-4 w-4" />
-              Carnet
-            </Link>
-            <Link href={`/pacientes/${paciente.id}/controles/nuevo`} className="boton-magenta">
-              <IconoMas className="h-4 w-4" />
-              Nuevo control
-            </Link>
-          </div>
-        )}
-      </div>
-
-      <div className="mt-4 space-y-2">
-        {vencidos.length > 0 && (
-          <Aviso nivel="alerta" titulo={`${vencidos.length} control${vencidos.length > 1 ? 'es' : ''} vencido${vencidos.length > 1 ? 's' : ''}`}>
-            {vencidos.map((c) => `${c.label} (${fechaCorta(c.dueDate)})`).join(' · ')}
-          </Aviso>
-        )}
-        {ultimo?.avisoAxial && (
-          <Aviso nivel={ultimo.avisoAxial.nivel}>{ultimo.avisoAxial.texto}</Aviso>
-        )}
-        {cambioDeEquipo && (
-          <Aviso nivel="aviso" titulo="Cambio de equipo de biometría">
-            Los dos controles comparados se midieron con equipos distintos. La diferencia puede no
-            ser solo crecimiento del ojo.
-          </Aviso>
-        )}
-      </div>
-
+  const pestanas = [
+    {
+      clave: 'resumen',
+      titulo: 'Resumen',
+      contenido: (
+        <>
       {/* Crecimiento y adherencia, juntos. */}
-      <section className="mt-5">
+      <section className="mt-6 first:mt-0">
         <h2 className="font-titulo text-lg">Crecimiento del ojo y uso del tratamiento</h2>
         {ultimo ? (
           <>
@@ -193,19 +142,15 @@ export default async function Paciente({ params }: { params: { id: string } }) {
           </p>
         )}
       </section>
-
       {/* Adherencia por tratamiento activo */}
       {adherencia.length > 0 && (
-        <section className="mt-6">
+        <section className="mt-6 first:mt-0">
           <h2 className="font-titulo text-lg">Adherencia</h2>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             {adherencia.map((a) => (
               <div key={a.tratamiento.id} className="tarjeta">
-                <div className="flex items-center gap-2">
-                  <IconoTratamiento
-                    tipo={a.tratamiento.type}
-                    className="h-4 w-4"
-                  />
+                <div className="flex items-center gap-2.5">
+                  <FotoTratamiento tipo={a.tratamiento.type} tamano={40} />
                   <p className="font-semibold">{TRATAMIENTOS[a.tratamiento.type].nombre}</p>
                 </div>
                 <p className="mt-0.5 text-xs text-grisTexto">
@@ -232,10 +177,9 @@ export default async function Paciente({ params }: { params: { id: string } }) {
           </div>
         </section>
       )}
-
       {/* Registro del dia */}
       {tratamientosActivos.length > 0 && (
-        <section className="mt-6">
+        <section className="mt-6 first:mt-0">
           <h2 className="font-titulo text-lg">Registro de hoy</h2>
           <p className="text-sm text-grisTexto">{fechaLarga(hoy)}</p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -275,16 +219,23 @@ export default async function Paciente({ params }: { params: { id: string } }) {
           </div>
         </section>
       )}
-
+        </>
+      ),
+    },
+    {
+      clave: 'graficas',
+      titulo: 'Gráficas',
+      contenido: (
+        <>
       {/* Graficas */}
-      <section className="mt-6">
+      <section className="mt-6 first:mt-0">
         <h2 className="font-titulo text-lg">Longitud axial</h2>
         <div className="tarjeta mt-3">
           <GraficaLongitudAxial datos={datosAxial} marcas={marcas} />
         </div>
       </section>
 
-      <section className="mt-6">
+      <section className="mt-6 first:mt-0">
         <h2 className="font-titulo text-lg">Refracción</h2>
         <div className="tarjeta mt-3">
           <GraficaRefraccion
@@ -293,9 +244,17 @@ export default async function Paciente({ params }: { params: { id: string } }) {
           />
         </div>
       </section>
-
+        </>
+      ),
+    },
+    {
+      clave: 'tratamientos',
+      titulo: 'Tratamientos',
+      cuenta: tratamientos.length,
+      contenido: (
+        <>
       {/* Tratamientos */}
-      <section className="mt-6">
+      <section className="mt-6 first:mt-0">
         <div className="flex items-center gap-3">
           <h2 className="font-titulo text-lg">Tratamientos</h2>
           {puedeEditar && (
@@ -320,8 +279,8 @@ export default async function Paciente({ params }: { params: { id: string } }) {
                 className="tarjeta border-l-4"
                 style={{ borderLeftColor: d.color }}
               >
-                <div className="flex flex-wrap items-start gap-2">
-                  <IconoTratamiento tipo={t.type} className="mt-0.5 h-5 w-5" />
+                <div className="flex flex-wrap items-start gap-3">
+                  <FotoTratamiento tipo={t.type} tamano={56} />
                   <div className="min-w-0 flex-1">
                     <p className="font-semibold">
                       {d.nombre}
@@ -366,9 +325,17 @@ export default async function Paciente({ params }: { params: { id: string } }) {
           })}
         </div>
       </section>
-
+        </>
+      ),
+    },
+    {
+      clave: 'controles',
+      titulo: 'Controles',
+      cuenta: controles.length,
+      contenido: (
+        <>
       {/* Proximos controles */}
-      <section className="mt-6">
+      <section className="mt-6 first:mt-0">
         <h2 className="font-titulo text-lg">Próximos controles</h2>
         <div className="tarjeta mt-3">
           {citas.filter((c) => c.estadoVigente !== 'cumplida' && c.estadoVigente !== 'omitida')
@@ -396,12 +363,84 @@ export default async function Paciente({ params }: { params: { id: string } }) {
           )}
         </div>
       </section>
-
       {/* Tabla de controles */}
-      <section className="mt-6">
+      <section className="mt-6 first:mt-0">
         <h2 className="font-titulo text-lg">Controles</h2>
         <TablaControles controles={controles} />
       </section>
+        </>
+      ),
+    },
+  ]
+
+  return (
+    <>
+      <Link href="/panel" className="inline-flex items-center gap-1.5 text-sm text-azul hover:underline">
+        <IconoVolver className="h-4 w-4" />
+        Pacientes
+      </Link>
+
+      <div className="mt-2 flex flex-wrap items-start gap-3">
+        <div className="min-w-0 flex-1">
+          <h1 className="font-titulo text-2xl">
+            {paciente.firstName} {paciente.lastName}
+          </h1>
+          <p className="text-sm text-grisTexto">
+            {edad} años · nació el {fechaLarga(paciente.birthDate)}
+            {paciente.myopicParents !== null &&
+              ` · ${paciente.myopicParents === 0 ? 'ningun padre miope' : paciente.myopicParents === 1 ? 'un padre miope' : 'dos padres miopes'}`}
+            {paciente.myopiaOnsetAge &&
+              ` · miopia desde los ${String(paciente.myopiaOnsetAge).replace('.', ',')} anos`}
+          </p>
+        </div>
+        {puedeEditar && (
+          <div className="flex flex-wrap gap-2">
+            <Link href={`/pacientes/${paciente.id}/privacidad`} className="boton-secundario">
+              <IconoCandado className="h-4 w-4" />
+              Datos
+            </Link>
+            <Link href={`/pacientes/${paciente.id}/compartir`} className="boton-secundario">
+              <IconoCompartir className="h-4 w-4" />
+              Compartir
+            </Link>
+            <Link href={`/pacientes/${paciente.id}/carnet`} className="boton-secundario">
+              <IconoImprimir className="h-4 w-4" />
+              Carnet
+            </Link>
+            <Link href={`/pacientes/${paciente.id}/controles/nuevo`} className="boton-magenta">
+              <IconoMas className="h-4 w-4" />
+              Nuevo control
+            </Link>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-4 space-y-2">
+        {esDemostracion(paciente) && (
+          <Aviso nivel="aviso" titulo={AVISO_DEMO.titulo}>
+            {AVISO_DEMO.texto}
+          </Aviso>
+        )}
+        {vencidos.length > 0 && (
+          <Aviso nivel="alerta" titulo={`${vencidos.length} control${vencidos.length > 1 ? 'es' : ''} vencido${vencidos.length > 1 ? 's' : ''}`}>
+            {vencidos.map((c) => `${c.label} (${fechaCorta(c.dueDate)})`).join(' · ')}
+          </Aviso>
+        )}
+        {ultimo?.avisoAxial && (
+          <Aviso nivel={ultimo.avisoAxial.nivel}>{ultimo.avisoAxial.texto}</Aviso>
+        )}
+        {cambioDeEquipo && (
+          <Aviso nivel="aviso" titulo="Cambio de equipo de biometría">
+            Los dos controles comparados se midieron con equipos distintos. La diferencia puede no
+            ser solo crecimiento del ojo.
+          </Aviso>
+        )}
+      </div>
+
+      <div className="mt-5">
+        <Pestanas pestanas={pestanas} />
+      </div>
+
     </>
   )
 }

@@ -62,7 +62,7 @@ const FRANJAS_SEMAFORO = [
   {
     fondo: COLOR.semAmarillo,
     titulo: 'Amarillo',
-    texto: 'Más de lo ideal. Es el momento de revisar la adherencia y los habitos, antes de cambiar nada.',
+    texto: 'Más de lo ideal. Es el momento de revisar la adherencia y los hábitos, antes de cambiar nada.',
   },
   {
     fondo: COLOR.semRojo,
@@ -77,15 +77,15 @@ const FRANJAS_SEMAFORO = [
 
 export const TRAILER = {
   nombre: 'trailer-que-es-y-como-funciona',
-  titulo: 'Trailer: que es y como funciona',
+  titulo: 'Trailer: qué es y cómo funciona',
   laminas: [
     {
       voz: 'alex',
       texto:
-        'Grupo Manejo Miopía Latam presenta el carnet de seguimiento del control de miopía.',
+        'Grupo Manejo Miopía Latam presenta Seguimiento MML, el carnet de seguimiento del control de miopía en versión digital.',
       html: laminaPortada({
-        titulo: 'Carnet de seguimiento<br>del control de miopía',
-        sub: 'Grupo Manejo Miopía Latam',
+        titulo: 'Seguimiento MML',
+        sub: 'El carnet del control de miopía, de Grupo Manejo Miopía Latam',
       }),
     },
     {
@@ -155,9 +155,9 @@ export const TRAILER = {
         titulo: 'La familia registra desde el teléfono',
         sub: 'Un botón grande por tratamiento activo, pensado primero para el celular.',
         puntos: [
-          'Orto-k: anoche durmio con los lentes, si o no.',
-          'Gafas y lentes blandos: cuantas horas se uso hoy.',
-          'Atropina: la gota de esta noche, si o no.',
+          'Orto-k: anoche durmió con los lentes, sí o no.',
+          'Gafas y lentes blandos: cuántas horas se usó hoy.',
+          'Atropina: la gota de esta noche, sí o no.',
           'Y la semana a la vista, día por día.',
         ],
       }),
@@ -182,7 +182,7 @@ export const TRAILER = {
       texto: 'El carnet del grupo: en papel para llevarlo a la cita, y aquí para calcular lo que el papel no calcula.',
       html: laminaCierre({
         titulo: 'seguimiento.miopialatam.org',
-        sub: 'Acceso para profesionales de la red, por aprobacion.',
+        sub: 'Acceso para profesionales de la red, por aprobación.',
       }),
     },
   ],
@@ -338,7 +338,7 @@ export const MANEJO = {
           'Agudeza visual de ojo derecho y ojo izquierdo.',
           'Refracción bajo cicloplejía. El equivalente esférico lo calcula la aplicación.',
           'Longitud axial con dos decimales, y el equipo de biometría. El equipo es obligatorio.',
-          'Hallazgos propios del tratamiento, molestias, decision y próximo control.',
+          'Hallazgos propios del tratamiento, molestias, decisión y próximo control.',
         ],
       }),
     },
@@ -482,12 +482,12 @@ export const SEGUIMIENTO = {
       texto:
         'Para la cita con oftalmología pediátrica, genere un enlace de solo lectura con su código QR. Lo puede generar usted o la familia.',
       html: laminaPuntos({
-        titulo: 'Compartir con oftalmopediatria',
+        titulo: 'Compartir con oftalmopediatría',
         puntos: [
           'Elija para quien es y en cuánto vence, entre 7 y 180 días.',
           'Imprima la hoja con el QR y entreguesela a la familia.',
           'Quien lo recibe ve el seguimiento completo, sin cuenta, y no puede editar.',
-          'Revoquelo cuando quiera. Cada apertura queda registrada.',
+          'Revóquelo cuando quiera. Cada apertura queda registrada.',
         ],
         colores: [COLOR.verde, COLOR.azul, COLOR.magenta, COLOR.amarillo],
       }),
@@ -498,7 +498,7 @@ export const SEGUIMIENTO = {
         'Y en cualquier momento, la familia puede pedir una copia de todos los datos de su hijo, corregirlos, retirar la autorización o pedir que se borren. Están los cuatro botones.',
       html: laminaPuntos({
         titulo: 'Los derechos de la familia',
-        sub: 'En la pagina de datos y consentimiento de cada paciente.',
+        sub: 'En la página de datos y consentimiento de cada paciente.',
         puntos: [
           'Descargar una copia completa de todo lo registrado.',
           'Retirar la autorización del representante legal.',

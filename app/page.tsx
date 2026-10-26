@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
@@ -5,7 +6,7 @@ import { auth } from '@/auth'
 import { Logo, BarrasMML } from '@/components/marca/Logo'
 import { BotonGoogle } from '@/components/marca/BotonGoogle'
 import { IconoReproducir } from '@/components/marca/IconosTratamiento'
-import { IlustracionTratamiento } from '@/components/marca/IlustracionTratamiento'
+import { CREDITO_FOTOS, FOTOS_TRATAMIENTO } from '@/config/fotos-tratamiento'
 import {
   MiniAdherencia,
   MiniBiometria,
@@ -140,6 +141,7 @@ export default async function Inicio() {
           <div className="mt-7 space-y-4">
             {ORDEN_TRATAMIENTOS.map((tipo) => {
               const d = TRATAMIENTOS[tipo]
+              const foto = FOTOS_TRATAMIENTO[tipo]
               const plantilla =
                 PLANTILLAS_BASE.find((p) => p.tipo === tipo && p.clave.startsWith('wco-')) ??
                 PLANTILLAS_BASE.find((p) => p.tipo === tipo)!
@@ -152,19 +154,23 @@ export default async function Inicio() {
               return (
                 <article
                   key={tipo}
-                  className="grid overflow-hidden rounded-2xl border border-borde bg-crema shadow-tarjeta sm:grid-cols-[200px_1fr]"
+                  className="grid overflow-hidden rounded-2xl border border-borde bg-crema shadow-tarjeta sm:grid-cols-[240px_1fr]"
                 >
-                  {/* Franja ilustrada: el dispositivo, en grande y en su color. */}
-                  <div
-                    className="relative flex items-center justify-center px-6 py-7"
-                    style={{ background: `${d.color}14`, color: d.color }}
-                  >
+                  {/* Foto del tratamiento. En el celular es una banda arriba. */}
+                  <div className="relative h-40 sm:h-auto">
+                    <Image
+                      src={foto.src}
+                      alt={foto.alt}
+                      fill
+                      sizes="(min-width: 640px) 240px, 100vw"
+                      className="object-cover"
+                      style={{ objectPosition: foto.encuadre }}
+                    />
                     <span
-                      className="absolute inset-y-0 left-0 w-1.5 sm:inset-x-0 sm:bottom-auto sm:h-1.5 sm:w-auto"
+                      className="absolute inset-x-0 bottom-0 h-1.5 sm:inset-y-0 sm:left-0 sm:bottom-auto sm:h-auto sm:w-1.5"
                       style={{ background: d.color }}
                       aria-hidden
                     />
-                    <IlustracionTratamiento tipo={tipo} className="h-20 w-full max-w-[150px]" />
                   </div>
 
                   <div className="p-5 sm:p-6">
@@ -208,6 +214,7 @@ export default async function Inicio() {
             Combinar no es un quinto tratamiento: es tener dos activos a la vez, por ejemplo
             orto-k más atropina, cada uno con su meta y su adherencia por separado.
           </p>
+          <p className="mt-3 text-xs leading-relaxed text-grisTexto">{CREDITO_FOTOS}</p>
         </div>
       </section>
 

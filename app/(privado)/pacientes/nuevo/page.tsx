@@ -15,9 +15,14 @@ export default async function NuevoPaciente() {
         Pacientes
       </Link>
       <h1 className="mt-2 font-titulo text-2xl">Nuevo paciente</h1>
-      <p className="mb-5 mt-1 text-sm text-grisTexto">
-        Al guardar se registra el consentimiento y se abre el formulario del primer tratamiento.
+      <p className="mt-1 text-sm text-grisTexto">
+        Al guardar se registra el consentimiento y se abre el formulario del primer tratamiento.{' '}
+        <Link href="/consentimiento" className="font-semibold text-azul hover:underline">
+          Ver el documento que firma la familia
+        </Link>
+        .
       </p>
+      <div className="mb-5" />
       <FormularioPaciente />
     </>
   )
