@@ -317,7 +317,7 @@ export default async function Inicio() {
               Meta de largo plazo: longitud axial por debajo de {String(META_LONGITUD_AXIAL.limiteMm).replace('.', ',')} mm
             </p>
             <p className="mt-1 text-sm text-grisTexto">
-              {META_LONGITUD_AXIAL.fuente}. Fuera de los 7 a los 16 anos la aplicacion muestra el
+              {META_LONGITUD_AXIAL.fuente}. Fuera de los 7 a los 16 años la aplicación muestra el
               dato medido sin clasificarlo, porque no hay umbral publicado para esas edades.
             </p>
           </div>

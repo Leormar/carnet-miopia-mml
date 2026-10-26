@@ -264,7 +264,7 @@ export function Carnet({ datos }: { datos: DatosCarnet }) {
           <div style={{ background: '#fdf3c4' }}>
             <b>Amarillo: mas de lo ideal</b>
             Se acerca a lo de un miope sin tratamiento: 0,3 mm/año a los 7-10 años · 0,2 mm/año a
-            los 11-16. Revisar adherencia y habitos.
+            los 11-16. Revisar adherencia y hábitos.
           </div>
           <div style={{ background: '#fbe3ea' }}>
             <b>Meta de largo plazo</b>

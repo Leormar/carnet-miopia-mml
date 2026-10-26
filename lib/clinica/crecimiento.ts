@@ -123,19 +123,19 @@ export function semaforo(mmPorAno: number | null, edad: number): Semaforo {
   if (!franja) {
     return {
       color: 'sin_color',
-      etiqueta: `${formatoMm(mmPorAno)} mm/ano`,
+      etiqueta: `${formatoMm(mmPorAno)} mm/año`,
       descripcion: SEMAFORO_CRECIMIENTO.notaFueraDeRango,
       franja: null,
       nota: SEMAFORO_CRECIMIENTO.notaFueraDeRango,
     }
   }
 
-  const etiquetaFranja = `${franja.edadMin} a ${franja.edadMax} anos`
+  const etiquetaFranja = `${franja.edadMin} a ${franja.edadMax} años`
 
   if (mmPorAno <= franja.verdeHasta) {
     return {
       color: 'verde',
-      etiqueta: `${formatoMm(mmPorAno)} mm/ano`,
+      etiqueta: `${formatoMm(mmPorAno)} mm/año`,
       descripcion: franja.descripcionVerde,
       franja: etiquetaFranja,
       nota: null,
@@ -144,7 +144,7 @@ export function semaforo(mmPorAno: number | null, edad: number): Semaforo {
   if (mmPorAno >= franja.rojoDesde) {
     return {
       color: 'rojo',
-      etiqueta: `${formatoMm(mmPorAno)} mm/ano`,
+      etiqueta: `${formatoMm(mmPorAno)} mm/año`,
       descripcion: franja.descripcionRojo,
       franja: etiquetaFranja,
       nota: null,
@@ -152,7 +152,7 @@ export function semaforo(mmPorAno: number | null, edad: number): Semaforo {
   }
   return {
     color: 'amarillo',
-    etiqueta: `${formatoMm(mmPorAno)} mm/ano`,
+    etiqueta: `${formatoMm(mmPorAno)} mm/año`,
     descripcion: franja.descripcionAmarillo,
     franja: etiquetaFranja,
     nota: null,

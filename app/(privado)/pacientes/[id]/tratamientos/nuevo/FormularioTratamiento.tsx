@@ -140,7 +140,7 @@ export function FormularioTratamiento({
 
       <Seccion
         titulo="Meta de uso"
-        descripcion={`Por defecto: ${textoMeta(tipo)}. Puede ajustarla para este nino.`}
+        descripcion={`Por defecto: ${textoMeta(tipo)}. Puede ajustarla para este niño.`}
       >
         {definicion.modoRegistro === 'horas' ? (
           <>
@@ -260,7 +260,7 @@ export function FormularioTratamiento({
 function textoMeta(tipo: TipoTratamiento) {
   const m = TRATAMIENTOS[tipo].metaPorDefecto
   if (m.horasPorDia !== undefined) {
-    return `${m.horasPorDia} horas al dia, ${m.diasPorSemana ?? 7} dias por semana`
+    return `${m.horasPorDia} horas al día, ${m.diasPorSemana ?? 7} días por semana`
   }
   return TRATAMIENTOS[tipo].modoRegistro === 'noche' ? 'todas las noches' : 'todas las noches'
 }

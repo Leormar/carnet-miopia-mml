@@ -41,7 +41,7 @@ export default async function Compartir({ params }: { params: { id: string } }) 
       <div className="no-imprimir mt-2">
         <h1 className="font-titulo text-2xl">Compartir con otro profesional</h1>
         <p className="mt-1 text-sm leading-relaxed text-grisTexto">
-          Genera un enlace y un codigo QR de solo lectura para que oftalmologia pediatrica, u
+          Genera un enlace y un código QR de solo lectura para que oftalmología pediátrica, u
           otro profesional, vea el seguimiento de {ficha.paciente.firstName} sin necesidad de
           crear una cuenta. Quien lo abra puede ver y no puede modificar nada.
         </p>
@@ -113,8 +113,8 @@ export default async function Compartir({ params }: { params: { id: string } }) 
       <div className="no-imprimir mt-6">
         <Aviso titulo="Tratamiento de datos">
           Son datos de salud de un menor. Comparta el enlace solo con el profesional que lo
-          necesita, por un medio privado, y revoquelo cuando ya no haga falta. Cada apertura
-          queda registrada en la bitácora de auditoria, conforme a la Ley 1581 de 2012 y al
+          necesita, por un medio privado, y revóquelo cuando ya no haga falta. Cada apertura
+          queda registrada en la bitácora de auditoría, conforme a la Ley 1581 de 2012 y al
           Decreto 1377 de 2013.
         </Aviso>
       </div>

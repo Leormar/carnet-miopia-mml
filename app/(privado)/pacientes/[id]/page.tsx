@@ -120,11 +120,11 @@ export default async function Paciente({ params }: { params: { id: string } }) {
               <p className="mt-2 text-xs text-grisTexto">
                 Entre los dos ultimos controles:
                 {ultimo.entreControlesOd &&
-                  ` OD ${formatoMm(ultimo.entreControlesOd.mmPorAno)} mm/ano`}
+                  ` OD ${formatoMm(ultimo.entreControlesOd.mmPorAno)} mm/año`}
                 {ultimo.entreControlesOi &&
-                  ` · OI ${formatoMm(ultimo.entreControlesOi.mmPorAno)} mm/ano`}
+                  ` · OI ${formatoMm(ultimo.entreControlesOi.mmPorAno)} mm/año`}
                 {ultimo.entreControlesOd &&
-                  ` (${ultimo.entreControlesOd.diasEntreControles} dias)`}
+                  ` (${ultimo.entreControlesOd.diasEntreControles} días)`}
               </p>
             )}
             {textoConjunto && (
@@ -163,9 +163,9 @@ export default async function Paciente({ params }: { params: { id: string } }) {
                   })}
                 </p>
                 <div className="mt-3 space-y-3">
-                  <BarraAdherencia resumen={a.siete} titulo="7 dias" />
-                  <BarraAdherencia resumen={a.treinta} titulo="30 dias" />
-                  <BarraAdherencia resumen={a.noventa} titulo="90 dias" />
+                  <BarraAdherencia resumen={a.siete} titulo="7 días" />
+                  <BarraAdherencia resumen={a.treinta} titulo="30 días" />
+                  <BarraAdherencia resumen={a.noventa} titulo="90 días" />
                 </div>
                 {a.treinta.diasConMolestias > 0 && (
                   <p className="mt-2 text-xs text-magenta">
@@ -390,7 +390,7 @@ export default async function Paciente({ params }: { params: { id: string } }) {
             {paciente.myopicParents !== null &&
               ` · ${paciente.myopicParents === 0 ? 'ningun padre miope' : paciente.myopicParents === 1 ? 'un padre miope' : 'dos padres miopes'}`}
             {paciente.myopiaOnsetAge &&
-              ` · miopia desde los ${String(paciente.myopiaOnsetAge).replace('.', ',')} anos`}
+              ` · miopía desde los ${String(paciente.myopiaOnsetAge).replace('.', ',')} años`}
           </p>
         </div>
         {puedeEditar && (

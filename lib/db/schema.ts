@@ -455,7 +455,7 @@ export const exams = pgTable(
     alOi: numeric('al_oi', { precision: 4, scale: 2 }),
     biometerId: uuid('biometer_id').references(() => biometers.id, { onDelete: 'set null' }),
 
-    // Uso y habitos reportados en consulta
+    // Uso y hábitos reportados en consulta
     reportedHoursPerDay: numeric('reported_hours_per_day', { precision: 4, scale: 1 }),
     outdoorHoursPerDay: numeric('outdoor_hours_per_day', { precision: 4, scale: 1 }),
     screenHoursPerDay: numeric('screen_hours_per_day', { precision: 4, scale: 1 }),

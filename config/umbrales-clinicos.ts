@@ -28,7 +28,7 @@ export const SEMAFORO_CRECIMIENTO = {
       verdeHasta: 0.2, // mm/ano, inclusive
       rojoDesde: 0.3, // mm/ano, inclusive
       descripcionVerde: 'Como un ojo sin miopía',
-      descripcionAmarillo: 'Mas de lo ideal. Revisar adherencia y habitos',
+      descripcionAmarillo: 'Más de lo ideal. Revisar adherencia y hábitos',
       descripcionRojo: 'Como un miope sin tratamiento',
     },
     {
@@ -37,7 +37,7 @@ export const SEMAFORO_CRECIMIENTO = {
       verdeHasta: 0.1,
       rojoDesde: 0.2,
       descripcionVerde: 'Como un ojo sin miopía',
-      descripcionAmarillo: 'Mas de lo ideal. Revisar adherencia y habitos',
+      descripcionAmarillo: 'Más de lo ideal. Revisar adherencia y hábitos',
       descripcionRojo: 'Como un miope sin tratamiento',
     },
   ],

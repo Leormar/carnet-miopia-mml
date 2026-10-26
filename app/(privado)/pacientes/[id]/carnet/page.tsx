@@ -55,7 +55,7 @@ export default async function CarnetDelPaciente({ params }: { params: { id: stri
     nombre: `${ficha.paciente.firstName} ${ficha.paciente.lastName}`,
     fechaNacimiento: ficha.paciente.birthDate,
     edadInicioMiopia: ficha.paciente.myopiaOnsetAge
-      ? `${String(ficha.paciente.myopiaOnsetAge).replace('.', ',')} anos`
+      ? `${String(ficha.paciente.myopiaOnsetAge).replace('.', ',')} años`
       : null,
     padresMiopes: ficha.paciente.myopicParents,
     tiposActivos: ficha.tratamientosActivos.map((t) => t.type),
@@ -124,8 +124,8 @@ export default async function CarnetDelPaciente({ params }: { params: { id: stri
           <div>
             <h1 className="font-titulo text-2xl">Carnet</h1>
             <p className="text-sm text-grisTexto">
-              Dos paginas A4 horizontal. En el dialogo de impresión elija Guardar como PDF, tamaño
-              A4, orientación horizontal y margenes ninguno.
+              Dos hojas A4 horizontal. En el diálogo de impresión elija Guardar como PDF, tamaño
+              A4, orientación horizontal y márgenes ninguno.
             </p>
           </div>
           <div className="ml-auto">

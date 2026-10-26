@@ -126,7 +126,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
             {paciente.myopicParents !== null &&
               ` · ${paciente.myopicParents === 0 ? 'ningun padre miope' : paciente.myopicParents === 1 ? 'un padre miope' : 'dos padres miopes'}`}
             {paciente.myopiaOnsetAge &&
-              ` · miopia desde los ${String(paciente.myopiaOnsetAge).replace('.', ',')} anos`}
+              ` · miopía desde los ${String(paciente.myopiaOnsetAge).replace('.', ',')} años`}
           </p>
         </div>
 
@@ -164,9 +164,9 @@ export default async function CarnetCompartido({ params }: { params: { token: st
                 <p className="mt-2 text-xs text-grisTexto">
                   Entre los dos ultimos controles:
                   {ultimo.entreControlesOd &&
-                    ` OD ${formatoMm(ultimo.entreControlesOd.mmPorAno)} mm/ano`}
+                    ` OD ${formatoMm(ultimo.entreControlesOd.mmPorAno)} mm/año`}
                   {ultimo.entreControlesOi &&
-                    ` · OI ${formatoMm(ultimo.entreControlesOi.mmPorAno)} mm/ano`}
+                    ` · OI ${formatoMm(ultimo.entreControlesOi.mmPorAno)} mm/año`}
                 </p>
               )}
             </>
@@ -196,7 +196,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
                     })}
                   </p>
                   <div className="mt-3">
-                    <BarraAdherencia resumen={a.treinta} titulo="30 dias" />
+                    <BarraAdherencia resumen={a.treinta} titulo="30 días" />
                   </div>
                 </div>
               ))}
@@ -297,7 +297,7 @@ export default async function CarnetCompartido({ params }: { params: { token: st
       <footer className="mx-auto max-w-5xl px-4 pb-10 text-xs leading-relaxed text-grisTexto">
         <p>
           La aplicación registra y calcula; no diagnostica ni decide tratamientos. Esta vista es
-          de solo lectura y su apertura queda registrada en la bitácora de auditoria, conforme a
+          de solo lectura y su apertura queda registrada en la bitácora de auditoría, conforme a
           la Ley 1581 de 2012 y al Decreto 1377 de 2013.
         </p>
         <p className="mt-1">

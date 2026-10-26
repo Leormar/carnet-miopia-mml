@@ -28,6 +28,12 @@ config({ path: '.env.local' })
 
 const MARCA_DEMO = 'demostracion'
 
+/**
+ * El identificador es fijo a proposito. Asi el enlace a la demostracion sirve
+ * siempre, aunque se vuelva a cargar la historia desde cero.
+ */
+const ID_DEMO = '884f4a3f-8ec4-43e0-91e0-2472a15dd06a'
+
 /** Hoy, en ISO, sin horas. */
 function hoy(): string {
   return new Date().toISOString().slice(0, 10)
@@ -63,7 +69,7 @@ async function principal() {
   const [existente] = await db
     .select({ id: patients.id })
     .from(patients)
-    .where(and(eq(patients.documentType, MARCA_DEMO), eq(patients.documentNumber, 'MML-DEMO')))
+    .where(eq(patients.id, ID_DEMO))
     .limit(1)
 
   if (existente) {
@@ -117,6 +123,7 @@ async function principal() {
   const [paciente] = await db
     .insert(patients)
     .values({
+      id: ID_DEMO,
       orgId: org.id,
       firstName: 'Luciana',
       lastName: 'Ejemplo',
@@ -276,7 +283,7 @@ async function principal() {
       horas: null,
       tratamiento: 'ortok',
       etiqueta: '1 mes',
-      decision: 'Visión estable durante el día. Se continua igual.',
+      decision: 'Visión estable durante el día. Se continúa igual.',
     },
     {
       diasAtras: 92,
@@ -287,7 +294,7 @@ async function principal() {
       horas: null,
       tratamiento: 'ortok',
       etiqueta: '3 meses',
-      decision: 'Crecimiento más lento que con el tratamiento anterior. Se continua.',
+      decision: 'Crecimiento más lento que con el tratamiento anterior. Se continúa.',
     },
     {
       diasAtras: 7,
@@ -299,7 +306,7 @@ async function principal() {
       tratamiento: 'ortok',
       etiqueta: '6 meses',
       decision:
-        'Crecimiento de 0,12 mm en los últimos 12 meses, dentro de lo esperado para la edad. Se continua y se revisa en 6 meses.',
+        'En los 6 meses con ortoqueratología el ojo creció 0,06 mm, que anualizado es 0,12 mm al año. El semáforo de 12 meses todavía arrastra el periodo anterior con gafas. Se continúa y se revisa en 6 meses.',
     },
   ]
 

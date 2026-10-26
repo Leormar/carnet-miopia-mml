@@ -286,7 +286,7 @@ export function FormularioControl({
       )}
 
       <Seccion
-        titulo="Uso y habitos"
+        titulo="Uso y hábitos"
         descripcion="Lo que reporta la familia en la consulta. El registro diario se lleva aparte."
       >
         <Campo etiqueta="Horas de uso al día" nombre="reportedHoursPerDay">
